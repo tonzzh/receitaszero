@@ -395,8 +395,8 @@
             }
 
             100% {
-                transform: translateX(calc(-300px * 4 - 24px * 4));
-                /* Width of 4 items + gaps */
+                transform: translateX(calc(-300px * 9 - 24px * 9));
+                /* Width of 9 items + gaps */
             }
         }
 
@@ -780,6 +780,17 @@
             .orb-2 {
                 opacity: 0.5;
             }
+
+            /* Fix carousel animation for mobile - items are 250px instead of 300px */
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(calc(-250px * 9 - 24px * 9));
+                }
+            }
         }
 
         /* Small Mobile Devices */
@@ -881,6 +892,17 @@
 
             p {
                 font-size: 15px;
+            }
+
+            /* Fix carousel animation for small mobile - items are 200px */
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(calc(-200px * 9 - 24px * 9));
+                }
             }
         }
 
@@ -1075,6 +1097,25 @@
                         <div class="carousel-item">
                             <img src="images/slice_perfect.png" alt="Fatia Perfeita Gourmet" loading="lazy">
                         </div>
+                        <div class="carousel-item">
+                            <img src="images/chatgpt_image_17_de_jun._de_2025,_18_36_10.webp"
+                                alt="Doce Gourmet Delicioso" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chatgpt_image_17_de_jun._de_2025,_18_53_01.webp" alt="Sobremesa Artesanal"
+                                loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chatgpt_image_17_de_jun._de_2025,_19_03_26.webp" alt="Doce Zero Açúcar"
+                                loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chocottone_premium.png" alt="Chocottone Premium" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chatgpt_image_17_de_jun._de_2025,_22_32_33.webp" alt="Receita Saudável"
+                                loading="lazy">
+                        </div>
 
                         <!-- Duplicate Set for Infinite Loop -->
                         <div class="carousel-item">
@@ -1088,6 +1129,25 @@
                         </div>
                         <div class="carousel-item">
                             <img src="images/slice_perfect.png" alt="Fatia Perfeita Gourmet" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chatgpt_image_17_de_jun._de_2025,_18_36_10.webp"
+                                alt="Doce Gourmet Delicioso" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chatgpt_image_17_de_jun._de_2025,_18_53_01.webp" alt="Sobremesa Artesanal"
+                                loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chatgpt_image_17_de_jun._de_2025,_19_03_26.webp" alt="Doce Zero Açúcar"
+                                loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chocottone_premium.png" alt="Chocottone Premium" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/chatgpt_image_17_de_jun._de_2025,_22_32_33.webp" alt="Receita Saudável"
+                                loading="lazy">
                         </div>
                     </div>
                 </div>
