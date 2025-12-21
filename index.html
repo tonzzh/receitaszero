@@ -691,6 +691,18 @@
                 transform: none;
             }
 
+            /* Fix "Mais Vendido" badge overlap on mobile */
+            .pricing-box.premium .floating-badge {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                left: auto !important;
+                transform: none !important;
+                display: block !important;
+                margin: 0 auto 16px !important;
+                width: fit-content !important;
+            }
+
             .price-tag {
                 font-size: 56px;
             }
