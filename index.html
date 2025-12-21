@@ -1101,8 +1101,10 @@
                 <div class="video-container" data-aos="zoom-in">
                     <div class="video-facade"
                         style="background-image: url('https://img.youtube.com/vi/VbH_wXPzK04/hqdefault.jpg');"
-                        onclick="this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'">
-                        <div class="play-button" aria-label="Play Video"></div>
+                        onclick="this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'"
+                        onkeypress="if(event.key==='Enter'||event.key===' ')this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'"
+                        role="button" tabindex="0" aria-label="Reproduzir vídeo">
+                        <div class="play-button" role="presentation"></div>
                     </div>
                 </div>
             </div>
