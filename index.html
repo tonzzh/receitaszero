@@ -395,8 +395,8 @@
             }
 
             100% {
-                transform: translateX(calc(-300px * 9 - 24px * 9));
-                /* Width of 9 items + gaps */
+                transform: translateX(calc(-300px * 12 - 24px * 12));
+                /* Width of 12 items + gaps */
             }
         }
 
@@ -502,6 +502,75 @@
             border: 2px solid var(--primary);
         }
 
+        /* Image Testimonials Carousel */
+        .img-depo-carousel {
+            overflow: hidden;
+            width: 100%;
+            margin-top: 60px;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            padding: 20px 0;
+        }
+
+        .img-depo-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scroll-img-depo 40s linear infinite;
+        }
+
+        .img-depo-track:hover {
+            animation-play-state: paused;
+        }
+
+        .img-depo-item {
+            width: 320px;
+            flex-shrink: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .img-depo-item:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+        }
+
+        .img-depo-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes scroll-img-depo {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-320px * 6 - 20px * 6));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .img-depo-item {
+                width: 260px;
+            }
+
+            @keyframes scroll-img-depo {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(calc(-260px * 6 - 20px * 6));
+                }
+            }
+        }
+
         /* Pricing */
         .pricing-box {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
@@ -560,6 +629,23 @@
         .cta-button-large:hover {
             transform: scale(1.02);
             box-shadow: 0 0 50px var(--primary);
+        }
+
+        /* Bonus Section Styling */
+        .bonus-img {
+            width: 85%;
+            aspect-ratio: 3/4;
+            object-fit: contain;
+            border-radius: 12px;
+            margin: 0 auto 20px auto;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card:hover .bonus-img {
+            transform: scale(1.05);
         }
 
         /* FAQ */
@@ -788,7 +874,7 @@
                 }
 
                 100% {
-                    transform: translateX(calc(-250px * 9 - 24px * 9));
+                    transform: translateX(calc(-250px * 12 - 24px * 12));
                 }
             }
         }
@@ -901,7 +987,7 @@
                 }
 
                 100% {
-                    transform: translateX(calc(-200px * 9 - 24px * 9));
+                    transform: translateX(calc(-200px * 12 - 24px * 12));
                 }
             }
         }
@@ -1085,69 +1171,80 @@
                 <div class="carousel-container">
                     <div class="carousel-track">
                         <!-- Original Set -->
+                        <!-- Original Set -->
                         <div class="carousel-item">
-                            <img src="images/texture.webp" alt="Textura Alveolada Perfeita" loading="lazy">
+                            <img src="images/img1.webp" alt="Sobremesa Zero Açúcar 1" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/texture_choco.png" alt="Panetone de Chocolate Molhadinho" loading="lazy">
+                            <img src="images/img2.webp" alt="Sobremesa Zero Açúcar 2" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/texture_pull.png" alt="Massa Fofinha Desfiando" loading="lazy">
+                            <img src="images/img3.webp" alt="Sobremesa Zero Açúcar 3" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/slice_perfect.png" alt="Fatia Perfeita Gourmet" loading="lazy">
+                            <img src="images/img4.webp" alt="Sobremesa Zero Açúcar 4" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chatgpt_image_17_de_jun._de_2025,_18_36_10.webp"
-                                alt="Doce Gourmet Delicioso" loading="lazy">
+                            <img src="images/img5.webp" alt="Sobremesa Zero Açúcar 5" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chatgpt_image_17_de_jun._de_2025,_18_53_01.webp" alt="Sobremesa Artesanal"
-                                loading="lazy">
+                            <img src="images/img6.webp" alt="Sobremesa Zero Açúcar 6" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chatgpt_image_17_de_jun._de_2025,_19_03_26.webp" alt="Doce Zero Açúcar"
-                                loading="lazy">
+                            <img src="images/img7.webp" alt="Sobremesa Zero Açúcar 7" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chocottone_premium.png" alt="Chocottone Premium" loading="lazy">
+                            <img src="images/img8.webp" alt="Sobremesa Zero Açúcar 8" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chatgpt_image_17_de_jun._de_2025,_22_32_33.webp" alt="Receita Saudável"
-                                loading="lazy">
+                            <img src="images/img9.webp" alt="Sobremesa Zero Açúcar 9" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img10.webp" alt="Sobremesa Zero Açúcar 10" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img11.webp" alt="Sobremesa Zero Açúcar 11" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img12.webp" alt="Sobremesa Zero Açúcar 12" loading="lazy">
                         </div>
 
                         <!-- Duplicate Set for Infinite Loop -->
                         <div class="carousel-item">
-                            <img src="images/texture.webp" alt="Textura Alveolada Perfeita" loading="lazy">
+                            <img src="images/img1.webp" alt="Sobremesa Zero Açúcar 1" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/texture_choco.png" alt="Panetone de Chocolate Molhadinho" loading="lazy">
+                            <img src="images/img2.webp" alt="Sobremesa Zero Açúcar 2" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/texture_pull.png" alt="Massa Fofinha Desfiando" loading="lazy">
+                            <img src="images/img3.webp" alt="Sobremesa Zero Açúcar 3" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/slice_perfect.png" alt="Fatia Perfeita Gourmet" loading="lazy">
+                            <img src="images/img4.webp" alt="Sobremesa Zero Açúcar 4" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chatgpt_image_17_de_jun._de_2025,_18_36_10.webp"
-                                alt="Doce Gourmet Delicioso" loading="lazy">
+                            <img src="images/img5.webp" alt="Sobremesa Zero Açúcar 5" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chatgpt_image_17_de_jun._de_2025,_18_53_01.webp" alt="Sobremesa Artesanal"
-                                loading="lazy">
+                            <img src="images/img6.webp" alt="Sobremesa Zero Açúcar 6" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chatgpt_image_17_de_jun._de_2025,_19_03_26.webp" alt="Doce Zero Açúcar"
-                                loading="lazy">
+                            <img src="images/img7.webp" alt="Sobremesa Zero Açúcar 7" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chocottone_premium.png" alt="Chocottone Premium" loading="lazy">
+                            <img src="images/img8.webp" alt="Sobremesa Zero Açúcar 8" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/chatgpt_image_17_de_jun._de_2025,_22_32_33.webp" alt="Receita Saudável"
-                                loading="lazy">
+                            <img src="images/img9.webp" alt="Sobremesa Zero Açúcar 9" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img10.webp" alt="Sobremesa Zero Açúcar 10" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img11.webp" alt="Sobremesa Zero Açúcar 11" loading="lazy">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img12.webp" alt="Sobremesa Zero Açúcar 12" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -1239,7 +1336,7 @@
         <section class="section">
             <div class="container hero-grid">
                 <div class="hero-img-wrapper" data-aos="fade-right">
-                    <img src="images/isadora.png" alt="Isadora Leblanc" class="hero-img"
+                    <img src="images/isadora.webp" alt="Isadora Leblanc" class="hero-img"
                         style="transform: none; border-radius: 50%; max-width: 400px; width: 100%; height: auto; object-fit: cover; margin: 0 auto; box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);">
                 </div>
                 <div class="hero-text" data-aos="fade-left">
@@ -1261,98 +1358,46 @@
                 <h2 class="section-title">A Tranquilidade de Quem Já Experimentou</h2>
                 <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px; font-size: 20px;">VEJA A
                     OPINIÃO SINCERA DE QUEM VOLTOU A COMER DOCE SEM MEDO:</p>
-                <div class="testimonial-carousel-container">
-                    <div class="testimonial-track">
+                <!-- Image Testimonials Carousel -->
+                <div class="img-depo-carousel">
+                    <div class="img-depo-track">
                         <!-- Original Set -->
-                        <div class="testimonial-card">
-                            <div class="user-info">
-                                <img src="images/testimonial_1_1763677381383.png" alt="Maria Silva" class="user-avatar"
-                                    loading="lazy">
-                                <div>
-                                    <h3>Maria Silva</h3>
-                                    <span style="color: var(--primary);">★★★★★</span>
-                                </div>
-                            </div>
-                            <p>"Fiz o pudim e ninguém acreditou que era zero açúcar! Maravilhoso."</p>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo1.webp" alt="Depoimento 1" loading="lazy">
                         </div>
-                        <div class="testimonial-card">
-                            <div class="user-info">
-                                <img src="images/testimonial_2_1763677432950.png" alt="João Souza" class="user-avatar"
-                                    loading="lazy">
-                                <div>
-                                    <h3>João Souza</h3>
-                                    <span style="color: var(--primary);">★★★★★</span>
-                                </div>
-                            </div>
-                            <p>"Minha glicemia não subiu nada. Incrível poder comer doce de novo."</p>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo2.webp" alt="Depoimento 2" loading="lazy">
                         </div>
-                        <div class="testimonial-card">
-                            <div class="user-info">
-                                <img src="images/testimonial_3_1763677473309.png" alt="Ana Pereira" class="user-avatar"
-                                    loading="lazy">
-                                <div>
-                                    <h3>Ana Pereira</h3>
-                                    <span style="color: var(--primary);">★★★★★</span>
-                                </div>
-                            </div>
-                            <p>"O bolo de chocolate fica fofinho e úmido. Toda a família amou."</p>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo3.webp" alt="Depoimento 3" loading="lazy">
                         </div>
-                        <div class="testimonial-card">
-                            <div class="user-info">
-                                <img src="images/avatar_fernanda.png" alt="Fernanda Costa" class="user-avatar"
-                                    loading="lazy">
-                                <div>
-                                    <h3>Fernanda Costa</h3>
-                                    <span style="color: var(--primary);">★★★★★</span>
-                                </div>
-                            </div>
-                            <p>"Finalmente posso comer doce sem culpa. As receitas são muito fáceis."</p>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo4.webp" alt="Depoimento 4" loading="lazy">
                         </div>
-
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo5.webp" alt="Depoimento 5" loading="lazy">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo6.webp" alt="Depoimento 6" loading="lazy">
+                        </div>
                         <!-- Duplicate Set for Infinite Loop -->
-                        <div class="testimonial-card">
-                            <div class="user-info">
-                                <img src="images/testimonial_1_1763677381383.png" alt="Maria Silva" class="user-avatar"
-                                    loading="lazy">
-                                <div>
-                                    <h3>Maria Silva</h3>
-                                    <span style="color: var(--primary);">★★★★★</span>
-                                </div>
-                            </div>
-                            <p>"Fiz o pudim e ninguém acreditou que era zero açúcar! Maravilhoso."</p>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo1.webp" alt="Depoimento 1" loading="lazy">
                         </div>
-                        <div class="testimonial-card">
-                            <div class="user-info">
-                                <img src="images/testimonial_2_1763677432950.png" alt="João Souza" class="user-avatar"
-                                    loading="lazy">
-                                <div>
-                                    <h3>João Souza</h3>
-                                    <span style="color: var(--primary);">★★★★★</span>
-                                </div>
-                            </div>
-                            <p>"Minha glicemia não subiu nada. Incrível poder comer doce de novo."</p>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo2.webp" alt="Depoimento 2" loading="lazy">
                         </div>
-                        <div class="testimonial-card">
-                            <div class="user-info">
-                                <img src="images/testimonial_3_1763677473309.png" alt="Ana Pereira" class="user-avatar"
-                                    loading="lazy">
-                                <div>
-                                    <h3>Ana Pereira</h3>
-                                    <span style="color: var(--primary);">★★★★★</span>
-                                </div>
-                            </div>
-                            <p>"O bolo de chocolate fica fofinho e úmido. Toda a família amou."</p>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo3.webp" alt="Depoimento 3" loading="lazy">
                         </div>
-                        <div class="testimonial-card">
-                            <div class="user-info">
-                                <img src="images/avatar_fernanda.png" alt="Fernanda Costa" class="user-avatar"
-                                    loading="lazy">
-                                <div>
-                                    <h3>Fernanda Costa</h3>
-                                    <span style="color: var(--primary);">★★★★★</span>
-                                </div>
-                            </div>
-                            <p>"Finalmente posso comer doce sem culpa. As receitas são muito fáceis."</p>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo4.webp" alt="Depoimento 4" loading="lazy">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo5.webp" alt="Depoimento 5" loading="lazy">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo6.webp" alt="Depoimento 6" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -1369,36 +1414,42 @@
 
                 <div class="problem-grid">
                     <div class="glass-card" data-aos="fade-up">
+                        <img src="bonus/bonus1.webp" alt="Ebook Bolos Diet" class="bonus-img">
                         <h3 style="color: var(--primary);">BÔNUS 1</h3>
                         <h4>Bolos Diet</h4>
                         <p class="text-muted">20 receitas de bolos irresistíveis e zero açúcar.</p>
                         <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <img src="bonus/bonus2.webp" alt="Ebook Páscoa Zero Açúcar" class="bonus-img">
                         <h3 style="color: var(--primary);">BÔNUS 2</h3>
                         <h4>Páscoa Zero Açúcar</h4>
                         <p class="text-muted">20 receitas de ovos de páscoa e delícias.</p>
                         <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="bonus/bonus3.webp" alt="Ebook Pizzas Low Carb" class="bonus-img">
                         <h3 style="color: var(--primary);">BÔNUS 3</h3>
                         <h4>Pizzas Low Carb</h4>
                         <p class="text-muted">Deliciosas, saudáveis e feitas na Airfryer.</p>
                         <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="bonus/bonus4.webp" alt="Ebook Melhora do Humor & Menopausa" class="bonus-img">
                         <h3 style="color: var(--primary);">BÔNUS 4</h3>
                         <h4>Melhora do Humor & Menopausa</h4>
                         <p class="text-muted">Receitas que ajudam a reduzir depressão e fadiga.</p>
                         <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
+                        <img src="bonus/bonus5.webp" alt="Ebook Chocotones Irresistíveis" class="bonus-img">
                         <h3 style="color: var(--primary);">BÔNUS 5</h3>
                         <h4>Chocotones Irresistíveis</h4>
                         <p class="text-muted">Sem açúcar, glúten ou lactose.</p>
                         <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="500">
+                        <img src="bonus/bonus6.webp" alt="Ebook Refeições de Microondas" class="bonus-img">
                         <h3 style="color: var(--primary);">BÔNUS 6</h3>
                         <h4>Refeições de Microondas</h4>
                         <p class="text-muted">Práticas e Low Carb para emagrecer.</p>
