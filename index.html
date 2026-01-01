@@ -1078,6 +1078,126 @@
         .video-facade:hover .play-button {
             background-color: #f00;
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            border: 2px solid var(--primary);
+            padding: 40px;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+        }
+
+        .modal-title {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 16px;
+            line-height: 1.2;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .modal-price {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fff;
+            margin: 10px 0;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-old-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 20px;
+        }
+
+        .modal-btn-primary {
+            background: var(--primary);
+            color: #000;
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 18px;
+            margin-bottom: 16px;
+            transition: transform 0.2s;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .modal-btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .modal-btn-secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--glass-border);
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .modal-btn-secondary:hover {
+            border-color: var(--text-muted);
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -1468,8 +1588,7 @@
                             <li style="margin-bottom: 12px;">✅ 6 Bônus Exclusivos</li>
                             <li style="margin-bottom: 12px;">✅ Acesso Vitalício</li>
                         </ul>
-                        <a href="https://pay.hotmart.com/U100027702E?off=dj8txek8&checkoutMode=10"
-                            class="btn-glow">QUERO
+                        <a href="javascript:void(0);" onclick="openUpsellModal(event)" class="btn-glow">QUERO
                             COMPRAR!</a>
                     </div>
 
@@ -1485,10 +1604,10 @@
                         <p style="color: var(--primary); font-weight: bold; margin-bottom: 16px;">VOCÊ LEVA JUNTO:</p>
                         <ul style="text-align: left; list-style: none; margin-bottom: 32px; color: var(--text-muted);">
                             <li style="margin-bottom: 12px;">✅ Todos os itens do plano básico</li>
-                            <li style="margin-bottom: 12px;">✅ + 720 Receitas Zero Glúten e Açúcar</li>
-                            <li style="margin-bottom: 12px;">✅ Panetones sem Glúten/Lactose</li>
+                            <li style="margin-bottom: 12px;">✅ Ebook 720 Receitas Zero Glúten e Açúcar</li>
+                            <li style="margin-bottom: 12px;">✅ Ebook Panetones sem Glúten/Lactose</li>
                             <li style="margin-bottom: 12px;">✅ Ebook Panetones Artesanal Lucrativo</li>
-                            <li style="margin-bottom: 12px;">✅ Livro de Pães, Bolos e Biscoitos sem Glúten</li>
+                            <li style="margin-bottom: 12px;">✅ Ebook Pães, Bolos e Biscoitos sem Glúten</li>
                             <li style="margin-bottom: 12px;">✅ 6 Bônus Exclusivos</li>
                             <li style="margin-bottom: 12px;">✅ Acesso Vitalício</li>
                         </ul>
@@ -1558,6 +1677,70 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+    <!-- Upsell Modal -->
+    <div class="modal-overlay" id="upsellModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-title">ESPERE! <br>OFERTA ESPECIAL</div>
+            <p style="color: var(--text-muted); font-size: 18px;">Leve o <strong>PLANO COMPLETO</strong> por um preço
+                imperdível!</p>
+
+            <div style="margin: 24px 0;">
+                <span class="modal-old-price">De R$ 97,00</span>
+                <div class="modal-price">Por R$ 17,00</div>
+                <p style="color: var(--accent); font-size: 14px;">⚡ Oferta válida apenas nesta página</p>
+            </div>
+
+            <ul
+                style="text-align: left; margin-bottom: 30px; color: var(--text-muted); font-size: 13px; display: inline-block; max-width: 90%;">
+                <li style="margin-bottom: 8px;">✅ 200 Receitas de Doces Zero Açúcar</li>
+                <li style="margin-bottom: 8px;">✅ Ebook 720 Receitas Zero Glúten e Açúcar</li>
+                <li style="margin-bottom: 8px;">✅ Ebook Panetones sem Glúten/Lactose</li>
+                <li style="margin-bottom: 8px;">✅ Ebook Panetones Artesanal Lucrativo</li>
+                <li style="margin-bottom: 8px;">✅ Ebook Pães, Bolos e Biscoitos sem Glúten</li>
+                <li style="margin-bottom: 8px;">✅ 6 Bônus Exclusivos</li>
+                <li style="margin-bottom: 8px;">✅ Acesso Vitalício</li>
+            </ul>
+
+            <a href="https://pay.hotmart.com/U100140375P?off=areedu9n&checkoutMode=10" class="modal-btn-primary">SIM!
+                QUERO O COMPLETO POR R$ 17</a>
+            <a href="https://pay.hotmart.com/U100027702E?off=dj8txek8&checkoutMode=10" class="modal-btn-secondary">Não,
+                obrigado. Quero apenas o Básico por R$
+                10.</a>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('upsellModal');
+        const modalContent = document.querySelector('.modal-content');
+
+        function openUpsellModal(event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Prevent clicks inside modal content from closing the modal
+        if (modalContent) {
+            modalContent.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        }
+
+        // Close on click outside (on overlay)
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
     <script>
         // Defer AOS init to avoid forced reflow during initial load
         window.addEventListener('load', function () {
