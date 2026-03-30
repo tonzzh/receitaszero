@@ -1561,12 +1561,16 @@
     <script>
         // Defer AOS init to avoid forced reflow during initial load
         window.addEventListener('load', function () {
-            setTimeout(function () {
-                AOS.init({
-                    duration: 800,
-                    once: true
+            // Usa requestAnimationFrame para inicializar o AOS depois que o navegador 
+            // pintar o layout principal, reduzindo Reflows Forçados.
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    AOS.init({
+                        duration: 800,
+                        once: true
+                    });
                 });
-            }, 100);
+            });
         });
 
         // Countdown removed
