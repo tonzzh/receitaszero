@@ -80,6 +80,51 @@
             src="https://www.facebook.com/tr?id=1644080239859029&ev=PageView&noscript=1" />
     </noscript>
     <!-- End Meta Pixel Code -->
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }
+            (window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+
+        // INIT com dados do usuário
+        fbq('init', '1644080239859029', {
+            em: 'email@email.com',
+            ph: '1234567890'
+        });
+
+        // Eventos
+        fbq('track', 'PageView');
+
+        fbq('track', 'ViewContent', {
+            content_name: 'Ebook 200 Receitas Sem Açúcar',
+            content_category: 'Receitas Saudáveis',
+            content_ids: ['5607991'],
+            content_type: 'product',
+            value: 10.00,
+            currency: 'BRL'
+        });
+    </script>
+
+    <noscript>
+        <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1644080239859029&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Meta Pixel Code -->
     <!-- End Meta Pixel Code -->
     <style>
         :root {
