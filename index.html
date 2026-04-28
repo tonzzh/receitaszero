@@ -65,26 +65,6 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1644080239859029&ev=PageView&noscript=1"
 /></noscript>
-
-<script>
-  function generateEventId() {
-    return 'vc.' + Math.random().toString(36).substring(2) + Date.now();
-  }
-
-  var eventId = window.hotmartFacebookEventId 
-    ? 'vc.' + window.hotmartFacebookEventId 
-    : generateEventId();
-
-  fbq('track', 'ViewContent', {
-    content_name: '720 Receitas Zero Açúcar e Zero Glúten',
-    content_ids: ['5646466'],
-    content_type: 'product',
-    value: 27.00,
-    currency: 'BRL'
-  }, {
-    eventID: eventId
-  });
-</script>
 <!-- End Meta Pixel Code -->
     <style>
         :root {
