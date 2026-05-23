@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,11 +30,11 @@
 
     <!-- Fonts (Non-blocking to fix Render Blocking) -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap"
         rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
         <link
-            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap"
             rel="stylesheet">
     </noscript>
 
@@ -43,46 +43,43 @@
     <noscript>
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     </noscript>
-    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
-    <!-- Meta Pixel Code -->
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1644080239859029');
-        fbq('track', 'PageView');
-        fbq('track', 'ViewContent', {
-            content_name: '200 Doces Zero Açúcar',
-            content_category: 'Livro Digital / Ebook',
-            value: 10.00,
-            currency: 'BRL'
-        });
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1644080239859029&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1644080239859029');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1644080239859029&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
     <style>
         :root {
-            --bg-dark: #0f0b09;
-            --bg-card: rgba(28, 20, 17, 0.6);
-            --primary: #D4AF37;
-            /* Warm Gold */
-            --secondary: #C85A32;
-            /* Terracota */
-            --accent: #E28743;
-            /* Copper Accent */
-            --text-main: #FFF8F5;
-            --text-muted: #B3A29A;
-            --glass-border: rgba(212, 175, 55, 0.15);
-            --glow: 0 0 20px rgba(212, 175, 55, 0.2);
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --primary: #FFD700;
+            /* Gold */
+            --secondary: #FF4500;
+            /* Neon Orange */
+            --accent: #00E5FF;
+            /* Cyan for futuristic touches */
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
         * {
@@ -113,9 +110,9 @@
         h1,
         h2,
         h3 {
-            font-family: 'Playfair Display', serif;
-            text-transform: none;
-            letter-spacing: -0.5px;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
         /* Background Animation */
@@ -132,7 +129,7 @@
         .orb-1 {
             width: 400px;
             height: 400px;
-            background: rgba(200, 90, 50, 0.12);
+            background: rgba(255, 69, 0, 0.15);
             top: -100px;
             left: -100px;
         }
@@ -140,7 +137,7 @@
         .orb-2 {
             width: 500px;
             height: 500px;
-            background: rgba(212, 175, 55, 0.08);
+            background: rgba(255, 215, 0, 0.1);
             bottom: -100px;
             right: -100px;
             animation-delay: -5s;
@@ -1112,10 +1109,10 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-text">
-                    <h1>Volte a Comer <span class="highlight">Doces Deliciosos</span> Sem Medo de Picos de Glicemia</h1>
-                    <p>Descubra como saborear pudins cremosos, bolos fofinhos e brigadeiros irresistíveis sem culpa e
-                        com total segurança. Nossas receitas foram criadas especialmente para manter sua
-                        <strong>glicemia sob controle</strong>, devolvendo a liberdade à sua mesa.
+                    <h1>Sente Saudade de um <span class="highlight">Doce de Verdade?</span></h1>
+                    <p>Volte a sentir o prazer de comer sobremesas deliciosas sem culpa e sem medo. Nossas receitas
+                        foram criadas para manter sua <strong>glicemia controlada</strong>, devolvendo a liberdade à sua
+                        alimentação.
                     </p>
                     <a href="#oferta" class="cta-button-large"
                         style="width: auto; display: inline-block; font-size: 18px; padding: 16px 32px;">APROVEITAR
@@ -1134,11 +1131,9 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up">A Privação Não Precisa Ser o Seu Único Caminho</h2>
-                <div
-                    style="text-align: center; margin-bottom: 40px; font-size: 18px; color: var(--text-muted); max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-                    Sabemos o quanto é difícil olhar para uma vitrine de doces e sentir medo ou frustração. O excesso de
-                    açúcar traz consequências reais para o corpo, mas você não precisa viver sem sabor:</div>
+                <h2 class="section-title" data-aos="fade-up">O AÇÚCAR É UM INIMIGO SILENCIOSO.</h2>
+                <div style="text-align: center; margin-bottom: 40px; font-size: 24px; color: var(--text-muted);">VEJA OS
+                    MALES QUE ELE CAUSA:</div>
                 <div class="problem-grid">
                     <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="100">
                         <span class="problem-icon">🩸</span>
@@ -1166,17 +1161,16 @@
 
         <section class="section secret">
             <div class="container secret-content">
-                <h2 class="section-title" data-aos="zoom-in">O Segredo Para Comer Doce Todo Dia Sem Culpa</h2>
+                <h2 class="section-title" data-aos="zoom-in">Chega de Vontade! Transforme Sua Vida com o Ebook 200 Doces
+                    Zero Açúcar</h2>
                 <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                     <p style="font-size: 20px; color: var(--text-muted); margin-bottom: 24px;">Imagine poder saborear um
-                        pudim cremoso que derrete na boca, um bolo fofinho de chocolate ou um brigadeiro no ponto
-                        perfeito, sabendo que sua saúde e sua glicemia estão totalmente protegidas.</p>
+                        pudim cremoso, um bolo fofinho ou um brigadeiro no ponto, tudo isso com a tranquilidade de saber
+                        que sua saúde está protegida.</p>
                     <p style="font-size: 18px; color: var(--text-main); margin-bottom: 24px;">Criamos mais de 200
-                        receitas fáceis e rápidas, com <strong>ingredientes acessíveis de supermercado</strong>. Nosso
-                        grande segredo é a proporção exata de adoçantes naturais seguros (como Eritritol e Taumatina)
-                        que <strong>não deixam nenhum gosto amargo residual</strong> e não causam picos de glicemia.
-                        <strong>É o fim da privação definitiva!</strong>
-                    </p>
+                        receitas fáceis e rápidas, com ingredientes acessíveis, pensadas especialmente para quem é
+                        diabético ou busca uma alimentação que não cause picos de glicemia. <strong>É o fim da
+                            privação!</strong></p>
                 </div>
 
                 <div class="carousel-container">
@@ -1309,25 +1303,25 @@
                 <div class="problem-grid">
                     <div class="glass-card problem-item" data-aos="fade-up">
                         <span class="problem-icon">1</span>
-                        <h3>Desenvolvido para Diabéticos</h3>
+                        <h3>DESENVOLVIDO PARA DIABÉTICOS</h3>
                         <p class="text-muted">Cada receita foi criada pensando em você. Use ingredientes que não causam
                             picos de glicemia.</p>
                     </div>
                     <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="100">
                         <span class="problem-icon">2</span>
-                        <h3>Adeus à Restrição Severa</h3>
+                        <h3>ADEUS À RESTRIÇÃO SEVERA</h3>
                         <p class="text-muted">Com centenas de opções, você nunca mais vai se sentir privado de comer o
                             que gosta.</p>
                     </div>
                     <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="200">
                         <span class="problem-icon">3</span>
-                        <h3>Noites de Sono Mais Tranquilas</h3>
+                        <h3>NOITES DE SONO MAIS TRANQUILAS</h3>
                         <p class="text-muted">Evitar os picos de açúcar ajuda a ter um descanso mais profundo e
                             reparador.</p>
                     </div>
                     <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="300">
                         <span class="problem-icon">4</span>
-                        <h3>Menos Estresse e Ansiedade</h3>
+                        <h3>MENOS ESTRESSE E ANSIEDADE</h3>
                         <p class="text-muted">Sinta o alívio de saborear uma sobremesa sem a ansiedade de medir a
                             glicemia logo depois.</p>
                     </div>
@@ -1337,7 +1331,7 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up">O Que Você Vai Encontrar</h2>
+                <h2 class="section-title" data-aos="fade-up">O QUE VOCÊ VAI ENCONTRAR</h2>
                 <div class="problem-grid">
                     <div class="glass-card problem-item" data-aos="fade-up">
                         <span class="problem-icon">🍮</span>
@@ -1378,13 +1372,12 @@
                     <h2 class="section-title" style="text-align: left; margin-bottom: 24px;">Olá! Eu sou a Isadora
                         Leblanc</h2>
                     <p class="text-muted" style="margin-bottom: 16px;">Sou Isadora Leblanc, chef especializada em
-                        culinária saudável e funcional. Minha jornada começou em casa, vendo pessoas queridas na família
-                        lidando com as severas privações do diabetes. Percebi que comer bem não deveria ser sinônimo de
-                        sofrimento ou falta de sabor.</p>
-                    <p class="text-muted">Acredito que saborear uma bela sobremesa é um dos prazeres mais simples e
-                        reconfortantes da vida. Por isso, passei anos testando e refinando técnicas de confeitaria
-                        saudável para criar doces incríveis, com ingredientes simples e naturais, que respeitam a sua
-                        saúde e devolvem a alegria e o afeto de comer sem medo.</p>
+                        culinária saudável. Minha paixão é transformar ingredientes naturais em pratos saborosos,
+                        criativos e nutritivos. Acredito que comer bem é um dos maiores cuidados que podemos ter com nós
+                        mesmos, e por isso desenvolvo receitas que unem saúde, equilíbrio e muito sabor.</p>
+                    <p class="text-muted">Meu propósito é mostrar que é possível manter uma alimentação saudável sem
+                        abrir mão do prazer à mesa. Compartilho minhas criações e dicas práticas para ajudar você a ter
+                        mais qualidade de vida, leveza e bem-estar no dia a dia.</p>
                 </div>
             </div>
         </section>
@@ -1454,12 +1447,11 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Você Ainda Leva 6 Bônus Incríveis!</h2>
-                <p style="text-align: center; color: var(--text-muted); margin-bottom: 10px; font-size: 18px;">
-                    Adquirindo hoje o livro digital "200 Doces Zero Açúcar"</p>
-                <p
-                    style="text-align: center; color: var(--secondary); font-weight: 800; margin-bottom: 40px; font-size: 20px;">
-                    Você garante acesso imediato e 100% gratuito a:</p>
+                <h2 class="section-title" data-aos="fade-up">VEJA SEUS BÔNUS!</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 10px;">Adquirindo hoje o livro
+                    digital "200 Doces Zero Açúcar"</p>
+                <p style="text-align: center; color: var(--secondary); font-weight: 800; margin-bottom: 40px;">Você terá
+                    acesso à 6 Bônus Incríveis</p>
 
                 <div class="problem-grid">
                     <div class="glass-card" data-aos="fade-up">
@@ -1518,30 +1510,6 @@
                 <h2 class="section-title" data-aos="fade-up">Escolha Seu Plano</h2>
 
                 <div class="pricing-container">
-                    <!-- Complete Plan -->
-                    <div class="pricing-box premium glass-card" data-aos="zoom-in">
-                        <div class="floating-badge"
-                            style="position: absolute; top: 15px; right: 15px; transform: rotate(5deg); box-shadow: 0 5px 15px rgba(255,69,0,0.3); animation: bounce 3s infinite ease-in-out; font-size: 12px; padding: 8px 16px;">
-                            MAIS VENDIDO
-                        </div>
-                        <h3>PLANO COMPLETO</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 20px;">De R$97 por apenas:</p>
-                        <div class="price-tag">R$ 27,00</div>
-                        <p style="color: var(--primary); font-weight: bold; margin-bottom: 16px;">VOCÊ LEVA JUNTO:</p>
-                        <ul style="text-align: left; list-style: none; margin-bottom: 32px; color: var(--text-muted);">
-                            <li style="margin-bottom: 12px;">✅ Todos os itens do plano básico</li>
-                            <li style="margin-bottom: 12px;">✅ Ebook 720 Receitas Zero Glúten e Açúcar</li>
-                            <li style="margin-bottom: 12px;">✅ Ebook Panetones sem Glúten/Lactose</li>
-                            <li style="margin-bottom: 12px;">✅ Ebook Panetones Artesanal Lucrativo</li>
-                            <li style="margin-bottom: 12px;">✅ Livro de Pães, Bolos e Biscoitos sem Glúten</li>
-                            <li style="margin-bottom: 12px;">✅ 6 Bônus Exclusivos</li>
-                            <li style="margin-bottom: 12px;">✅ Acesso Vitalício</li>
-                        </ul>
-                        <a href="https://pay.hotmart.com/U100140375P?off=tmsgayje&checkoutMode=10"
-                            class="cta-button-large">QUERO
-                            COMPRAR!</a>
-                    </div>
-
                     <!-- Basic Plan -->
                     <div class="pricing-box basic glass-card" data-aos="zoom-in" data-aos-delay="100">
                         <h3>PLANO BÁSICO</h3>
@@ -1557,19 +1525,40 @@
                             class="btn-glow">QUERO
                             COMPRAR!</a>
                     </div>
+
+                    <!-- Complete Plan -->
+                    <div class="pricing-box premium glass-card" data-aos="zoom-in">
+                        <div class="floating-badge"
+                            style="position: absolute; top: 15px; right: 15px; transform: rotate(5deg); box-shadow: 0 5px 15px rgba(255,69,0,0.3); animation: bounce 3s infinite ease-in-out; font-size: 12px; padding: 8px 16px;">
+                            MAIS VENDIDO
+                        </div>
+                        <h3>PLANO COMPLETO</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 20px;">De R$97 por apenas:</p>
+                        <div class="price-tag">R$ 27,00</div>
+                        <p style="color: var(--primary); font-weight: bold; margin-bottom: 16px;">VOCÊ LEVA JUNTO:</p>
+                        <ul style="text-align: left; list-style: none; margin-bottom: 32px; color: var(--text-muted);">
+                            <li style="margin-bottom: 12px;">✅ Todos os itens do plano básico</li>
+                            <li style="margin-bottom: 12px;">✅ + 720 Receitas Zero Glúten e Açúcar</li>
+                            <li style="margin-bottom: 12px;">✅ Panetones sem Glúten/Lactose</li>
+                            <li style="margin-bottom: 12px;">✅ Ebook Panetones Artesanal Lucrativo</li>
+                            <li style="margin-bottom: 12px;">✅ Livro de Pães, Bolos e Biscoitos sem Glúten</li>
+                            <li style="margin-bottom: 12px;">✅ 6 Bônus Exclusivos</li>
+                            <li style="margin-bottom: 12px;">✅ Acesso Vitalício</li>
+                        </ul>
+                        <a href="https://pay.hotmart.com/U100140375P?off=tmsgayje&checkoutMode=10"
+                            class="cta-button-large">QUERO
+                            COMPRAR!</a>
+                    </div>
                 </div>
 
                 <div
                     style="margin-top: 60px; border-top: 1px solid var(--glass-border); padding-top: 30px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    <h3
-                        style="color: var(--primary); margin-bottom: 16px; font-family: 'Playfair Display', serif; font-size: 24px;">
-                        Garantia de Satisfação de 7 Dias</h3>
-                    <p
-                        style="font-size: 16px; color: var(--text-muted); margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-                        A sua satisfação é a nossa prioridade absoluta. Experimente as receitas do livro por 7 dias. Se
-                        você não gostar do sabor, achar as receitas difíceis ou simplesmente mudar de ideia, basta
-                        solicitar o reembolso na plataforma e devolveremos 100% do seu dinheiro de volta, sem burocracia
-                        ou perguntas chatas.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 16px;">GARANTIA INCONTESTÁVEL DE 7 DIAS</h3>
+                    <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 16px;">Caso não goste do que
+                        encontrar, pode ficar tranquilo e sereno. Eu devolvo seu dinheiro de volta - e sem perguntas -
+                        em até 7 dias após a compra, ok?</p>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">(Mas eu tenho certeza que
+                        você vai adorar!)</p>
                 </div>
             </div>
         </section>
@@ -1580,44 +1569,32 @@
                 <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
                     <div class="glass-card" style="margin-bottom: 16px; padding: 24px; text-align: left;"
                         data-aos="fade-up">
-                        <h3 style="color: var(--primary); margin-bottom: 8px; font-family: 'Playfair Display', serif;">
-                            Como recebo o acesso ao livro digital?</h3>
-                        <p class="text-muted">O envio é imediato e 100% automático. Assim que o seu pagamento for
-                            aprovado, você receberá um link de acesso exclusivo direto no seu e-mail e no seu número de
-                            WhatsApp para baixar e ler no celular, tablet ou computador.</p>
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">Como recebo o acesso?</h3>
+                        <p class="text-muted">O acesso é enviado imediatamente para seu e-mail e WhatsApp logo após a
+                            confirmação do pagamento.</p>
                     </div>
                     <div class="glass-card" style="margin-bottom: 16px; padding: 24px; text-align: left;"
                         data-aos="fade-up">
-                        <h3 style="color: var(--primary); margin-bottom: 8px; font-family: 'Playfair Display', serif;">
-                            As receitas são seguras para quem tem diabetes tipo 1 e 2?</h3>
-                        <p class="text-muted">Sim, com total segurança! Todas as receitas foram criadas utilizando
-                            ingredientes selecionados de baixo índice glicêmico e baixa carga de carboidratos, feitas
-                            sob medida para evitar picos de glicemia e insulina.</p>
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">As receitas servem para diabéticos?</h3>
+                        <p class="text-muted">Sim! Todas as receitas são Zero Açúcar e foram pensadas para não causar
+                            picos de glicemia.</p>
                     </div>
                     <div class="glass-card" style="margin-bottom: 16px; padding: 24px; text-align: left;"
                         data-aos="fade-up">
-                        <h3 style="color: var(--primary); margin-bottom: 8px; font-family: 'Playfair Display', serif;">
-                            Os ingredientes são caros ou difíceis de encontrar?</h3>
-                        <p class="text-muted">Não. A principal preocupação da Chef Isadora foi criar receitas práticas e
-                            baratas. Todos os adoçantes recomendados (como eritritol e taumatina) e farinhas saudáveis
-                            são facilmente encontrados em supermercados locais ou lojas de produtos naturais de bairro.
-                        </p>
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">Preciso de ingredientes difíceis?</h3>
+                        <p class="text-muted">Não. Focamos em ingredientes acessíveis e fáceis de encontrar em qualquer
+                            supermercado ou loja de produtos naturais.</p>
                     </div>
                     <div class="glass-card" style="margin-bottom: 16px; padding: 24px; text-align: left;"
                         data-aos="fade-up">
-                        <h3 style="color: var(--primary); margin-bottom: 8px; font-family: 'Playfair Display', serif;">
-                            Como funciona a garantia de 7 dias?</h3>
-                        <p class="text-muted">É muito simples: você adquire o livro digital hoje e tem 7 dias inteiros
-                            para testar as receitas. Se por qualquer motivo você achar que o livro não é para você,
-                            basta solicitar o reembolso na plataforma e devolvemos 100% do valor imediatamente, sem
-                            nenhuma pergunta ou complicação.</p>
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">E se eu não gostar?</h3>
+                        <p class="text-muted">Você tem 7 dias de garantia incondicional. Se não gostar, devolvemos seu
+                            dinheiro.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
-
 
     <footer style="padding: 40px 0; text-align: center; border-top: 1px solid var(--glass-border);">
         <div class="container">
@@ -1650,8 +1627,6 @@
         });
 
         // Countdown removed
-
-
     </script>
 </body>
 
