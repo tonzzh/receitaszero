@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>200 Doces Zero Açúcar — Volte a Comer Doce Sem Culpa e Sem Medo</title>
+    <title>200 Doces Zero Açúcar — Sabor sem Culpa</title>
     <meta name="description"
-        content="Mais de 200 receitas de sobremesas zero açúcar para diabéticos e pré-diabéticos. Volte a sentir prazer, liberdade e felicidade comendo doce. Por apenas R$27.">
+        content="Volte a sentir o prazer de comer sobremesas deliciosas sem culpa. Receitas Zero Açúcar para manter sua glicemia controlada.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -24,22 +24,25 @@
     <link rel="preconnect" href="https://cdn.utmify.com.br" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
     <link rel="dns-prefetch" href="https://img.youtube.com">
-    <link rel="dns-prefetch" href="https://app.litevideo.net">
-    <script src="https://app.litevideo.net/p.js" async></script>
 
     <!-- Preload LCP Image -->
     <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high">
 
-    <!-- Fonts (Non-blocking) -->
+    <!-- Fonts (Non-blocking to fix Render Blocking) -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=DM+Serif+Display:ital@0;1&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap"
         rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
         <link
-            href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=DM+Serif+Display:ital@0;1&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap"
             rel="stylesheet">
     </noscript>
 
+    <!-- AOS Animation Library (Non-blocking) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    </noscript>
     <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
     <!-- Meta Pixel Code -->
     <script>
@@ -51,36 +54,22 @@
         document.head.appendChild(a);
     </script>
     <!-- End Meta Pixel Code -->
-
     <style>
-        /* ============================================
-           DESIGN TOKENS
-        ============================================ */
         :root {
-            --bg-dark: #0d0a06;
+            --bg-dark: #0a0a0a;
             --bg-card: rgba(255, 255, 255, 0.05);
-            --bg-card-hover: rgba(255, 255, 255, 0.08);
-            --primary: #F5A623;
-            --primary-dark: #d4891a;
-            --primary-light: #ffd07a;
-            --secondary: #E05C00;
-            --accent: #22c55e;
-            --red: #ef4444;
+            --primary: #FFD700;
+            /* Gold */
+            --secondary: #FF4500;
+            /* Neon Orange */
+            --accent: #00E5FF;
+            /* Cyan for futuristic touches */
             --text-main: #ffffff;
-            --text-muted: #b0a090;
-            --text-soft: #d4c8b8;
+            --text-muted: #a0a0a0;
             --glass-border: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 30px rgba(245, 166, 35, 0.4);
-            --glow-green: 0 0 30px rgba(34, 197, 94, 0.4);
-            /* Typography */
-            --font-body: 'Nunito', sans-serif;
-            --font-heading: 'Playfair Display', serif;
-            --font-display: 'DM Serif Display', serif;
+            --glow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
-        /* ============================================
-           RESET & BASE
-        ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -99,83 +88,77 @@
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: 'Outfit', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
-            font-size: 17px;
-            line-height: 1.7;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            padding-bottom: 80px;
+            line-height: 1.6;
         }
 
-        p {
-            font-family: var(--font-body);
-            font-size: 17px;
-            line-height: 1.75;
+        h1,
+        h2,
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
-        strong {
-            font-weight: 800;
-        }
-
-        /* ============================================
-           URGENCY BAR (TOP)
-        ============================================ */
-        .urgency-bar {
-            background: linear-gradient(90deg, #b91c1c, #dc2626, #b91c1c);
-            background-size: 200% 100%;
-            animation: shimmer-bg 3s ease infinite;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
+        /* Background Animation */
+        .bg-orb {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 9999;
-            letter-spacing: 0.3px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+            will-change: transform;
         }
 
-        @keyframes shimmer-bg {
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 69, 0, 0.15);
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 215, 0, 0.1);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
 
             0%,
             100% {
-                background-position: 0% 50%;
+                transform: translate(0, 0);
             }
 
             50% {
-                background-position: 100% 50%;
+                transform: translate(30px, 50px);
             }
         }
 
-        .urgency-bar .countdown {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 2px 10px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            min-width: 75px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        /* ============================================
-           HEADER
-        ============================================ */
+        /* Header */
         header {
             position: fixed;
-            top: 38px;
+            top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(13, 10, 6, 0.92);
-            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
-            padding: 14px 0;
+            padding: 16px 0;
         }
 
         .nav-content {
@@ -186,219 +169,65 @@
 
         .logo {
             font-weight: 800;
-            font-size: 20px;
+            font-size: 24px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
-            letter-spacing: -0.5px;
         }
 
-        .btn-header {
-            background: var(--primary);
-            color: #000;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 13px;
-            transition: all 0.25s;
-            white-space: nowrap;
-        }
-
-        .btn-header:hover {
-            background: var(--primary-light);
-            transform: scale(1.04);
-            box-shadow: var(--glow);
-        }
-
-        /* ============================================
-           CONTAINER & SECTION
-        ============================================ */
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: var(--font-display);
-            font-size: clamp(30px, 4vw, 50px);
-            margin-bottom: 16px;
-            line-height: 1.18;
-            color: #fff;
-            letter-spacing: -0.3px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-family: var(--font-body);
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 52px;
-            max-width: 640px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-        }
-
-        .highlight {
-            color: var(--primary);
-        }
-
-        .highlight-green {
-            color: var(--accent);
-        }
-
-        /* ============================================
-           CTA BUTTONS
-        ============================================ */
-        .cta-main {
-            display: inline-block;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
-            font-family: var(--font-body);
-            font-weight: 900;
-            font-size: 20px;
-            letter-spacing: 0.2px;
-            text-decoration: none;
-            padding: 20px 40px;
-            border-radius: 16px;
-            transition: all 0.25s;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
-            animation: pulse-cta 2.5s ease infinite;
-        }
-
-        .cta-main:hover {
-            transform: scale(1.04) translateY(-2px);
-            box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
-            animation: none;
-        }
-
-        @keyframes pulse-cta {
-
-            0%,
-            100% {
-                box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
-            }
-
-            50% {
-                box-shadow: 0 4px 36px rgba(34, 197, 94, 0.6);
-            }
-        }
-
-        .cta-secondary {
-            display: inline-block;
+        .btn-glow {
             background: transparent;
             color: var(--primary);
-            border: 1.5px solid var(--primary);
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            padding: 12px 28px;
+            border: 1px solid var(--primary);
+            padding: 10px 24px;
             border-radius: 50px;
-            transition: all 0.25s;
-        }
-
-        .cta-secondary:hover {
-            background: var(--primary);
-            color: #000;
-            box-shadow: var(--glow);
-        }
-
-        .cta-block {
-            text-align: center;
-            padding: 48px 0 0;
-        }
-
-        .cta-guarantee-note {
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-top: 12px;
-        }
-
-        .cta-guarantee-note span {
-            color: var(--accent);
-        }
-
-        /* ============================================
-           HERO SECTION
-        ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 140px;
-            padding-bottom: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -200px;
-            right: -100px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(245, 166, 35, 0.12) 0%, transparent 70%);
-            pointer-events: none;
+        .btn-glow:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            box-shadow: 0 0 30px var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
         }
 
         .hero-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 48px;
             align-items: center;
-        }
-
-        .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(245, 166, 35, 0.12);
-            border: 1px solid rgba(245, 166, 35, 0.3);
-            color: var(--primary);
-            font-size: 13px;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
         }
 
         .hero-text h1 {
-            font-family: var(--font-display);
-            font-size: clamp(38px, 5vw, 66px);
-            line-height: 1.12;
-            margin-bottom: 22px;
-            color: #fff;
-            letter-spacing: -0.5px;
+            font-size: clamp(40px, 5vw, 72px);
+            line-height: 1.1;
+            margin-bottom: 24px;
         }
 
-        .hero-subheadline {
-            font-family: var(--font-body);
-            font-size: 19px;
-            font-weight: 500;
-            color: var(--text-soft);
-            margin-bottom: 32px;
-            line-height: 1.75;
+        .hero-text .highlight {
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
             max-width: 500px;
-        }
-
-        .hero-subheadline strong {
-            color: #fff;
         }
 
         .hero-img-wrapper {
@@ -407,245 +236,125 @@
 
         .hero-img {
             width: 100%;
-            border-radius: 28px;
-            box-shadow: -20px 30px 70px rgba(0, 0, 0, 0.6), 0 0 60px rgba(245, 166, 35, 0.15);
-            border: 1px solid rgba(245, 166, 35, 0.2);
+            border-radius: 24px;
+            transform: perspective(1000px) rotateY(-10deg);
+            box-shadow: -20px 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            transition: transform 0.5s;
         }
 
-        .hero-badge {
+        .hero-img:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .floating-badge {
             position: absolute;
-            top: -16px;
-            right: -16px;
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: #fff;
-            padding: 14px 20px;
-            border-radius: 16px;
+            top: 20px;
+            right: -20px;
+            background: var(--secondary);
+            color: #000;
+            padding: 16px 32px;
+            border-radius: 12px;
             font-weight: 800;
-            font-size: 13px;
-            text-align: center;
-            line-height: 1.4;
-            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.45);
-            animation: float-badge 3s ease-in-out infinite;
+            transform: rotate(5deg);
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.4);
+            animation: bounce 3s infinite ease-in-out;
         }
 
-        .hero-badge .price-big {
-            display: block;
-            font-size: 22px;
-            color: #fde047;
-        }
-
-        @keyframes float-badge {
+        @keyframes bounce {
 
             0%,
             100% {
-                transform: translateY(0) rotate(4deg);
+                transform: translateY(0) rotate(5deg);
             }
 
             50% {
-                transform: translateY(-8px) rotate(4deg);
+                transform: translateY(-10px) rotate(5deg);
             }
         }
 
-        /* ============================================
-           STATS BAR (Social proof numbers)
-        ============================================ */
-        .stats-bar {
-            background: rgba(245, 166, 35, 0.06);
-            border-top: 1px solid rgba(245, 166, 35, 0.15);
-            border-bottom: 1px solid rgba(245, 166, 35, 0.15);
-            padding: 28px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 12px;
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary);
-            line-height: 1;
-            display: block;
-            margin-bottom: 6px;
-        }
-
-        .stat-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* ============================================
-           BEFORE / AFTER SECTION
-        ============================================ */
-        .before-after {
-            background: linear-gradient(180deg, transparent, rgba(245, 166, 35, 0.04), transparent);
-        }
-
-        .before-after-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            max-width: 860px;
-            margin: 0 auto;
-        }
-
-        .ba-card {
-            padding: 36px 32px;
-            border-radius: 24px;
-        }
-
-        .ba-before {
-            background: rgba(239, 68, 68, 0.06);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .ba-after {
-            background: rgba(34, 197, 94, 0.06);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-
-        .ba-label {
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ba-before .ba-label {
-            color: #ef4444;
-        }
-
-        .ba-after .ba-label {
-            color: #22c55e;
-        }
-
-        .ba-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .ba-list li {
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text-soft);
-            padding-left: 24px;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .ba-before .ba-list li::before {
-            content: '✗';
-            position: absolute;
-            left: 0;
-            color: #ef4444;
-            font-weight: 700;
-        }
-
-        .ba-after .ba-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #22c55e;
-            font-weight: 700;
-        }
-
-        /* ============================================
-           GLASS CARDS
-        ============================================ */
+        /* Cards */
         .glass-card {
             background: var(--bg-card);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             transition: all 0.3s;
         }
 
         .glass-card:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(245, 166, 35, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
-        /* ============================================
-           BENEFITS GRID
-        ============================================ */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+        /* Problem Section */
+        .section {
+            padding: 100px 0;
         }
 
-        .benefit-card {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            padding: 28px 24px;
+        .section-title {
             text-align: center;
-            transition: all 0.3s;
+            font-size: 48px;
+            margin-bottom: 60px;
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .benefit-card:hover {
-            border-color: rgba(245, 166, 35, 0.35);
-            background: var(--bg-card-hover);
-            transform: translateY(-4px);
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
         }
 
-        .benefit-icon {
-            font-size: 44px;
-            margin-bottom: 14px;
-            display: block;
+        .problem-item {
+            text-align: center;
         }
 
-        .benefit-title {
-            font-family: var(--font-body);
-            font-size: 17px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 8px;
-            letter-spacing: -0.2px;
+        .problem-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.5));
         }
 
-        .benefit-desc {
-            font-family: var(--font-body);
-            font-size: 15px;
-            color: var(--text-muted);
-            line-height: 1.6;
+        /* Secret Section */
+        .secret {
+            background: linear-gradient(180deg, transparent, rgba(255, 215, 0, 0.05), transparent);
         }
 
-        /* ============================================
-           RECIPE CAROUSEL
-        ============================================ */
+        .secret-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .secret-img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 24px;
+            margin-top: 40px;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
+        }
+
+        /* Carousel Animation */
         .carousel-container {
             overflow: hidden;
             width: 100%;
             margin-top: 40px;
             position: relative;
-            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
 
         .carousel-track {
             display: flex;
-            gap: 20px;
+            gap: 24px;
             width: max-content;
-            animation: scroll 28s linear infinite;
+            animation: scroll 20s linear infinite;
         }
 
         .carousel-track:hover {
@@ -653,25 +362,24 @@
         }
 
         .carousel-item {
-            width: 280px;
-            height: 280px;
+            width: 300px;
+            height: 300px;
             flex-shrink: 0;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .carousel-item:hover {
-            transform: scale(1.03);
-            border-color: rgba(245, 166, 35, 0.4);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
         }
 
         .carousel-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.1);
         }
 
         @keyframes scroll {
@@ -680,22 +388,634 @@
             }
 
             100% {
-                transform: translateX(calc(-280px * 12 - 20px * 12));
+                transform: translateX(calc(-300px * 12 - 24px * 12));
+                /* Width of 12 items + gaps */
             }
         }
 
-        /* ============================================
-           VIDEO SECTION
-        ============================================ */
+        /* Modules */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .module-card {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+            border-radius: 24px;
+            cursor: pointer;
+        }
+
+        .module-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .module-card:hover .module-bg {
+            transform: scale(1.1);
+        }
+
+        .module-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 32px;
+            background: linear-gradient(to top, black, transparent);
+        }
+
+        /* Testimonials */
+        .testimonial-carousel-container {
+            overflow: hidden;
+            width: 100%;
+            margin-top: 40px;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            padding: 20px 0;
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            animation: scroll-testimonials 30s linear infinite;
+        }
+
+        .testimonial-track:hover {
+            animation-play-state: paused;
+        }
+
+        .testimonial-card {
+            width: 350px;
+            flex-shrink: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            padding: 32px;
+            border-radius: 24px;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes scroll-testimonials {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-350px * 6 - 24px * 6));
+                /* Width of 6 items + gaps */
+            }
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        /* Image Testimonials Carousel */
+        .img-depo-carousel {
+            overflow: hidden;
+            width: 100%;
+            margin-top: 60px;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            padding: 20px 0;
+        }
+
+        .img-depo-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scroll-img-depo 40s linear infinite;
+        }
+
+        .img-depo-track:hover {
+            animation-play-state: paused;
+        }
+
+        .img-depo-item {
+            width: 320px;
+            flex-shrink: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .img-depo-item:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+        }
+
+        .img-depo-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes scroll-img-depo {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-320px * 6 - 20px * 6));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .img-depo-item {
+                width: 260px;
+            }
+
+            @keyframes scroll-img-depo {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(calc(-260px * 6 - 20px * 6));
+                }
+            }
+        }
+
+        /* Pricing */
+        .pricing-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--primary);
+            border-radius: 32px;
+            padding: 60px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, var(--primary), transparent 30%);
+            animation: rotate 4s linear infinite;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .price-tag {
+            font-size: 80px;
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            margin: 24px 0;
+        }
+
+        .cta-button-large {
+            display: block;
+            width: 100%;
+            padding: 24px;
+            background: var(--primary);
+            color: #000;
+            font-weight: 800;
+            font-size: 24px;
+            text-decoration: none;
+            border-radius: 16px;
+            margin-top: 32px;
+            transition: transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        .cta-button-large:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px var(--primary);
+        }
+
+        /* Bonus Section Styling */
+        .bonus-img {
+            width: 85%;
+            aspect-ratio: 3/4;
+            object-fit: contain;
+            border-radius: 12px;
+            margin: 0 auto 20px auto;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card:hover .bonus-img {
+            transform: scale(1.05);
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 16px;
+        }
+
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary);
+        }
+
+        /* Pricing Grid Layout */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .pricing-box.premium {
+            border: 2px solid var(--primary);
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 0, 0, 0.8));
+        }
+
+        .pricing-box.basic {
+            border: 1px solid var(--glass-border);
+            background: var(--bg-card);
+            padding: 40px;
+            max-width: 100%;
+        }
+
+        .pricing-box.basic .price-tag {
+            font-size: 48px;
+            color: var(--text-main);
+            text-shadow: none;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Section spacing */
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+                line-height: 1.2;
+            }
+
+            .hero-text p {
+                margin: 0 auto 32px;
+                font-size: 16px;
+            }
+
+            .hero-img {
+                transform: none;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            }
+
+            .floating-badge {
+                position: static;
+                transform: none;
+                margin: 20px auto 0;
+                display: inline-block;
+                font-size: 12px;
+                padding: 12px 24px;
+            }
+
+            /* Pricing Mobile Fixes */
+            .pricing-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .pricing-box,
+            .pricing-box.basic,
+            .pricing-box.premium {
+                padding: 32px 24px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .pricing-box.premium {
+                transform: none;
+            }
+
+            /* Fix "Mais Vendido" badge overlap on mobile */
+            .pricing-box.premium .floating-badge {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                left: auto !important;
+                transform: none !important;
+                display: block !important;
+                margin: 0 auto 16px !important;
+                width: fit-content !important;
+            }
+
+            .price-tag {
+                font-size: 56px;
+            }
+
+            .cta-button-large {
+                font-size: 18px;
+                padding: 18px;
+                min-height: 56px;
+            }
+
+            /* Mobile Header Fixes */
+            header {
+                padding: 12px 0;
+            }
+
+            header .container {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .btn-glow {
+                padding: 10px 20px;
+                font-size: 13px;
+                white-space: nowrap;
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            /* Grid Fixes for small screens */
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .glass-card {
+                padding: 24px;
+            }
+
+            /* Carousel adjustments */
+            .carousel-item {
+                width: 250px;
+                height: 250px;
+            }
+
+            .testimonial-card {
+                width: 300px;
+                padding: 24px;
+            }
+
+            /* Video container */
+            .video-container {
+                max-width: 100%;
+            }
+
+            /* Module cards */
+            .module-card {
+                height: 250px;
+            }
+
+            .module-overlay {
+                padding: 24px;
+            }
+
+            /* Background orbs - reduce on mobile */
+            .orb-1,
+            .orb-2 {
+                opacity: 0.5;
+            }
+
+            /* Fix carousel animation for mobile - items are 250px instead of 300px */
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(calc(-250px * 12 - 24px * 12));
+                }
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 32px;
+            }
+
+            /* Hero adjustments */
+            .hero {
+                padding-top: 80px;
+            }
+
+            .hero-text h1 {
+                font-size: 28px;
+            }
+
+            .hero-text p {
+                font-size: 15px;
+            }
+
+            .floating-badge {
+                font-size: 11px;
+                padding: 10px 20px;
+            }
+
+            /* Header */
+            header .container {
+                padding: 0 16px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .btn-glow {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            /* Pricing */
+            .pricing-box,
+            .pricing-box.basic,
+            .pricing-box.premium {
+                padding: 24px 20px;
+            }
+
+            .price-tag {
+                font-size: 48px;
+            }
+
+            .cta-button-large {
+                font-size: 16px;
+                padding: 16px;
+            }
+
+            /* Cards */
+            .glass-card {
+                padding: 20px;
+            }
+
+            .problem-icon {
+                font-size: 40px;
+            }
+
+            /* Carousel */
+            .carousel-item {
+                width: 200px;
+                height: 200px;
+            }
+
+            .testimonial-card {
+                width: 260px;
+                padding: 20px;
+            }
+
+            /* Module cards */
+            .module-card {
+                height: 200px;
+            }
+
+            .module-overlay {
+                padding: 20px;
+            }
+
+            /* Reduce font sizes */
+            h3 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+
+            /* Fix carousel animation for small mobile - items are 200px */
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(calc(-200px * 12 - 24px * 12));
+                }
+            }
+        }
+
+        /* Tablet Landscape */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 0 32px;
+            }
+
+            .hero-grid {
+                gap: 40px;
+            }
+
+            .pricing-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Video Section */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
+            /* 16:9 */
             height: 0;
             overflow: hidden;
             max-width: 800px;
             margin: 0 auto;
             border-radius: 24px;
-            box-shadow: 0 0 60px rgba(245, 166, 35, 0.1);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
             border: 1px solid var(--glass-border);
         }
 
@@ -722,21 +1042,24 @@
         .video-facade::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.35);
-            border-radius: 24px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
             transition: background 0.3s;
+            border-radius: 24px;
         }
 
         .video-facade:hover::before {
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .play-button {
-            width: 72px;
-            height: 52px;
-            background-color: rgba(20, 20, 20, 0.85);
-            border-radius: 14px;
+            width: 68px;
+            height: 48px;
+            background-color: rgba(33, 33, 33, 0.8);
+            border-radius: 12px;
             position: relative;
             z-index: 2;
             transition: all 0.3s;
@@ -748,1759 +1071,551 @@
         .play-button::after {
             content: '';
             border-style: solid;
-            border-width: 11px 0 11px 22px;
+            border-width: 10px 0 10px 20px;
             border-color: transparent transparent transparent #fff;
         }
 
         .video-facade:hover .play-button {
-            background-color: #ef4444;
-        }
-
-        /* ============================================
-           VIDEO VERTICAL (LiteVideo 9:16)
-        ============================================ */
-        .video-container-vertical {
-            max-width: 400px;
-            margin: 0 auto;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 0 60px rgba(245, 166, 35, 0.15);
-            border: 1px solid var(--glass-border);
-        }
-
-        .video-container-vertical lt-v2 {
-            display: block;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            .video-container-vertical {
-                max-width: 100%;
-                margin: 0 24px;
-                width: calc(100% - 48px);
-                border-radius: 16px;
-            }
-        }
-
-
-        .authority-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.4fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .authority-photo {
-            width: 100%;
-            max-width: 380px;
-            aspect-ratio: 3 / 4;
-            object-fit: cover;
-            object-position: top center;
-            border-radius: 24px;
-            display: block;
-            margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .authority-numbers {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 28px;
-        }
-
-        .authority-stat {
-            text-align: center;
-            background: rgba(245, 166, 35, 0.07);
-            border: 1px solid rgba(245, 166, 35, 0.2);
-            border-radius: 14px;
-            padding: 16px 12px;
-        }
-
-        .authority-stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--primary);
-            display: block;
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-
-        .authority-stat-label {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.3;
-        }
-
-        .authority-quote {
-            background: rgba(245, 166, 35, 0.05);
-            border-left: 3px solid var(--primary);
-            padding: 16px 20px;
-            border-radius: 0 12px 12px 0;
-            font-size: 16px;
-            color: var(--text-soft);
-            font-style: italic;
-            margin-top: 20px;
-        }
-
-        /* ============================================
-           FOR WHO / NOT FOR WHO
-        ============================================ */
-        .for-who-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            max-width: 860px;
-            margin: 0 auto;
-        }
-
-        .for-who-card {
-            border-radius: 20px;
-            padding: 32px 28px;
-        }
-
-        .for-who-yes {
-            background: rgba(34, 197, 94, 0.06);
-            border: 1px solid rgba(34, 197, 94, 0.25);
-        }
-
-        .for-who-no {
-            background: rgba(239, 68, 68, 0.06);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .for-who-title {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .for-who-yes .for-who-title {
-            color: #22c55e;
-        }
-
-        .for-who-no .for-who-title {
-            color: #ef4444;
-        }
-
-        .for-who-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .for-who-list li {
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text-soft);
-            padding-left: 28px;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .for-who-yes .for-who-list li::before {
-            content: '✅';
-            position: absolute;
-            left: 0;
-            font-size: 14px;
-        }
-
-        .for-who-no .for-who-list li::before {
-            content: '❌';
-            position: absolute;
-            left: 0;
-            font-size: 14px;
-        }
-
-        /* ============================================
-           TESTIMONIALS CAROUSEL
-        ============================================ */
-        .img-depo-carousel {
-            overflow: hidden;
-            width: 100%;
-            position: relative;
-            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-            padding: 20px 0;
-        }
-
-        .img-depo-track {
-            display: flex;
-            gap: 20px;
-            width: max-content;
-            animation: scroll-depo 40s linear infinite;
-        }
-
-        .img-depo-track:hover {
-            animation-play-state: paused;
-        }
-
-        .img-depo-item {
-            width: 300px;
-            flex-shrink: 0;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .img-depo-item:hover {
-            transform: scale(1.03);
-            border-color: rgba(245, 166, 35, 0.4);
-        }
-
-        .img-depo-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        @keyframes scroll-depo {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(calc(-300px * 6 - 20px * 6));
-            }
-        }
-
-        /* ============================================
-           BONUS SECTION
-        ============================================ */
-        .bonus-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .bonus-card {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 24px;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .bonus-card:hover {
-            border-color: rgba(245, 166, 35, 0.4);
-            transform: translateY(-4px);
-            background: var(--bg-card-hover);
-        }
-
-        .bonus-card.featured {
-            border-color: rgba(245, 166, 35, 0.4);
-            background: rgba(245, 166, 35, 0.05);
-        }
-
-        .bonus-number {
-            display: inline-block;
-            background: var(--primary);
-            color: #000;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 3px 10px;
-            border-radius: 20px;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        .bonus-img {
-            width: 80%;
-            max-height: 180px;
-            object-fit: contain;
-            margin: 0 auto 16px;
-            border-radius: 10px;
-        }
-
-        .bonus-title {
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 6px;
-            letter-spacing: -0.2px;
-        }
-
-        .bonus-desc {
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            line-height: 1.55;
-        }
-
-        .bonus-value {
-            display: inline-block;
-            background: rgba(34, 197, 94, 0.15);
-            color: var(--accent);
-            font-size: 13px;
-            font-weight: 700;
-            padding: 3px 12px;
-            border-radius: 20px;
-        }
-
-        /* ============================================
-           PRICING SECTION
-        ============================================ */
-        .pricing-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.15fr;
-            gap: 24px;
-            max-width: 920px;
-            margin: 0 auto;
-            align-items: start;
-        }
-
-        .pricing-card {
-            border-radius: 24px;
-            padding: 40px 32px;
-            position: relative;
-            text-align: center;
-        }
-
-        .pricing-card.basic {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-        }
-
-        .pricing-card.premium {
-            background: linear-gradient(145deg, rgba(245, 166, 35, 0.08), rgba(13, 10, 6, 0.95));
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 60px rgba(245, 166, 35, 0.12);
-        }
-
-        .pricing-badge-top {
-            position: absolute;
-            top: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: #000;
-            font-size: 12px;
-            font-weight: 800;
-            padding: 6px 20px;
-            border-radius: 20px;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
-        }
-
-        .plan-name {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            margin-top: 8px;
-        }
-
-        .plan-tagline {
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text-soft);
-            margin-bottom: 20px;
-            line-height: 1.65;
-        }
-
-        .price-from {
-            font-size: 14px;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-
-        .price-amount {
-            font-family: var(--font-display);
-            font-size: 64px;
-            font-weight: 400;
-            color: var(--primary);
-            line-height: 1;
-            margin: 8px 0 4px;
-            letter-spacing: -1px;
-        }
-
-        .pricing-card.basic .price-amount {
-            font-size: 48px;
-            color: #fff;
-        }
-
-        .price-installments {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-        }
-
-        .plan-features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 32px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .plan-features li {
-            font-family: var(--font-body);
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--text-soft);
-            padding-left: 24px;
-            position: relative;
-            line-height: 1.55;
-        }
-
-        .plan-features li::before {
-            content: '✅';
-            position: absolute;
-            left: 0;
-            font-size: 13px;
-        }
-
-        .plan-features li.crossed {
-            color: var(--text-muted);
-            text-decoration: line-through;
-            opacity: 0.5;
-        }
-
-        .plan-features li.crossed::before {
-            content: '—';
-        }
-
-        .cta-plan {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            border-radius: 14px;
-            font-family: var(--font-body);
-            font-weight: 900;
-            font-size: 17px;
-            letter-spacing: 0.2px;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.25s;
-        }
-
-        .cta-plan.green {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
-            animation: pulse-cta 2.5s ease infinite;
-        }
-
-        .cta-plan.green:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 28px rgba(34, 197, 94, 0.5);
-            animation: none;
-        }
-
-        .cta-plan.outline {
-            border: 1.5px solid var(--glass-border);
-            color: var(--text-muted);
-            background: transparent;
-        }
-
-        .cta-plan.outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .trust-badges {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 28px;
-        }
-
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--glass-border);
-            padding: 6px 14px;
-            border-radius: 20px;
-        }
-
-        .trust-badge .icon {
-            font-size: 16px;
-        }
-
-        /* ============================================
-           GUARANTEE SEAL
-        ============================================ */
-        .guarantee-section {
-            background: rgba(34, 197, 94, 0.04);
-            border-top: 1px solid rgba(34, 197, 94, 0.15);
-            border-bottom: 1px solid rgba(34, 197, 94, 0.15);
-        }
-
-        .guarantee-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .guarantee-seal {
-            flex-shrink: 0;
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            background: conic-gradient(var(--accent), #16a34a, var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 40px rgba(34, 197, 94, 0.25);
-            position: relative;
-            animation: spin-slow 12s linear infinite;
-        }
-
-        @keyframes spin-slow {
-            0% {
-                box-shadow: 0 0 30px rgba(34, 197, 94, 0.2);
-            }
-
-            50% {
-                box-shadow: 0 0 50px rgba(34, 197, 94, 0.4);
-            }
-
-            100% {
-                box-shadow: 0 0 30px rgba(34, 197, 94, 0.2);
-            }
-        }
-
-        .guarantee-seal-inner {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: var(--bg-dark);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8px;
-        }
-
-        .guarantee-seal-inner .seal-days {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--accent);
-            line-height: 1;
-        }
-
-        .guarantee-seal-inner .seal-text {
-            font-size: 9px;
-            color: #fff;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            line-height: 1.3;
-        }
-
-        .guarantee-text h3 {
-            font-family: var(--font-body);
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 12px;
-            letter-spacing: -0.3px;
-        }
-
-        .guarantee-text p {
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text-soft);
-            line-height: 1.75;
-        }
-
-        /* ============================================
-           FAQ
-        ============================================ */
-        .faq-list {
-            max-width: 760px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .faq-item {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-
-        .faq-item.open {
-            border-color: rgba(245, 166, 35, 0.35);
-        }
-
-        .faq-question {
-            padding: 22px 24px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: var(--font-body);
-            font-weight: 700;
-            font-size: 17px;
-            color: #fff;
-            user-select: none;
-            gap: 12px;
-            line-height: 1.45;
-        }
-
-        .faq-item.open .faq-question {
-            color: var(--primary);
-        }
-
-        .faq-icon {
-            flex-shrink: 0;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: rgba(245, 166, 35, 0.1);
-            border: 1px solid rgba(245, 166, 35, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: var(--primary);
-            transition: transform 0.3s;
-        }
-
-        .faq-item.open .faq-icon {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            padding: 0 24px;
-            font-family: var(--font-body);
-            color: var(--text-muted);
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1.75;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, padding 0.3s;
-        }
-
-        .faq-item.open .faq-answer {
-            max-height: 300px;
-            padding: 0 24px 20px;
-        }
-
-        /* ============================================
-           MOBILE BOTTOM CTA
-        ============================================ */
-        .mobile-cta-bar {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 9998;
-            background: linear-gradient(135deg, #16a34a, #15803d);
-            box-shadow: 0 -4px 20px rgba(34, 197, 94, 0.4);
-        }
-
-        .mobile-cta-bar a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 16px 20px;
-            color: #fff;
-            font-weight: 800;
-            font-size: 16px;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        /* ============================================
-           FOOTER
-        ============================================ */
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        footer p {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        footer .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-
-        footer .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.2s;
-        }
-
-        footer .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        /* ============================================
-           SECTION DIVIDER
-        ============================================ */
-        .divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 2px;
-            margin: 0 auto 24px;
-        }
-
-        /* ============================================
-           RESPONSIVE — TABLET
-        ============================================ */
-        @media (max-width: 900px) {
-            .authority-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .authority-photo {
-                max-width: 260px;
-            }
-
-            .pricing-wrapper {
-                grid-template-columns: 1fr;
-                max-width: 460px;
-            }
-
-            .pricing-card.premium {
-                order: -1;
-            }
-        }
-
-        /* ============================================
-           RESPONSIVE — MOBILE
-        ============================================ */
-        @media (max-width: 768px) {
-            body {
-                padding-bottom: 72px;
-            }
-
-            .urgency-bar {
-                font-size: 13px;
-                padding: 9px 16px;
-                white-space: nowrap;
-                overflow: hidden;
-            }
-
-            .urgency-extra {
-                display: none;
-            }
-
-            header {
-                top: 36px;
-                padding: 12px 0;
-            }
-
-            .logo {
-                font-size: 15px;
-            }
-
-            .btn-header {
-                padding: 9px 16px;
-                font-size: 12px;
-            }
-
-            .section {
-                padding: 60px 0;
-            }
-
-            .section-title {
-                font-size: 26px;
-            }
-
-            .section-subtitle {
-                font-size: 16px;
-            }
-
-            .hero {
-                padding-top: 120px;
-                padding-bottom: 40px;
-                min-height: auto;
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 30px;
-            }
-
-            .hero-subheadline {
-                font-size: 16px;
-                margin: 0 auto 28px;
-            }
-
-            .hero-eyebrow {
-                font-size: 12px;
-            }
-
-            .hero-badge {
-                top: -12px;
-                right: -8px;
-                font-size: 12px;
-                padding: 10px 14px;
-            }
-
-            .hero-badge .price-big {
-                font-size: 18px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .stat-number {
-                font-size: 28px;
-            }
-
-            .stat-label {
-                font-size: 12px;
-            }
-
-            .before-after-grid,
-            .for-who-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .benefit-card {
-                padding: 22px 18px;
-            }
-
-            .carousel-item {
-                width: 220px;
-                height: 220px;
-            }
-
-            @keyframes scroll {
-                0% {
-                    transform: translateX(0);
-                }
-
-                100% {
-                    transform: translateX(calc(-220px * 12 - 20px * 12));
-                }
-            }
-
-            .img-depo-item {
-                width: 260px;
-            }
-
-            @keyframes scroll-depo {
-                0% {
-                    transform: translateX(0);
-                }
-
-                100% {
-                    transform: translateX(calc(-260px * 6 - 20px * 6));
-                }
-            }
-
-            .guarantee-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 24px;
-            }
-
-            .guarantee-text h3 {
-                font-size: 20px;
-            }
-
-            .mobile-cta-bar {
-                display: block;
-            }
-
-            .cta-main {
-                font-size: 17px;
-                padding: 18px 28px;
-            }
-
-            .price-amount {
-                font-size: 48px;
-            }
-
-            .authority-numbers {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-
-            .authority-stat-number {
-                font-size: 20px;
-            }
-
-            .for-who-card {
-                padding: 24px 20px;
-            }
-
-            .bonus-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 14px;
-            }
-
-            .bonus-card {
-                padding: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            .hero-text h1 {
-                font-size: 26px;
-            }
-
-            .bonus-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-card {
-                padding: 32px 20px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .authority-numbers {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
+            background-color: #f00;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ============================================
-         URGENCY BAR
-    ============================================ -->
-    <div class="urgency-bar" role="alert">
-        ⏰ OFERTA EXPIRA EM: <span class="countdown" id="countdown">15:00</span><span class="urgency-extra">
-            &nbsp;|&nbsp; Preço especial por tempo limitado!</span>
-    </div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
 
-    <!-- ============================================
-         HEADER
-    ============================================ -->
     <header>
         <div class="container nav-content">
             <a href="#" class="logo">200 DOCES ZERO AÇÚCAR</a>
-            <a href="#oferta" class="btn-header" id="header-cta">QUERO MEU EBOOK 🍫</a>
+            <a href="#oferta" class="btn-glow">APROVEITAR OFERTA</a>
         </div>
     </header>
 
     <main>
-
-        <!-- ============================================
-             HERO SECTION
-        ============================================ -->
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-text">
-                    <span class="hero-eyebrow">🍫 PARA DIABÉTICAS E PRÉ-DIABÉTICAS</span>
-                    <h1>
-                        Você Merece Comer Doce <span class="highlight">Sem Culpa</span> e Sem Medo
-                    </h1>
-                    <p class="hero-subheadline">
-                        Mais de <strong>200 receitas deliciosas</strong> — brigadeiro, bolo, pudim, mousse — criadas
-                        especialmente para quem tem diabetes ou quer reduzir o açúcar.<br><br>
-                        <strong>Volte a sentir prazer. Volte a sorrir na sobremesa.</strong>
+                    <h1>Sente Saudade de um <span class="highlight">Doce de Verdade?</span></h1>
+                    <p>Volte a sentir o prazer de comer sobremesas deliciosas sem culpa e sem medo. Nossas receitas
+                        foram criadas para manter sua <strong>glicemia controlada</strong>, devolvendo a liberdade à sua
+                        alimentação.
                     </p>
-                    <a href="#oferta" class="cta-main" id="hero-cta-main">
-                        ✅ SIM! QUERO VOLTAR A COMER DOCE
-                    </a>
-                    <p class="cta-guarantee-note">🔒 Compra segura · <span>7 dias de garantia</span> · Acesso imediato
-                    </p>
+                    <a href="#oferta" class="cta-button-large"
+                        style="width: auto; display: inline-block; font-size: 18px; padding: 16px 32px;">APROVEITAR
+                        OFERTA</a>
                 </div>
                 <div class="hero-img-wrapper">
-                    <img src="images/hero.webp" alt="Doces Zero Açúcar deliciosos" class="hero-img" fetchpriority="high"
+                    <img src="images/hero.webp" alt="Doces Zero Açúcar" class="hero-img" fetchpriority="high"
                         width="1024" height="1024">
-                    <div class="hero-badge">
-                        🔥 MAIS VENDIDO<br>
-                        <span style="text-decoration: line-through; font-size: 12px; opacity: 0.8;">DE R$97</span><br>
-                        <span class="price-big">POR R$27</span>
+                    <div class="floating-badge" style="text-align: center; font-size: 14px;">
+                        OFERTA LIMITADA<br>DE <span style="text-decoration: line-through;">R$67</span> POR<br><span
+                            style="font-size: 24px;">R$10</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================
-             STATS BAR
-        ============================================ -->
-        <div class="stats-bar">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number">+12mil</span>
-                        <span class="stat-label">Mulheres Felizes</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">200+</span>
-                        <span class="stat-label">Receitas Zero Açúcar</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">⭐ 4.9</span>
-                        <span class="stat-label">Avaliação Média</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">7 dias</span>
-                        <span class="stat-label">Garantia Total</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ============================================
-             BEFORE / AFTER
-        ============================================ -->
-        <section class="section before-after">
-            <div class="container">
-                <h2 class="section-title">Você Ainda Está <span class="highlight">Assim?</span></h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Muitas mulheres vivem isso todo dia. Mas não precisa ser assim.</p>
-                <div class="before-after-grid">
-                    <div class="ba-card ba-before">
-                        <div class="ba-label">😢 Antes do Ebook</div>
-                        <ul class="ba-list">
-                            <li>Olha o docinho e não pode comer</li>
-                            <li>Passa culpa enquanto os outros comem</li>
-                            <li>Evita festas por medo do açúcar</li>
-                            <li>Sente que está "presa" na dieta</li>
-                            <li>Tristeza de não poder aproveitar</li>
-                        </ul>
-                    </div>
-                    <div class="ba-card ba-after">
-                        <div class="ba-label">😍 Depois do Ebook</div>
-                        <ul class="ba-list">
-                            <li>Come sobremesa sem culpa nenhuma</li>
-                            <li>Leva doces para festas e recebe elogios</li>
-                            <li>Glicemia estável, sem picos</li>
-                            <li>Liberdade e prazer de volta</li>
-                            <li>Autoestima em alta toda semana</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================
-             RECIPE BENEFITS
-        ============================================ -->
         <section class="section">
             <div class="container">
-                <h2 class="section-title">O Que Você Vai <span class="highlight">Encontrar</span> no Ebook</h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Tudo o que você sempre quis comer — agora com segurança e sem culpa.</p>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <span class="benefit-icon">🍮</span>
-                        <div class="benefit-title">Pudins Cremosos</div>
-                        <p class="benefit-desc">Levíssimos, sem açúcar, derretem na boca.</p>
+                <h2 class="section-title" data-aos="fade-up">O AÇÚCAR É UM INIMIGO SILENCIOSO.</h2>
+                <div style="text-align: center; margin-bottom: 40px; font-size: 24px; color: var(--text-muted);">VEJA OS
+                    MALES QUE ELE CAUSA:</div>
+                <div class="problem-grid">
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="100">
+                        <span class="problem-icon">🩸</span>
+                        <h3>Picos de Glicemia</h3>
+                        <p class="text-muted">Descontrole do diabetes e riscos à saúde.</p>
                     </div>
-                    <div class="benefit-card">
-                        <span class="benefit-icon">🍰</span>
-                        <div class="benefit-title">Bolos Fofinhos</div>
-                        <p class="benefit-desc">Crescem e ficam macios como sempre foi.</p>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="200">
+                        <span class="problem-icon">⚖️</span>
+                        <h3>Ganho de Peso</h3>
+                        <p class="text-muted">Acúmulo de gordura e dificuldade de emagrecer.</p>
                     </div>
-                    <div class="benefit-card">
-                        <span class="benefit-icon">🍬</span>
-                        <div class="benefit-title">Brigadeiros</div>
-                        <p class="benefit-desc">No ponto perfeito, sem cristalizar.</p>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="300">
+                        <span class="problem-icon">😴</span>
+                        <h3>Cansaço Constante</h3>
+                        <p class="text-muted">Fadiga e falta de energia no dia a dia.</p>
                     </div>
-                    <div class="benefit-card">
-                        <span class="benefit-icon">🍨</span>
-                        <div class="benefit-title">Mousses & Sorvetes</div>
-                        <p class="benefit-desc">Textura aerada, sabor intenso.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <span class="benefit-icon">🍪</span>
-                        <div class="benefit-title">Biscoitos Crocantes</div>
-                        <p class="benefit-desc">Pra petiscar sem preocupação.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <span class="benefit-icon">🎂</span>
-                        <div class="benefit-title">Tortas e Cheesecakes</div>
-                        <p class="benefit-desc">Para impressionar a família toda.</p>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="400">
+                        <span class="problem-icon">❤️</span>
+                        <h3>Riscos Cardíacos</h3>
+                        <p class="text-muted">Aumento da pressão e colesterol.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- RECIPE CAROUSEL -->
+        <section class="section secret">
+            <div class="container secret-content">
+                <h2 class="section-title" data-aos="zoom-in">Chega de Vontade! Transforme Sua Vida com o Ebook 200 Doces
+                    Zero Açúcar</h2>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p style="font-size: 20px; color: var(--text-muted); margin-bottom: 24px;">Imagine poder saborear um
+                        pudim cremoso, um bolo fofinho ou um brigadeiro no ponto, tudo isso com a tranquilidade de saber
+                        que sua saúde está protegida.</p>
+                    <p style="font-size: 18px; color: var(--text-main); margin-bottom: 24px;">Criamos mais de 200
+                        receitas fáceis e rápidas, com ingredientes acessíveis, pensadas especialmente para quem é
+                        diabético ou busca uma alimentação que não cause picos de glicemia. <strong>É o fim da
+                            privação!</strong></p>
+                </div>
+
                 <div class="carousel-container">
                     <div class="carousel-track">
-                        <div class="carousel-item"><img src="images/img1.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img2.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img3.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img4.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img5.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img6.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img7.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img8.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img9.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img10.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img11.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img12.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <!-- Duplicado para loop -->
-                        <div class="carousel-item"><img src="images/img1.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img2.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img3.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img4.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img5.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img6.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img7.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img8.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img9.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img10.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img11.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                        <div class="carousel-item"><img src="images/img12.webp" alt="Sobremesa Zero Açúcar"
-                                loading="lazy" width="600" height="600"></div>
-                    </div>
-                </div>
-
-                <!-- CTA INTERMEDIÁRIO 1 -->
-                <div class="cta-block">
-                    <a href="#oferta" class="cta-main" id="cta-inter1">
-                        🍫 QUERO ESSAS RECEITAS AGORA!
-                    </a>
-                    <p class="cta-guarantee-note">🔒 Pagamento seguro · <span>7 dias de garantia</span> · Por apenas
-                        R$27</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================
-             VIDEO SECTION
-        ============================================ -->
-        <section class="section"
-            style="background: linear-gradient(180deg, transparent, rgba(245,166,35,0.04), transparent);">
-            <div class="container">
-                <h2 class="section-title">Veja as Receitas <span class="highlight">na Prática</span></h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Assista e veja como é fácil e gostoso preparar.</p>
-                <div class="video-container-vertical">
-                    <lt-v2 v="78fc685f-470c-499a-bb73-3e4a8b888dba" ar="9:16" st="0"></lt-v2>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ============================================
-             AUTHORITY — ISADORA
-        ============================================ -->
-        <section class="section">
-            <div class="container">
-                <div class="authority-grid">
-                    <div style="display: flex; align-items: flex-end; justify-content: center;">
-                        <img src="images/isadora.webp" alt="Isadora Leblanc — Chef especialista em culinária saudável"
-                            class="authority-photo" loading="lazy">
-                    </div>
-                    <div>
-                        <span class="hero-eyebrow" style="margin-bottom: 16px; display: inline-flex;">👩‍🍳 QUEM CRIOU
-                            ESSAS RECEITAS</span>
-                        <h2 class="section-title"
-                            style="text-align: left; margin-bottom: 20px; font-size: clamp(24px, 3.5vw, 38px);">
-                            Olá! Eu sou a <span class="highlight">Isadora Leblanc</span>
-                        </h2>
-                        <div class="authority-numbers">
-                            <div class="authority-stat">
-                                <span class="authority-stat-number">+200</span>
-                                <span class="authority-stat-label">Receitas Criadas</span>
-                            </div>
-                            <div class="authority-stat">
-                                <span class="authority-stat-number">+12mil</span>
-                                <span class="authority-stat-label">Alunas Atendidas</span>
-                            </div>
-                            <div class="authority-stat">
-                                <span class="authority-stat-number">3 anos</span>
-                                <span class="authority-stat-label">Pesquisando</span>
-                            </div>
+                        <!-- Original Set -->
+                        <!-- Original Set -->
+                        <div class="carousel-item">
+                            <img src="images/img1.webp" alt="Sobremesa Zero Açúcar 1" loading="lazy" width="600"
+                                height="600">
                         </div>
-                        <p style="color: var(--text-soft); font-size: 16px; line-height: 1.7; margin-bottom: 14px;">
-                            Sou chef especializada em culinária saudável, com foco em receitas para quem tem diabetes ou
-                            busca reduzir o açúcar sem abrir mão do sabor.
-                        </p>
-                        <p style="color: var(--text-soft); font-size: 16px; line-height: 1.7; margin-bottom: 20px;">
-                            Desenvolvi mais de 200 receitas testadas e aprovadas por milhares de mulheres que
-                            recuperaram o prazer de comer doce sem medo, sem culpa e sem picos de glicemia.
-                        </p>
-                        <div class="authority-quote">
-                            "Minha missão é provar que você não precisa abrir mão da sobremesa para ter saúde — você só
-                            precisa da receita certa."
+                        <div class="carousel-item">
+                            <img src="images/img2.webp" alt="Sobremesa Zero Açúcar 2" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img3.webp" alt="Sobremesa Zero Açúcar 3" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img4.webp" alt="Sobremesa Zero Açúcar 4" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img5.webp" alt="Sobremesa Zero Açúcar 5" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img6.webp" alt="Sobremesa Zero Açúcar 6" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img7.webp" alt="Sobremesa Zero Açúcar 7" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img8.webp" alt="Sobremesa Zero Açúcar 8" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img9.webp" alt="Sobremesa Zero Açúcar 9" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img10.webp" alt="Sobremesa Zero Açúcar 10" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img11.webp" alt="Sobremesa Zero Açúcar 11" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img12.webp" alt="Sobremesa Zero Açúcar 12" loading="lazy" width="600"
+                                height="600">
+                        </div>
+
+                        <!-- Duplicate Set for Infinite Loop -->
+                        <div class="carousel-item">
+                            <img src="images/img1.webp" alt="Sobremesa Zero Açúcar 1" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img2.webp" alt="Sobremesa Zero Açúcar 2" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img3.webp" alt="Sobremesa Zero Açúcar 3" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img4.webp" alt="Sobremesa Zero Açúcar 4" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img5.webp" alt="Sobremesa Zero Açúcar 5" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img6.webp" alt="Sobremesa Zero Açúcar 6" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img7.webp" alt="Sobremesa Zero Açúcar 7" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img8.webp" alt="Sobremesa Zero Açúcar 8" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img9.webp" alt="Sobremesa Zero Açúcar 9" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img10.webp" alt="Sobremesa Zero Açúcar 10" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img11.webp" alt="Sobremesa Zero Açúcar 11" loading="lazy" width="600"
+                                height="600">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/img12.webp" alt="Sobremesa Zero Açúcar 12" loading="lazy" width="600"
+                                height="600">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================
-             FOR WHO / NOT FOR WHO
-        ============================================ -->
-        <section class="section"
-            style="background: linear-gradient(180deg, transparent, rgba(245,166,35,0.03), transparent);">
+
+        <section class="section">
             <div class="container">
-                <h2 class="section-title">Esse Ebook é <span class="highlight">Para Você?</span></h2>
-                <div class="divider"></div>
-                <div class="for-who-grid">
-                    <div class="for-who-card for-who-yes">
-                        <div class="for-who-title">✅ Este ebook é PARA você se...</div>
-                        <ul class="for-who-list">
-                            <li>Tem diabetes ou pré-diabetes</li>
-                            <li>Sente falta de comer um docinho gostoso</li>
-                            <li>Quer receitas fáceis e com ingredientes simples</li>
-                            <li>Quer surpreender a família com sobremesas saudáveis</li>
-                            <li>Está cansada de se privar nas festas e reuniões</li>
-                            <li>Quer manter a glicemia controlada com prazer</li>
-                        </ul>
-                    </div>
-                    <div class="for-who-card for-who-no">
-                        <div class="for-who-title">❌ Este ebook NÃO é para você se...</div>
-                        <ul class="for-who-list">
-                            <li>Quer receitas com açúcar refinado</li>
-                            <li>Não tem interesse em uma alimentação mais saudável</li>
-                            <li>Prefere continuar sem comer doce</li>
-                            <li>Não quer sentir mais prazer e liberdade</li>
-                        </ul>
+                <h2 class="section-title" data-aos="fade-up">Veja na Prática</h2>
+                <div class="video-container" data-aos="zoom-in">
+                    <div class="video-facade"
+                        style="background-image: url('https://img.youtube.com/vi/VbH_wXPzK04/hqdefault.jpg');"
+                        onclick="this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'"
+                        onkeypress="if(event.key==='Enter'||event.key===' ')this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'"
+                        role="button" tabindex="0" aria-label="Reproduzir vídeo">
+                        <div class="play-button" role="presentation"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================
-             TESTIMONIALS
-        ============================================ -->
+
         <section class="section">
             <div class="container">
-                <h2 class="section-title">Mulheres que <span class="highlight">Voltaram a Comer Doce</span></h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Veja o que elas estão falando — em suas próprias palavras:</p>
+                <h2 class="section-title" data-aos="fade-up">Por Que Nossas Receitas Trazem Tanta Paz de Espírito?</h2>
+                <div class="problem-grid">
+                    <div class="glass-card problem-item" data-aos="fade-up">
+                        <span class="problem-icon">1</span>
+                        <h3>DESENVOLVIDO PARA DIABÉTICOS</h3>
+                        <p class="text-muted">Cada receita foi criada pensando em você. Use ingredientes que não causam
+                            picos de glicemia.</p>
+                    </div>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="100">
+                        <span class="problem-icon">2</span>
+                        <h3>ADEUS À RESTRIÇÃO SEVERA</h3>
+                        <p class="text-muted">Com centenas de opções, você nunca mais vai se sentir privado de comer o
+                            que gosta.</p>
+                    </div>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="200">
+                        <span class="problem-icon">3</span>
+                        <h3>NOITES DE SONO MAIS TRANQUILAS</h3>
+                        <p class="text-muted">Evitar os picos de açúcar ajuda a ter um descanso mais profundo e
+                            reparador.</p>
+                    </div>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="300">
+                        <span class="problem-icon">4</span>
+                        <h3>MENOS ESTRESSE E ANSIEDADE</h3>
+                        <p class="text-muted">Sinta o alívio de saborear uma sobremesa sem a ansiedade de medir a
+                            glicemia logo depois.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">O QUE VOCÊ VAI ENCONTRAR</h2>
+                <div class="problem-grid">
+                    <div class="glass-card problem-item" data-aos="fade-up">
+                        <span class="problem-icon">🍮</span>
+                        <h3>Pudins Cremosos</h3>
+                        <p class="text-muted">Levíssimos e deliciosos.</p>
+                    </div>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="100">
+                        <span class="problem-icon">🍰</span>
+                        <h3>Bolos Fofinhos</h3>
+                        <p class="text-muted">Crescem e ficam macios.</p>
+                    </div>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="200">
+                        <span class="problem-icon">🍬</span>
+                        <h3>Brigadeiros</h3>
+                        <p class="text-muted">O ponto perfeito sem cristalizar.</p>
+                    </div>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="300">
+                        <span class="problem-icon">🍨</span>
+                        <h3>Mousses</h3>
+                        <p class="text-muted">Textura aerada e sabor intenso.</p>
+                    </div>
+                    <div class="glass-card problem-item" data-aos="fade-up" data-aos-delay="400">
+                        <span class="problem-icon">🍪</span>
+                        <h3>Biscoitos</h3>
+                        <p class="text-muted">Crocantes e saudáveis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container hero-grid">
+                <div class="hero-img-wrapper" data-aos="fade-right">
+                    <img src="images/isadora.webp" alt="Isadora Leblanc" class="hero-img" width="800" height="625"
+                        style="transform: none; border-radius: 50%; max-width: 400px; width: 100%; height: auto; object-fit: cover; margin: 0 auto; box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);">
+                </div>
+                <div class="hero-text" data-aos="fade-left">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 24px;">Olá! Eu sou a Isadora
+                        Leblanc</h2>
+                    <p class="text-muted" style="margin-bottom: 16px;">Sou Isadora Leblanc, chef especializada em
+                        culinária saudável. Minha paixão é transformar ingredientes naturais em pratos saborosos,
+                        criativos e nutritivos. Acredito que comer bem é um dos maiores cuidados que podemos ter com nós
+                        mesmos, e por isso desenvolvo receitas que unem saúde, equilíbrio e muito sabor.</p>
+                    <p class="text-muted">Meu propósito é mostrar que é possível manter uma alimentação saudável sem
+                        abrir mão do prazer à mesa. Compartilho minhas criações e dicas práticas para ajudar você a ter
+                        mais qualidade de vida, leveza e bem-estar no dia a dia.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">A Tranquilidade de Quem Já Experimentou</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px; font-size: 20px;">VEJA A
+                    OPINIÃO SINCERA DE QUEM VOLTOU A COMER DOCE SEM MEDO:</p>
+                <!-- Image Testimonials Carousel -->
                 <div class="img-depo-carousel">
                     <div class="img-depo-track">
-                        <div class="img-depo-item"><img src="depoimentos/depo1.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="540" height="741"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo2.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="540" height="894"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo3.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="540" height="846"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo4.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="600" height="900"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo5.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="600" height="750"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo6.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="600" height="750"></div>
-                        <!-- Duplicados -->
-                        <div class="img-depo-item"><img src="depoimentos/depo1.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="540" height="741"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo2.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="540" height="894"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo3.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="540" height="846"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo4.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="600" height="900"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo5.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="600" height="750"></div>
-                        <div class="img-depo-item"><img src="depoimentos/depo6.webp"
-                                alt="Depoimento de cliente satisfeita" loading="lazy" width="600" height="750"></div>
-                    </div>
-                </div>
-
-                <!-- CTA INTERMEDIÁRIO 2 -->
-                <div class="cta-block">
-                    <a href="#oferta" class="cta-main" id="cta-inter2">
-                        🍫 QUERO TER ESSE RESULTADO TAMBÉM!
-                    </a>
-                    <p class="cta-guarantee-note">🔒 Compra segura · <span>Garantia de 7 dias</span> · Acesso imediato
-                        via e-mail e WhatsApp</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================
-             BONUS SECTION
-        ============================================ -->
-        <section class="section"
-            style="background: linear-gradient(180deg, transparent, rgba(245,166,35,0.04), transparent);">
-            <div class="container">
-                <h2 class="section-title">🎁 Seus <span class="highlight">6 Bônus Exclusivos</span></h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Comprando hoje, você leva esses 6 bônus — completamente <strong
-                        style="color: var(--accent);">GRÁTIS</strong>!</p>
-
-                <div class="bonus-grid">
-                    <!-- BÔNUS 1 — Menopausa/Humor (mais relevante para o público) -->
-                    <div class="bonus-card featured">
-                        <span class="bonus-number">BÔNUS ESPECIAL 1</span>
-                        <img src="bonus/bonus4.webp" alt="Ebook Melhora do Humor e Menopausa" class="bonus-img"
-                            width="600" height="488" loading="lazy">
-                        <div class="bonus-title">Melhora do Humor & Menopausa</div>
-                        <p class="bonus-desc">Receitas que ajudam a reduzir o cansaço, a depressão e os sintomas da
-                            menopausa.</p>
-                        <span class="bonus-value">GRÁTIS</span>
-                    </div>
-                    <!-- BÔNUS 2 -->
-                    <div class="bonus-card">
-                        <span class="bonus-number">BÔNUS 2</span>
-                        <img src="bonus/bonus1.webp" alt="Ebook Bolos Diet" class="bonus-img" width="600" height="407"
-                            loading="lazy">
-                        <div class="bonus-title">Bolos Diet Irresistíveis</div>
-                        <p class="bonus-desc">20 receitas de bolos fofos e zero açúcar para qualquer ocasião.</p>
-                        <span class="bonus-value">GRÁTIS</span>
-                    </div>
-                    <!-- BÔNUS 3 -->
-                    <div class="bonus-card">
-                        <span class="bonus-number">BÔNUS 3</span>
-                        <img src="bonus/bonus2.webp" alt="Ebook Páscoa Zero Açúcar" class="bonus-img" width="600"
-                            height="407" loading="lazy">
-                        <div class="bonus-title">Páscoa Zero Açúcar</div>
-                        <p class="bonus-desc">20 receitas de ovos de páscoa e delícias para a família inteira.</p>
-                        <span class="bonus-value">GRÁTIS</span>
-                    </div>
-                    <!-- BÔNUS 4 -->
-                    <div class="bonus-card">
-                        <span class="bonus-number">BÔNUS 4</span>
-                        <img src="bonus/bonus5.webp" alt="Ebook Chocotones Irresistíveis" class="bonus-img" width="600"
-                            height="600" loading="lazy">
-                        <div class="bonus-title">Chocotones Irresistíveis</div>
-                        <p class="bonus-desc">Sem açúcar, glúten ou lactose. Perfeitos para o Natal.</p>
-                        <span class="bonus-value">GRÁTIS</span>
-                    </div>
-                    <!-- BÔNUS 5 -->
-                    <div class="bonus-card">
-                        <span class="bonus-number">BÔNUS 5</span>
-                        <img src="bonus/bonus3.webp" alt="Ebook Pizzas Low Carb" class="bonus-img" width="600"
-                            height="600" loading="lazy">
-                        <div class="bonus-title">Pizzas Low Carb na Airfryer</div>
-                        <p class="bonus-desc">Deliciosas, saudáveis e prontas em minutos.</p>
-                        <span class="bonus-value">GRÁTIS</span>
-                    </div>
-                    <!-- BÔNUS 6 -->
-                    <div class="bonus-card">
-                        <span class="bonus-number">BÔNUS 6</span>
-                        <img src="bonus/bonus6.webp" alt="Ebook Refeições de Microondas" class="bonus-img" width="600"
-                            height="600" loading="lazy">
-                        <div class="bonus-title">Refeições de Microondas</div>
-                        <p class="bonus-desc">Práticas, Low Carb e prontas em poucos minutos.</p>
-                        <span class="bonus-value">GRÁTIS</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================
-             PRICING — OFERTA PRINCIPAL
-        ============================================ -->
-        <section class="section" id="oferta">
-            <div class="container">
-                <h2 class="section-title">Escolha o Seu <span class="highlight">Plano</span></h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Acesse agora enquanto o preço ainda está especial.</p>
-
-                <div class="pricing-wrapper">
-
-                    <!-- PLANO ESSENCIAL (R$10) -->
-                    <div class="pricing-card basic">
-                        <div class="plan-name">Plano Essencial</div>
-                        <p class="plan-tagline">Para começar com o básico e já ter acesso às 200 receitas.</p>
-                        <div class="price-from">De R$67</div>
-                        <div class="price-amount">R$10</div>
-                        <p class="price-installments">Pagamento único · Acesso imediato</p>
-                        <ul class="plan-features">
-                            <li>200 Receitas de Doces Zero Açúcar</li>
-                            <li>6 Bônus Exclusivos</li>
-                            <li>Entrega via WhatsApp e E-mail</li>
-                            <li>Acesso Vitalício</li>
-                            <li class="crossed">720 Receitas Zero Glúten (só no completo)</li>
-                            <li class="crossed">Panetones e Pães sem Glúten (só no completo)</li>
-                        </ul>
-                        <a href="https://pay.hotmart.com/U100027702E?off=dj8txek8&checkoutMode=10"
-                            class="cta-plan outline" id="cta-basic">
-                            QUERO O PLANO BÁSICO
-                        </a>
-                    </div>
-
-                    <!-- PLANO COMPLETO (R$27) — MAIS VENDIDO -->
-                    <div class="pricing-card premium">
-                        <div class="pricing-badge-top">🔥 MAIS VENDIDO — RECOMENDADO</div>
-                        <div class="plan-name" style="margin-top: 24px;">Plano Completo</div>
-                        <p class="plan-tagline">O pacote total para quem quer <strong
-                                style="color: var(--primary);">liberdade total na cozinha.</strong></p>
-                        <div class="price-from">De R$97</div>
-                        <div class="price-amount">R$27</div>
-                        <p class="price-installments">Pagamento único · Acesso imediato</p>
-                        <ul class="plan-features">
-                            <li>200 Receitas de Doces Zero Açúcar</li>
-                            <li>6 Bônus Exclusivos</li>
-                            <li>+720 Receitas Zero Glúten e Açúcar</li>
-                            <li>Panetones sem Glúten e Lactose</li>
-                            <li>Ebook Panetones Artesanal Lucrativo</li>
-                            <li>Livro de Pães, Bolos e Biscoitos sem Glúten</li>
-                            <li>Entrega via WhatsApp e E-mail</li>
-                            <li>Acesso Vitalício</li>
-                        </ul>
-                        <a href="https://pay.hotmart.com/U100140375P?off=tmsgayje&checkoutMode=10"
-                            class="cta-plan green" id="cta-premium">
-                            ✅ QUERO O PLANO COMPLETO POR R$27
-                        </a>
-                        <div class="trust-badges">
-                            <div class="trust-badge"><span class="icon">🔒</span> Pagamento Seguro</div>
-                            <div class="trust-badge"><span class="icon">💳</span> Pix, Cartão, Boleto</div>
-                            <div class="trust-badge"><span class="icon">📧</span> Entrega Imediata</div>
+                        <!-- Original Set -->
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo1.webp" alt="Depoimento 1" loading="lazy" width="540"
+                                height="741">
                         </div>
-                    </div>
-                </div>
-
-                <!-- TRUST BADGES FULL WIDTH -->
-                <div style="text-align: center; margin-top: 32px;">
-                    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-                        <div class="trust-badge" style="font-size: 13px; padding: 8px 18px;">🏦 Hotmart Checkout</div>
-                        <div class="trust-badge" style="font-size: 13px; padding: 8px 18px;">🔐 SSL Criptografado</div>
-                        <div class="trust-badge" style="font-size: 13px; padding: 8px 18px;">✅ Aprovado imediatamente
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo2.webp" alt="Depoimento 2" loading="lazy" width="540"
+                                height="894">
                         </div>
-                        <div class="trust-badge" style="font-size: 13px; padding: 8px 18px;">📱 Acesso pelo celular
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo3.webp" alt="Depoimento 3" loading="lazy" width="540"
+                                height="846">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo4.webp" alt="Depoimento 4" loading="lazy" width="600"
+                                height="900">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo5.webp" alt="Depoimento 5" loading="lazy" width="600"
+                                height="750">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo6.webp" alt="Depoimento 6" loading="lazy" width="600"
+                                height="750">
+                        </div>
+                        <!-- Duplicate Set for Infinite Loop -->
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo1.webp" alt="Depoimento 1" loading="lazy" width="540"
+                                height="741">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo2.webp" alt="Depoimento 2" loading="lazy" width="540"
+                                height="894">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo3.webp" alt="Depoimento 3" loading="lazy" width="540"
+                                height="846">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo4.webp" alt="Depoimento 4" loading="lazy" width="600"
+                                height="900">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo5.webp" alt="Depoimento 5" loading="lazy" width="600"
+                                height="750">
+                        </div>
+                        <div class="img-depo-item">
+                            <img src="depoimentos/depo6.webp" alt="Depoimento 6" loading="lazy" width="600"
+                                height="750">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================
-             GUARANTEE
-        ============================================ -->
-        <section class="section guarantee-section">
-            <div class="container">
-                <div class="guarantee-content">
-                    <div class="guarantee-seal">
-                        <div class="guarantee-seal-inner">
-                            <span class="seal-days">7</span>
-                            <span class="seal-text">DIAS DE<br>GARANTIA<br>TOTAL</span>
-                        </div>
-                    </div>
-                    <div class="guarantee-text">
-                        <h3>✅ Garantia Incondicional de 7 Dias</h3>
-                        <p>
-                            Se você abrir o ebook, testar as receitas e por qualquer motivo não ficar satisfeita —
-                            <strong style="color:#fff;">você recebe seu dinheiro de volta.</strong> Sem perguntas, sem
-                            burocracia, sem demora. Só precisa pedir.
-                        </p>
-                        <p style="margin-top: 12px; font-size: 14px; color: var(--text-muted);">
-                            (A garantia é nossa forma de mostrar que confiamos 100% no que entregamos para você.)
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================
-             FAQ
-        ============================================ -->
         <section class="section">
             <div class="container">
-                <h2 class="section-title">Dúvidas <span class="highlight">Frequentes</span></h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Respondemos as perguntas mais comuns aqui embaixo.</p>
+                <h2 class="section-title" data-aos="fade-up">VEJA SEUS BÔNUS!</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 10px;">Adquirindo hoje o livro
+                    digital "200 Doces Zero Açúcar"</p>
+                <p style="text-align: center; color: var(--secondary); font-weight: 800; margin-bottom: 40px;">Você terá
+                    acesso à 6 Bônus Incríveis</p>
 
-                <div class="faq-list" id="faq-list">
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Como recebo o ebook depois que comprar?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            O acesso é enviado na hora — imediatamente — para o seu e-mail e WhatsApp assim que o
-                            pagamento é aprovado. Você não precisa esperar nada.
-                        </div>
+                <div class="problem-grid">
+                    <div class="glass-card" data-aos="fade-up">
+                        <img src="bonus/bonus1.webp" alt="Ebook Bolos Diet" class="bonus-img" width="600" height="407">
+                        <h3 style="color: var(--primary);">BÔNUS 1</h3>
+                        <h4>Bolos Diet</h4>
+                        <p class="text-muted">20 receitas de bolos irresistíveis e zero açúcar.</p>
+                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            As receitas servem para quem tem diabetes?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Sim! Todas as receitas foram criadas especialmente para diabéticos e pré-diabéticos. Nenhuma
-                            delas usa açúcar refinado ou ingredientes que causam picos de glicemia.
-                        </div>
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <img src="bonus/bonus2.webp" alt="Ebook Páscoa Zero Açúcar" class="bonus-img" width="600"
+                            height="407">
+                        <h3 style="color: var(--primary);">BÔNUS 2</h3>
+                        <h4>Páscoa Zero Açúcar</h4>
+                        <p class="text-muted">20 receitas de ovos de páscoa e delícias.</p>
+                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Precisa de ingredientes caros ou difíceis de achar?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Não! Focamos em ingredientes simples, baratos e fáceis de encontrar em qualquer supermercado
-                            ou loja de produtos naturais. Sem complicação.
-                        </div>
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="bonus/bonus3.webp" alt="Ebook Pizzas Low Carb" class="bonus-img" width="600"
+                            height="600">
+                        <h3 style="color: var(--primary);">BÔNUS 3</h3>
+                        <h4>Pizzas Low Carb</h4>
+                        <p class="text-muted">Deliciosas, saudáveis e feitas na Airfryer.</p>
+                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Funciona para quem está na menopausa?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Sim! O ebook inclui um bônus especial chamado "Melhora do Humor & Menopausa", com receitas
-                            especialmente pensadas para reduzir o cansaço, melhorar o humor e ajudar no equilíbrio
-                            hormonal natural.
-                        </div>
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="bonus/bonus4.webp" alt="Ebook Melhora do Humor & Menopausa" class="bonus-img"
+                            width="600" height="488">
+                        <h3 style="color: var(--primary);">BÔNUS 4</h3>
+                        <h4>Melhora do Humor & Menopausa</h4>
+                        <p class="text-muted">Receitas que ajudam a reduzir depressão e fadiga.</p>
+                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            E se eu não souber cozinhar muito bem?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Perfeito para você! As receitas foram criadas para serem simples e rápidas. O passo a passo
-                            é claro e direto, sem termos difíceis. Se você sabe usar um liquidificador e um forno, você
-                            consegue.
-                        </div>
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
+                        <img src="bonus/bonus5.webp" alt="Ebook Chocotones Irresistíveis" class="bonus-img" width="600"
+                            height="600">
+                        <h3 style="color: var(--primary);">BÔNUS 5</h3>
+                        <h4>Chocotones Irresistíveis</h4>
+                        <p class="text-muted">Sem açúcar, glúten ou lactose.</p>
+                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Posso compartilhar as receitas com minha família?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Você pode usar as receitas para preparar para quem quiser! Seus filhos, netos, marido —
-                            todos vão amar e ninguém vai perceber que é sem açúcar. (O ebook é para uso pessoal — não
-                            pode ser revendido ou redistribuído.)
-                        </div>
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="500">
+                        <img src="bonus/bonus6.webp" alt="Ebook Refeições de Microondas" class="bonus-img" width="600"
+                            height="600">
+                        <h3 style="color: var(--primary);">BÔNUS 6</h3>
+                        <h4>Refeições de Microondas</h4>
+                        <p class="text-muted">Práticas e Low Carb para emagrecer.</p>
+                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
                     </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Como pago? É seguro?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            O pagamento é feito pela Hotmart, uma das maiores plataformas de produtos digitais do
-                            Brasil. Totalmente seguro, com criptografia SSL. Você pode pagar com Pix, cartão de crédito
-                            ou boleto bancário.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Qual a diferença entre o Plano Básico (R$10) e o Completo (R$27)?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            O Plano Básico inclui as 200 receitas de doces zero açúcar e os 6 bônus. O Plano Completo
-                            inclui tudo isso MAIS 720 receitas zero glúten e açúcar, panetones artesanais, pães e
-                            biscoitos sem glúten. É a melhor escolha para quem quer variedade total.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            E se eu não gostar? Posso pedir reembolso?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Sim! Você tem 7 dias de garantia total e incondicional. Se não gostar por qualquer motivo, é
-                            só pedir o reembolso e devolvemos seu dinheiro na hora. Sem perguntas, sem burocracia.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Quanto tempo tenho acesso ao ebook?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            O acesso é vitalício! Você compra uma vez e tem para sempre. Pode acessar quando quiser,
-                            quantas vezes quiser, direto do seu celular, computador ou tablet.
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- ============================================
-             FINAL CTA
-        ============================================ -->
-        <section class="section"
-            style="background: linear-gradient(180deg, transparent, rgba(34, 197, 94, 0.05), transparent);">
-            <div class="container" style="text-align: center;">
-                <h2 class="section-title" style="max-width: 600px; margin: 0 auto 16px;">
-                    Você Merece Sentir <span class="highlight-green">Prazer</span> ao Comer Doce Novamente 🍫
-                </h2>
-                <div class="divider"></div>
-                <p
-                    style="font-size: 18px; color: var(--text-soft); max-width: 560px; margin: 0 auto 36px; line-height: 1.7;">
-                    Mais de 12 mil mulheres já voltaram a sorrir na sobremesa. Agora é a sua vez.
-                </p>
-                <a href="#oferta" class="cta-main" id="final-cta" style="font-size: 22px; padding: 22px 48px;">
-                    ✅ QUERO MEU EBOOK POR R$10 AGORA!
-                </a>
-                <p class="cta-guarantee-note" style="margin-top: 16px;">🔒 Compra segura · <span>Garantia de 7
-                        dias</span> · Acesso imediato</p>
-                <div class="trust-badges" style="margin-top: 24px;">
-                    <div class="trust-badge">🏦 Hotmart Checkout</div>
-                    <div class="trust-badge">🔐 SSL Seguro</div>
-                    <div class="trust-badge">💳 Pix, Cartão, Boleto</div>
-                    <div class="trust-badge">📱 Acesso pelo celular</div>
+        <section class="section" id="oferta">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Escolha Seu Plano</h2>
+
+                <div class="pricing-container">
+                    <!-- Basic Plan -->
+                    <div class="pricing-box basic glass-card" data-aos="zoom-in" data-aos-delay="100">
+                        <h3>PLANO BÁSICO</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 20px;">De R$67 por apenas:</p>
+                        <div class="price-tag">R$ 10,00</div>
+                        <ul style="text-align: left; list-style: none; margin-bottom: 32px; color: var(--text-muted);">
+                            <li style="margin-bottom: 12px;">✅ 200 Receitas de Doces Zero Açúcar</li>
+                            <li style="margin-bottom: 12px;">✅ Entrega via WhatsApp e Email</li>
+                            <li style="margin-bottom: 12px;">✅ 6 Bônus Exclusivos</li>
+                            <li style="margin-bottom: 12px;">✅ Acesso Vitalício</li>
+                        </ul>
+                        <a href="https://pay.hotmart.com/U100027702E?off=dj8txek8&checkoutMode=10"
+                            class="btn-glow">QUERO
+                            COMPRAR!</a>
+                    </div>
+
+                    <!-- Complete Plan -->
+                    <div class="pricing-box premium glass-card" data-aos="zoom-in">
+                        <div class="floating-badge"
+                            style="position: absolute; top: 15px; right: 15px; transform: rotate(5deg); box-shadow: 0 5px 15px rgba(255,69,0,0.3); animation: bounce 3s infinite ease-in-out; font-size: 12px; padding: 8px 16px;">
+                            MAIS VENDIDO
+                        </div>
+                        <h3>PLANO COMPLETO</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 20px;">De R$97 por apenas:</p>
+                        <div class="price-tag">R$ 27,00</div>
+                        <p style="color: var(--primary); font-weight: bold; margin-bottom: 16px;">VOCÊ LEVA JUNTO:</p>
+                        <ul style="text-align: left; list-style: none; margin-bottom: 32px; color: var(--text-muted);">
+                            <li style="margin-bottom: 12px;">✅ Todos os itens do plano básico</li>
+                            <li style="margin-bottom: 12px;">✅ + 720 Receitas Zero Glúten e Açúcar</li>
+                            <li style="margin-bottom: 12px;">✅ Panetones sem Glúten/Lactose</li>
+                            <li style="margin-bottom: 12px;">✅ Ebook Panetones Artesanal Lucrativo</li>
+                            <li style="margin-bottom: 12px;">✅ Livro de Pães, Bolos e Biscoitos sem Glúten</li>
+                            <li style="margin-bottom: 12px;">✅ 6 Bônus Exclusivos</li>
+                            <li style="margin-bottom: 12px;">✅ Acesso Vitalício</li>
+                        </ul>
+                        <a href="https://pay.hotmart.com/U100140375P?off=tmsgayje&checkoutMode=10"
+                            class="cta-button-large">QUERO
+                            COMPRAR!</a>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 60px; border-top: 1px solid var(--glass-border); padding-top: 30px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="color: var(--primary); margin-bottom: 16px;">GARANTIA INCONTESTÁVEL DE 7 DIAS</h3>
+                    <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 16px;">Caso não goste do que
+                        encontrar, pode ficar tranquilo e sereno. Eu devolvo seu dinheiro de volta - e sem perguntas -
+                        em até 7 dias após a compra, ok?</p>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">(Mas eu tenho certeza que
+                        você vai adorar!)</p>
                 </div>
             </div>
         </section>
 
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Perguntas Frequentes</h2>
+                <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
+                    <div class="glass-card" style="margin-bottom: 16px; padding: 24px; text-align: left;"
+                        data-aos="fade-up">
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">Como recebo o acesso?</h3>
+                        <p class="text-muted">O acesso é enviado imediatamente para seu e-mail e WhatsApp logo após a
+                            confirmação do pagamento.</p>
+                    </div>
+                    <div class="glass-card" style="margin-bottom: 16px; padding: 24px; text-align: left;"
+                        data-aos="fade-up">
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">As receitas servem para diabéticos?</h3>
+                        <p class="text-muted">Sim! Todas as receitas são Zero Açúcar e foram pensadas para não causar
+                            picos de glicemia.</p>
+                    </div>
+                    <div class="glass-card" style="margin-bottom: 16px; padding: 24px; text-align: left;"
+                        data-aos="fade-up">
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">Preciso de ingredientes difíceis?</h3>
+                        <p class="text-muted">Não. Focamos em ingredientes acessíveis e fáceis de encontrar em qualquer
+                            supermercado ou loja de produtos naturais.</p>
+                    </div>
+                    <div class="glass-card" style="margin-bottom: 16px; padding: 24px; text-align: left;"
+                        data-aos="fade-up">
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">E se eu não gostar?</h3>
+                        <p class="text-muted">Você tem 7 dias de garantia incondicional. Se não gostar, devolvemos seu
+                            dinheiro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- ============================================
-         FOOTER
-    ============================================ -->
-    <footer>
+    <footer style="padding: 40px 0; text-align: center; border-top: 1px solid var(--glass-border);">
         <div class="container">
-            <p>© 2025 200 Doces Zero Açúcar. Todos os direitos reservados.</p>
-            <p style="font-size: 12px; margin-top: 8px;">Este site não é afiliado ao Facebook ou a qualquer entidade do
-                Facebook. Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site. Este
-                produto é distribuído pela Hotmart. A Hotmart não endossa nenhum produto vendido na plataforma.</p>
-            <div class="footer-links">
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Termos de Uso</a>
-                <a href="#">Contato</a>
+            <p>&copy; 2025 200 Doces Zero Açúcar. Todos os direitos reservados.</p>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Este site não é afiliado ao Facebook
+                ou a qualquer entidade do Facebook. Depois que você sair do Facebook, a responsabilidade não é deles e
+                sim do nosso site.</p>
+            <div style="margin-top: 20px;">
+                <a href="#" style="color: var(--text-muted); text-decoration: none; margin: 0 10px;">Política de
+                    Privacidade</a> |
+                <a href="#" style="color: var(--text-muted); text-decoration: none; margin: 0 10px;">Termos de Uso</a>
             </div>
         </div>
     </footer>
 
-    <!-- ============================================
-         MOBILE BOTTOM CTA BAR
-    ============================================ -->
-    <div class="mobile-cta-bar" id="mobile-cta">
-        <a href="#oferta" id="mobile-cta-link">
-            ✅ QUERO MEU EBOOK POR R$10 →
-        </a>
-    </div>
-
-    <!-- ============================================
-         JAVASCRIPT
-    ============================================ -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
-        // ---- URGENCY COUNTDOWN ----
-        (function () {
-            const KEY = 'cdzero_expires';
-            const DURATION = 15 * 60; // 15 minutes in seconds
-            let expires = parseInt(sessionStorage.getItem(KEY), 10);
-            if (!expires || Date.now() > expires) {
-                expires = Date.now() + DURATION * 1000;
-                sessionStorage.setItem(KEY, expires);
-            }
-
-            const el = document.getElementById('countdown');
-            if (!el) return;
-
-            function update() {
-                const remaining = Math.max(0, Math.floor((expires - Date.now()) / 1000));
-                const m = String(Math.floor(remaining / 60)).padStart(2, '0');
-                const s = String(remaining % 60).padStart(2, '0');
-                el.textContent = m + ':' + s;
-                if (remaining > 0) {
-                    setTimeout(update, 1000);
-                } else {
-                    // Reset for another cycle
-                    expires = Date.now() + DURATION * 1000;
-                    sessionStorage.setItem(KEY, expires);
-                    setTimeout(update, 1000);
-                }
-            }
-            update();
-        })();
-
-        // ---- FAQ ACCORDION ----
-        document.querySelectorAll('.faq-question').forEach(function (question) {
-            question.addEventListener('click', function () {
-                var item = this.closest('.faq-item');
-                var isOpen = item.classList.contains('open');
-                // Close all
-                document.querySelectorAll('.faq-item').forEach(function (i) {
-                    i.classList.remove('open');
+        // Defer AOS init to avoid forced reflow during initial load
+        window.addEventListener('load', function () {
+            // Usa requestAnimationFrame para inicializar o AOS depois que o navegador 
+            // pintar o layout principal, reduzindo Reflows Forçados.
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    AOS.init({
+                        duration: 800,
+                        once: true
+                    });
                 });
-                // Open clicked if was closed
-                if (!isOpen) {
-                    item.classList.add('open');
-                }
             });
         });
 
-        // ---- HIDE MOBILE CTA on desktop ----
-        function checkMobileCta() {
-            var bar = document.getElementById('mobile-cta');
-            if (bar) {
-                bar.style.display = window.innerWidth <= 768 ? 'block' : 'none';
-            }
-        }
-        checkMobileCta();
-        window.addEventListener('resize', checkMobileCta);
+        // Countdown removed
     </script>
-
 </body>
 
 </html>
