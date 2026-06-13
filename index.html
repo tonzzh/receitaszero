@@ -64,14 +64,21 @@
             src="https://www.facebook.com/tr?id=1644080239859029&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
     <script>
-        window.addEventListener('load', function () {
-            if (typeof fbq === 'function') {
-                const eventId = 'vc_' + Date.now();
+        window.__vc_sent ||= false;
 
+        window.addEventListener('load', function () {
+
+            if (window.__vc_sent) return;
+            window.__vc_sent = true;
+
+            const eventId = 'vc_' + Date.now();
+
+            if (typeof fbq === 'function') {
                 fbq('track', 'ViewContent', {}, {
                     eventID: eventId
                 });
             }
+
         });
     </script>
     <style>
