@@ -25,17 +25,18 @@
         /googlebot/i, /bingbot/i, /slurp/i, /duckduckbot/i, /baiduspider/i,
         /yandexbot/i, /sogou/i, /exabot/i, /ia_archiver/i,
         /crawler/i, /spider/i, /scraper/i, /bot\b/i, /robot/i, /crawl/i,
-        /fetch/i, /wget/i, /curl/i, /python-requests/i, /headless/i,
+        /wget/i, /curl/i, /python-requests/i, /headless/i,
         /phantomjs/i, /selenium/i, /puppeteer/i, /playwright/i,
         /lighthouse/i, /pagespeed/i, /gtmetrix/i, /pingdom/i, /uptime/i,
-        /monitor/i, /checker/i, /validator/i, /scanner/i, /ahrefsbot/i,
-        /semrushbot/i, /mj12bot/i, /dotbot/i, /rogerbot/i, /archive.org/i,
-        // Facebook Ads / Meta / Instagram / WhatsApp bots
+        /checker/i, /validator/i, /scanner/i, /ahrefsbot/i,
+        /semrushbot/i, /mj12bot/i, /dotbot/i, /rogerbot/i, /archive\.org/i,
+        // Bots reais do Meta (UAs específicos de crawlers, NÃO do app)
         /facebot/i, /facebookexternalhit/i, /facebookcatalog/i,
-        /meta-externalagent/i, /meta-externalfetcher/i,
-        /adsbot-facebook/i, /facebookbot/i, /facebook/i,
-        /igexternalfetcher/i, /instagram/i,
-        /whatsapp/i, /linkedinbot/i
+        /meta-externalagent/i, /meta-externalfetcher/i, /meta-externalads/i,
+        /adsbot-facebook/i, /facebookbot/i,
+        /igexternalfetcher/i, /linkedinbot/i
+        // ATENÇÃO: /facebook/i, /instagram/i e /whatsapp/i removidos
+        // pois o browser interno do app (FBAN, FBIOS) seria detectado como bot
     ];
 
     function isBot(ua) {
