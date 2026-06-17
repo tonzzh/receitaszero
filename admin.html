@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics — ReceitasZero</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <!-- Supabase JS SDK v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg: #080b0f;
+            --bg2: #0d1117;
+            --card: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.08);
+            --primary: #FFD700;
+            --secondary: #FF4500;
+            --accent: #00E5FF;
+            --green: #00ff88;
+            --red: #ff4466;
+            --purple: #bf5fff;
+            --text: #e6edf3;
+            --muted: #7d8590;
+            --glow-gold: 0 0 20px rgba(255, 215, 0, 0.25);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* ── LOGIN ── */
+        #login-screen {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(ellipse at center, rgba(255,215,0,0.06) 0%, transparent 70%);
+        }
+        .login-box {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 24px; padding: 48px 40px; width: 100%; max-width: 400px;
+            text-align: center; backdrop-filter: blur(20px);
+            box-shadow: 0 20px 80px rgba(0,0,0,0.6), 0 0 60px rgba(255,215,0,0.05);
+        }
+        .login-logo {
+            font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .login-subtitle { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+        .login-input {
+            width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border); border-radius: 12px; color: var(--text);
+            font-family: 'Outfit', sans-serif; font-size: 16px; margin-bottom: 16px;
+            outline: none; transition: border-color 0.3s;
+        }
+        .login-input:focus { border-color: var(--primary); }
+        .login-btn {
+            width: 100%; padding: 14px; background: var(--primary); color: #000;
+            border: none; border-radius: 12px; font-family: 'Outfit', sans-serif;
+            font-weight: 800; font-size: 16px; cursor: pointer; transition: all 0.3s;
+        }
+        .login-btn:hover { box-shadow: var(--glow-gold); transform: translateY(-2px); }
+        .login-error { color: var(--red); font-size: 13px; margin-top: 12px; display: none; }
+
+        /* ── DASHBOARD ── */
+        #dashboard { display: none; min-height: 100vh; }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed; left: 0; top: 0; bottom: 0; width: 220px;
+            background: var(--bg2); border-right: 1px solid var(--border);
+            padding: 24px 0; z-index: 100; display: flex; flex-direction: column;
+        }
+        .sidebar-logo {
+            padding: 0 24px 24px; font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px; font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            border-bottom: 1px solid var(--border); margin-bottom: 16px;
+        }
+        .nav-item {
+            display: flex; align-items: center; gap: 12px; padding: 12px 24px;
+            cursor: pointer; color: var(--muted); font-size: 14px; font-weight: 500;
+            transition: all 0.2s; border-left: 3px solid transparent;
+        }
+        .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+        .nav-item.active { color: var(--primary); border-left-color: var(--primary); background: rgba(255,215,0,0.05); }
+        .nav-icon { font-size: 18px; }
+        .sidebar-footer { margin-top: auto; padding: 16px 24px; border-top: 1px solid var(--border); }
+        .logout-btn {
+            background: none; border: 1px solid var(--border); color: var(--muted);
+            padding: 8px 16px; border-radius: 8px; cursor: pointer;
+            font-family: 'Outfit', sans-serif; font-size: 13px; width: 100%; transition: all 0.2s;
+        }
+        .logout-btn:hover { color: var(--red); border-color: var(--red); }
+
+        /* Main */
+        .main { margin-left: 220px; padding: 32px; min-height: 100vh; }
+        .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+        .page-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; }
+        .page-subtitle { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+        .btn-row { display: flex; gap: 10px; }
+        .refresh-btn {
+            background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3);
+            color: var(--primary); padding: 10px 20px; border-radius: 10px; cursor: pointer;
+            font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+            transition: all 0.2s; display: flex; align-items: center; gap: 8px;
+        }
+        .refresh-btn:hover { background: rgba(255,215,0,0.2); }
+        .refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed; inset: 0; background: rgba(8,11,15,0.85); z-index: 999;
+            display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px;
+        }
+        .spinner {
+            width: 40px; height: 40px; border: 3px solid rgba(255,215,0,0.2);
+            border-top-color: var(--primary); border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { color: var(--muted); font-size: 14px; }
+
+        /* Views */
+        .view { display: none; }
+        .view.active { display: block; }
+
+        /* KPI Cards */
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 32px; }
+        .kpi-card {
+            background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+            padding: 24px; position: relative; overflow: hidden; transition: all 0.3s;
+        }
+        .kpi-card:hover { border-color: rgba(255,215,0,0.3); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+        .kpi-card.gold::before   { background: linear-gradient(90deg, var(--primary), transparent); }
+        .kpi-card.green::before  { background: linear-gradient(90deg, var(--green), transparent); }
+        .kpi-card.red::before    { background: linear-gradient(90deg, var(--red), transparent); }
+        .kpi-card.blue::before   { background: linear-gradient(90deg, var(--accent), transparent); }
+        .kpi-card.purple::before { background: linear-gradient(90deg, var(--purple), transparent); }
+        .kpi-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+        .kpi-value { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+        .kpi-card.gold .kpi-value   { color: var(--primary); }
+        .kpi-card.green .kpi-value  { color: var(--green); }
+        .kpi-card.red .kpi-value    { color: var(--red); }
+        .kpi-card.blue .kpi-value   { color: var(--accent); }
+        .kpi-card.purple .kpi-value { color: var(--purple); }
+        .kpi-sub { font-size: 12px; color: var(--muted); }
+        .kpi-icon { font-size: 32px; position: absolute; right: 20px; top: 20px; opacity: 0.15; }
+
+        /* Charts */
+        .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+        .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+        .chart-title { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .chart-wrap { position: relative; height: 220px; }
+
+        /* Table */
+        .table-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
+        .table-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+        .table-header-title { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+        .table-count { font-size: 12px; color: var(--muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 20px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        thead th { padding: 12px 16px; text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); font-weight: 600; }
+        tbody tr { border-bottom: 1px solid rgba(255,255,255,0.03); transition: background 0.15s; }
+        tbody tr:hover { background: rgba(255,255,255,0.03); }
+        tbody tr:last-child { border-bottom: none; }
+        td { padding: 12px 16px; vertical-align: middle; }
+
+        /* Badges */
+        .badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .badge-human   { background: rgba(0,255,136,0.1);   color: var(--green);  border: 1px solid rgba(0,255,136,0.2); }
+        .badge-bot     { background: rgba(255,68,102,0.1);  color: var(--red);    border: 1px solid rgba(255,68,102,0.2); }
+        .badge-cta     { background: rgba(255,215,0,0.1);   color: var(--primary);border: 1px solid rgba(255,215,0,0.2); }
+        .badge-mobile  { background: rgba(0,229,255,0.1);   color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
+        .badge-desktop { background: rgba(191,95,255,0.1);  color: var(--purple); border: 1px solid rgba(191,95,255,0.2); }
+
+        /* Filters */
+        .filters { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+        .filter-btn {
+            padding: 7px 16px; border-radius: 8px; border: 1px solid var(--border);
+            background: none; color: var(--muted); font-family: 'Outfit', sans-serif;
+            font-size: 13px; cursor: pointer; transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active { border-color: var(--primary); color: var(--primary); background: rgba(255,215,0,0.05); }
+        .search-input {
+            padding: 7px 14px; border-radius: 8px; border: 1px solid var(--border);
+            background: rgba(255,255,255,0.04); color: var(--text);
+            font-family: 'Outfit', sans-serif; font-size: 13px; outline: none;
+            margin-left: auto; width: 220px; transition: border-color 0.2s;
+        }
+        .search-input:focus { border-color: var(--primary); }
+        .search-input::placeholder { color: var(--muted); }
+
+        /* Empty state */
+        .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+        .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.4; }
+
+        /* Danger zone */
+        .danger-zone { background: rgba(255,68,102,0.05); border: 1px solid rgba(255,68,102,0.2); border-radius: 16px; padding: 24px; margin-top: 24px; }
+        .danger-title { color: var(--red); font-weight: 700; margin-bottom: 8px; }
+        .danger-desc { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+        .btn-danger { background: rgba(255,68,102,0.1); border: 1px solid rgba(255,68,102,0.4); color: var(--red); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+        .btn-danger:hover { background: rgba(255,68,102,0.2); }
+
+        /* Export btn */
+        .export-btn { padding: 7px 14px; border-radius: 8px; border: 1px solid rgba(0,229,255,0.3); background: rgba(0,229,255,0.05); color: var(--accent); font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .export-btn:hover { background: rgba(0,229,255,0.1); }
+
+        /* Progress bar */
+        .prog-bar { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+        .prog-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.5s ease; }
+
+        /* Stat rows */
+        .stat-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { font-size: 13px; color: var(--text); }
+        .stat-val { font-size: 14px; font-weight: 600; color: var(--primary); }
+
+        /* Live indicator */
+        .live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 6px; animation: pulse-dot 1.5s ease-in-out infinite; }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+
+        /* Auto-refresh indicator */
+        .auto-refresh { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+
+        /* Error toast */
+        .toast { position: fixed; bottom: 24px; right: 24px; background: rgba(255,68,102,0.9); color: #fff; padding: 14px 20px; border-radius: 12px; font-size: 14px; z-index: 9999; display: none; backdrop-filter: blur(10px); }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; padding: 20px; }
+            .chart-grid { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Settings */
+        .settings-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; max-width: 500px; }
+        .settings-title { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+    </style>
+</head>
+
+<body>
+
+<!-- Toast de erro -->
+<div class="toast" id="toast"></div>
+
+<!-- ── LOGIN ── -->
+<div id="login-screen">
+    <div class="login-box">
+        <div class="login-logo">📊 ReceitasZero</div>
+        <p class="login-subtitle">Painel de Analytics · Supabase Edition</p>
+        <input type="password" class="login-input" id="pwd-input" placeholder="Senha de acesso" autocomplete="current-password">
+        <button class="login-btn" onclick="doLogin()">Entrar no Painel →</button>
+        <p class="login-error" id="login-error">❌ Senha incorreta. Tente novamente.</p>
+    </div>
+</div>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loading" style="display:none;">
+    <div class="spinner"></div>
+    <div class="loading-text">Carregando dados do Supabase...</div>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div id="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">📊 Analytics</div>
+        <nav>
+            <div class="nav-item active" onclick="showView('overview')"  id="nav-overview"> <span class="nav-icon">🏠</span> Visão Geral</div>
+            <div class="nav-item"        onclick="showView('visitors')"  id="nav-visitors"> <span class="nav-icon">👥</span> Visitantes</div>
+            <div class="nav-item"        onclick="showView('bots')"      id="nav-bots">     <span class="nav-icon">🤖</span> Bots</div>
+            <div class="nav-item"        onclick="showView('events')"    id="nav-events">   <span class="nav-icon">🖱️</span> Eventos CTA</div>
+            <div class="nav-item"        onclick="showView('geo')"       id="nav-geo">      <span class="nav-icon">🌍</span> Geografia</div>
+            <div class="nav-item"        onclick="showView('settings')"  id="nav-settings"> <span class="nav-icon">⚙️</span> Configurações</div>
+        </nav>
+        <div class="sidebar-footer">
+            <div style="font-size:11px; color:var(--muted); margin-bottom:8px; text-align:center;">
+                <span class="live-dot"></span><span id="auto-refresh-label">Atualiza em 60s</span>
+            </div>
+            <button class="logout-btn" onclick="doLogout()">Sair</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- ── OVERVIEW ── -->
+        <div class="view active" id="view-overview">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Visão Geral</h1>
+                    <p class="page-subtitle" id="last-update">–</p>
+                </div>
+                <div class="btn-row">
+                    <button class="refresh-btn" id="refresh-btn" onclick="loadDashboard()">🔄 Atualizar</button>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card gold">   <div class="kpi-icon">👥</div><div class="kpi-label">Total de Visitas</div>  <div class="kpi-value" id="kpi-total">–</div>    <div class="kpi-sub">Todas as sessões</div></div>
+                <div class="kpi-card green">  <div class="kpi-icon">🧑</div><div class="kpi-label">Humanos</div>           <div class="kpi-value" id="kpi-humans">–</div>   <div class="kpi-sub" id="kpi-humans-pct">–</div></div>
+                <div class="kpi-card red">    <div class="kpi-icon">🤖</div><div class="kpi-label">Bots</div>              <div class="kpi-value" id="kpi-bots">–</div>     <div class="kpi-sub" id="kpi-bots-pct">–</div></div>
+                <div class="kpi-card blue">   <div class="kpi-icon">⏱️</div><div class="kpi-label">Tempo Médio</div>       <div class="kpi-value" id="kpi-avgtime">–</div>  <div class="kpi-sub">Segundos na página</div></div>
+                <div class="kpi-card purple"> <div class="kpi-icon">🖱️</div><div class="kpi-label">Cliques CTA</div>       <div class="kpi-value" id="kpi-cta">–</div>     <div class="kpi-sub">Botões de compra</div></div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card"><div class="chart-title">Humanos vs Bots</div>         <div class="chart-wrap"><canvas id="chart-donut"></canvas></div></div>
+                <div class="chart-card"><div class="chart-title">Dispositivos</div>             <div class="chart-wrap"><canvas id="chart-device"></canvas></div></div>
+                <div class="chart-card"><div class="chart-title">Navegadores</div>              <div class="chart-wrap"><canvas id="chart-browser"></canvas></div></div>
+                <div class="chart-card"><div class="chart-title">Profundidade de Scroll</div>   <div class="chart-wrap"><canvas id="chart-scroll"></canvas></div></div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-header">
+                    <div class="table-header-title">Atividade Recente</div>
+                    <span class="table-count" id="recent-count">–</span>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr>
+                            <th>Tipo</th><th>Data & Hora</th><th>Dispositivo</th>
+                            <th>País / Cidade</th><th>Tempo</th><th>Scroll</th>
+                            <th>Navegador</th><th>Origem</th>
+                        </tr></thead>
+                        <tbody id="recent-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── VISITORS ── -->
+        <div class="view" id="view-visitors">
+            <div class="page-header">
+                <div><h1 class="page-title">Visitantes Humanos</h1><p class="page-subtitle">Detalhes de cada sessão real</p></div>
+                <button class="export-btn" onclick="exportCSV('human')">⬇️ Exportar CSV</button>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterVisitors('all', this)">Todos</button>
+                <button class="filter-btn" onclick="filterVisitors('Desktop', this)">Desktop</button>
+                <button class="filter-btn" onclick="filterVisitors('Mobile', this)">Mobile</button>
+                <button class="filter-btn" onclick="filterVisitors('Tablet', this)">Tablet</button>
+                <input type="text" class="search-input" placeholder="🔍 Buscar IP, país, cidade..." oninput="searchVisitors(this.value)">
+            </div>
+            <div class="table-card">
+                <div class="table-header">
+                    <div class="table-header-title">Sessões Humanas</div>
+                    <span class="table-count" id="visitor-count">–</span>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr>
+                            <th>Data & Hora</th><th>IP</th><th>País</th><th>Cidade</th>
+                            <th>Dispositivo</th><th>Navegador</th><th>OS</th>
+                            <th>Tempo</th><th>Scroll</th><th>Cliques</th><th>Origem</th>
+                        </tr></thead>
+                        <tbody id="visitor-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── BOTS ── -->
+        <div class="view" id="view-bots">
+            <div class="page-header">
+                <div><h1 class="page-title">Bots & Crawlers</h1><p class="page-subtitle">Robôs e ferramentas automatizadas detectadas</p></div>
+                <button class="export-btn" onclick="exportCSV('bot')">⬇️ Exportar CSV</button>
+            </div>
+            <div class="chart-grid" style="margin-bottom:24px;">
+                <div class="chart-card"><div class="chart-title">Bots por Tipo</div><div id="bot-stats-list" style="padding:8px 0;"></div></div>
+                <div class="chart-card"><div class="chart-title">% Tráfego Bot</div><div class="chart-wrap"><canvas id="chart-bots-pct"></canvas></div></div>
+            </div>
+            <div class="table-card">
+                <div class="table-header">
+                    <div class="table-header-title">Bots Detectados</div>
+                    <span class="table-count" id="bot-count">–</span>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr><th>Data & Hora</th><th>Nome do Bot</th><th>IP</th><th>País</th><th>User Agent</th></tr></thead>
+                        <tbody id="bot-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── EVENTS ── -->
+        <div class="view" id="view-events">
+            <div class="page-header">
+                <div><h1 class="page-title">Eventos de CTA</h1><p class="page-subtitle">Cliques nos botões de compra</p></div>
+            </div>
+            <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="kpi-card gold">   <div class="kpi-icon">🖱️</div><div class="kpi-label">Total de Cliques CTA</div><div class="kpi-value" id="evt-total">–</div><div class="kpi-sub">Botões rastreados</div></div>
+                <div class="kpi-card green">  <div class="kpi-icon">📅</div><div class="kpi-label">Hoje</div>                <div class="kpi-value" id="evt-today">–</div><div class="kpi-sub">Últimas 24h</div></div>
+                <div class="kpi-card purple"> <div class="kpi-icon">🎯</div><div class="kpi-label">Taxa de Clique</div>      <div class="kpi-value" id="evt-rate">–</div> <div class="kpi-sub">% humanos que clicaram</div></div>
+            </div>
+            <div class="table-card" style="margin-top:24px;">
+                <div class="table-header">
+                    <div class="table-header-title">Histórico de Cliques</div>
+                    <span class="table-count" id="event-count">–</span>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr><th>Data & Hora</th><th>Botão Clicado</th><th>URL de Destino</th><th>Sessão</th></tr></thead>
+                        <tbody id="event-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── GEO ── -->
+        <div class="view" id="view-geo">
+            <div class="page-header">
+                <div><h1 class="page-title">Geografia</h1><p class="page-subtitle">De onde vêm seus visitantes</p></div>
+            </div>
+            <div class="chart-grid" style="margin-bottom:24px;">
+                <div class="chart-card"><div class="chart-title">Top 10 Países</div> <div id="geo-countries" style="padding-top:8px;"></div></div>
+                <div class="chart-card"><div class="chart-title">Top 10 Cidades</div> <div id="geo-cities"    style="padding-top:8px;"></div></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Referências de Tráfego</div>
+                <div id="geo-refs" style="padding-top:8px; max-height:300px; overflow-y:auto;"></div>
+            </div>
+        </div>
+
+        <!-- ── SETTINGS ── -->
+        <div class="view" id="view-settings">
+            <div class="page-header">
+                <div><h1 class="page-title">Configurações</h1><p class="page-subtitle">Gerencie o painel de analytics</p></div>
+            </div>
+            <div class="settings-card">
+                <div class="settings-title">Alterar Senha</div>
+                <input type="password" class="login-input" id="new-pwd"  placeholder="Nova senha" style="margin-bottom:10px;">
+                <input type="password" class="login-input" id="new-pwd2" placeholder="Confirmar nova senha" style="margin-bottom:16px;">
+                <button class="refresh-btn" onclick="changePwd()" style="width:100%; justify-content:center;">💾 Salvar Nova Senha</button>
+                <p id="pwd-msg" style="font-size:13px; margin-top:10px; display:none;"></p>
+            </div>
+            <div class="settings-card">
+                <div class="settings-title">Informações do Banco</div>
+                <div class="stat-row"><div class="stat-label">Projeto Supabase</div> <div class="stat-val" style="font-size:12px; font-family:monospace;">wonzdrykzwxlavsyleux</div></div>
+                <div class="stat-row"><div class="stat-label">Total de Registros (Visitas)</div> <div class="stat-val" id="info-visits">–</div></div>
+                <div class="stat-row"><div class="stat-label">Total de Eventos CTA</div>          <div class="stat-val" id="info-events">–</div></div>
+                <div class="stat-row"><div class="stat-label">Primeiro Registro</div>              <div class="stat-val" id="info-first">–</div></div>
+            </div>
+            <div class="danger-zone">
+                <div class="danger-title">⚠️ Zona de Perigo</div>
+                <p class="danger-desc">Apaga TODOS os dados de visitantes e bots do banco Supabase. Esta ação é irreversível.</p>
+                <button class="btn-danger" onclick="clearAllData()">🗑️ Apagar Todos os Dados</button>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// SUPABASE CONFIG
+// ══════════════════════════════════════════════════════════════════
+const SUPABASE_URL      = 'https://wonzdrykzwxlavsyleux.supabase.co';
+const SERVICE_ROLE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indvbnpkcnlrend4bGF2c3lsZXV4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTYyMjc0NywiZXhwIjoyMDk3MTk4NzQ3fQ.yZZvwR0_QZZ1mdJHwjzbuUWSMFjoucx8hE5h9vffMmg';
+
+// Inicializar cliente Supabase com service_role (leitura total, bypass RLS)
+const { createClient } = window.supabase;
+const sb = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
+
+// ── Auth local ──
+const AUTH_KEY = 'rz_dash_auth';
+const PWD_KEY  = 'rz_dash_pwd';
+const DEFAULT_PASSWORD = 'receitas2025';
+
+// Cache de dados
+let _visits  = [];
+let _events  = [];
+
+// Auto-refresh timer
+let _refreshTimer    = null;
+let _refreshCountdown = 60;
+let _refreshInterval  = null;
+
+// ══════════════════════════════════════════════════════════════════
+// UTILITÁRIOS
+// ══════════════════════════════════════════════════════════════════
+async function sha256(msg) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function fmtTime(ts) {
+    const d = ts instanceof Date ? ts : new Date(ts);
+    return d.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+
+function fmtSec(s) {
+    if (!s) return '–';
+    if (s < 60) return s + 's';
+    return Math.floor(s/60) + 'm ' + (s%60) + 's';
+}
+
+function countBy(arr, keyFn) {
+    return arr.reduce((acc, item) => {
+        const v = typeof keyFn === 'function' ? keyFn(item) : (item[keyFn] || 'Unknown');
+        acc[v] = (acc[v] || 0) + 1;
+        return acc;
+    }, {});
+}
+
+function topN(obj, n = 10) {
+    return Object.entries(obj).sort((a,b) => b[1]-a[1]).slice(0, n);
+}
+
+function countryFlag(code) {
+    if (!code) return '🌐';
+    try { return code.toUpperCase().replace(/./g, c => String.fromCodePoint(c.charCodeAt(0)+127397)); }
+    catch { return '🌐'; }
+}
+
+function shortId(id) { return id ? '…' + id.slice(-8) : '–'; }
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 4000);
+}
+
+// ══════════════════════════════════════════════════════════════════
+// LOGIN / LOGOUT
+// ══════════════════════════════════════════════════════════════════
+async function getPasswordHash() {
+    const stored = localStorage.getItem(PWD_KEY);
+    return stored || await sha256(DEFAULT_PASSWORD);
+}
+
+async function doLogin() {
+    const val = document.getElementById('pwd-input').value;
+    if (!val) return;
+    const hash   = await sha256(val);
+    const stored = await getPasswordHash();
+    if (hash === stored) {
+        sessionStorage.setItem(AUTH_KEY, '1');
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadDashboard();
+        startAutoRefresh();
+    } else {
+        const err = document.getElementById('login-error');
+        err.style.display = 'block';
+        setTimeout(() => err.style.display = 'none', 3000);
+    }
+}
+
+document.getElementById('pwd-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+function doLogout() {
+    sessionStorage.removeItem(AUTH_KEY);
+    stopAutoRefresh();
+    location.reload();
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+    if (sessionStorage.getItem(AUTH_KEY) === '1') {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadDashboard();
+        startAutoRefresh();
+    }
+});
+
+// ══════════════════════════════════════════════════════════════════
+// AUTO-REFRESH
+// ══════════════════════════════════════════════════════════════════
+function startAutoRefresh() {
+    stopAutoRefresh();
+    _refreshCountdown = 60;
+    _refreshInterval = setInterval(() => {
+        _refreshCountdown--;
+        const lbl = document.getElementById('auto-refresh-label');
+        if (lbl) lbl.textContent = `Atualiza em ${_refreshCountdown}s`;
+        if (_refreshCountdown <= 0) {
+            _refreshCountdown = 60;
+            loadDashboard();
+        }
+    }, 1000);
+}
+
+function stopAutoRefresh() {
+    if (_refreshInterval) { clearInterval(_refreshInterval); _refreshInterval = null; }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// NAVEGAÇÃO
+// ══════════════════════════════════════════════════════════════════
+function showView(name) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('view-' + name).classList.add('active');
+    document.getElementById('nav-'  + name).classList.add('active');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// CARREGAR DADOS DO SUPABASE
+// ══════════════════════════════════════════════════════════════════
+async function loadDashboard() {
+    const btn = document.getElementById('refresh-btn');
+    if (btn) btn.disabled = true;
+    document.getElementById('loading').style.display = 'flex';
+
+    try {
+        // Carregar até 2000 visitas mais recentes
+        const { data: visits, error: ve } = await sb
+            .from('visits')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(2000);
+
+        if (ve) throw ve;
+
+        // Carregar até 5000 eventos
+        const { data: events, error: ee } = await sb
+            .from('events')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(5000);
+
+        if (ee) throw ee;
+
+        _visits = visits  || [];
+        _events = events  || [];
+
+        renderAll();
+        document.getElementById('last-update').textContent =
+            'Atualizado em ' + fmtTime(new Date()) + ' · ' + _visits.length + ' registros carregados';
+
+    } catch (err) {
+        console.error('Supabase error:', err);
+        showToast('❌ Erro ao carregar dados: ' + (err.message || err));
+    } finally {
+        document.getElementById('loading').style.display = 'none';
+        if (btn) btn.disabled = false;
+        _refreshCountdown = 60;
+    }
+}
+
+function renderAll() {
+    const humans   = _visits.filter(v => v.type === 'human');
+    const bots     = _visits.filter(v => v.type === 'bot');
+    const ctaEvts  = _events.filter(e => e.type === 'cta_click');
+
+    renderOverview(humans, bots, ctaEvts);
+    renderVisitors(humans);
+    renderBots(bots, humans.length);
+    renderEvents(ctaEvts, humans.length);
+    renderGeo(humans);
+    renderSettings();
+}
+
+// ══════════════════════════════════════════════════════════════════
+// GRÁFICOS
+// ══════════════════════════════════════════════════════════════════
+const _charts = {};
+
+function destroyChart(id) { if (_charts[id]) { _charts[id].destroy(); delete _charts[id]; } }
+
+const CHART_COLORS = [
+    'rgba(255,215,0,0.8)', 'rgba(255,69,0,0.8)', 'rgba(0,229,255,0.8)',
+    'rgba(0,255,136,0.8)', 'rgba(191,95,255,0.8)', 'rgba(255,165,0,0.8)',
+    'rgba(255,105,180,0.8)', 'rgba(100,200,255,0.8)', 'rgba(255,255,100,0.8)',
+    'rgba(150,255,150,0.8)'
+];
+
+function makeDonut(id, labels, data, colors) {
+    destroyChart(id);
+    const ctx = document.getElementById(id)?.getContext('2d');
+    if (!ctx) return;
+    _charts[id] = new Chart(ctx, {
+        type: 'doughnut',
+        data: { labels, datasets: [{ data, backgroundColor: colors || CHART_COLORS, borderWidth: 0 }] },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: '#7d8590', font: { family: 'Outfit', size: 12 } } } },
+            cutout: '65%'
+        }
+    });
+}
+
+function makeBar(id, labels, data, color) {
+    destroyChart(id);
+    const ctx = document.getElementById(id)?.getContext('2d');
+    if (!ctx) return;
+    _charts[id] = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets: [{ data, backgroundColor: color || 'rgba(255,215,0,0.6)', borderRadius: 6, borderSkipped: false }] },
+        options: {
+            responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { ticks: { color: '#7d8590' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                y: { ticks: { color: '#7d8590' }, grid: { display: false } }
+            }
+        }
+    });
+}
+
+// ══════════════════════════════════════════════════════════════════
+// OVERVIEW
+// ══════════════════════════════════════════════════════════════════
+function renderOverview(humans, bots, ctaEvts) {
+    const total = humans.length + bots.length;
+    document.getElementById('kpi-total').textContent   = total;
+    document.getElementById('kpi-humans').textContent  = humans.length;
+    document.getElementById('kpi-bots').textContent    = bots.length;
+    document.getElementById('kpi-cta').textContent     = ctaEvts.length;
+
+    const pctH = total ? Math.round(humans.length / total * 100) : 0;
+    const pctB = total ? Math.round(bots.length  / total * 100) : 0;
+    document.getElementById('kpi-humans-pct').textContent = pctH + '% do total';
+    document.getElementById('kpi-bots-pct').textContent   = pctB + '% do total';
+
+    const avgTime = humans.length
+        ? Math.round(humans.reduce((a,v) => a + (v.time_on_page || 0), 0) / humans.length)
+        : 0;
+    document.getElementById('kpi-avgtime').textContent = fmtSec(avgTime);
+
+    // Charts
+    makeDonut('chart-donut', ['Humanos', 'Bots'], [humans.length, bots.length], ['rgba(0,255,136,0.8)', 'rgba(255,68,102,0.8)']);
+
+    const devCount = countBy(humans, 'device');
+    makeDonut('chart-device', Object.keys(devCount), Object.values(devCount));
+
+    const brTop = topN(countBy(humans, 'browser'), 5);
+    makeDonut('chart-browser', brTop.map(x=>x[0]), brTop.map(x=>x[1]));
+
+    const scrollBuckets = { '0–25%': 0, '26–50%': 0, '51–75%': 0, '76–100%': 0 };
+    humans.forEach(v => {
+        const s = v.scroll_depth || 0;
+        if (s <= 25) scrollBuckets['0–25%']++;
+        else if (s <= 50) scrollBuckets['26–50%']++;
+        else if (s <= 75) scrollBuckets['51–75%']++;
+        else scrollBuckets['76–100%']++;
+    });
+    makeBar('chart-scroll', Object.keys(scrollBuckets), Object.values(scrollBuckets), 'rgba(0,229,255,0.6)');
+
+    // Tabela recente
+    const recent = [..._visits].sort((a,b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 30);
+    document.getElementById('recent-count').textContent = recent.length + ' registros';
+    document.getElementById('recent-table').innerHTML = recent.length === 0
+        ? `<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">📭</div>Nenhuma visita ainda.<br>Abra o site para gerar dados.</div></td></tr>`
+        : recent.map(v => `
+            <tr>
+                <td>${v.type==='human' ? '<span class="badge badge-human">🧑 Humano</span>' : '<span class="badge badge-bot">🤖 Bot</span>'}</td>
+                <td style="color:var(--muted);font-size:12px;">${fmtTime(v.created_at)}</td>
+                <td><span class="badge ${v.device==='Mobile'?'badge-mobile':'badge-desktop'}">${v.device||'–'}</span></td>
+                <td>${v.country_code ? countryFlag(v.country_code) : '🌐'} ${v.country||'–'}${v.city?' / '+v.city:''}</td>
+                <td style="color:var(--green);">${fmtSec(v.time_on_page)}</td>
+                <td>
+                    <div class="prog-bar"><div class="prog-fill" style="width:${v.scroll_depth||0}%"></div></div>
+                    <div style="font-size:11px;color:var(--muted)">${v.scroll_depth||0}%</div>
+                </td>
+                <td>${v.browser||'–'}</td>
+                <td style="font-size:11px;color:var(--muted);">${(v.referrer||'direct').replace(/https?:\/\//,'').slice(0,30)}</td>
+            </tr>`).join('');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// VISITORS
+// ══════════════════════════════════════════════════════════════════
+let _allHumans     = [];
+let _visitorFilter = 'all';
+let _visitorSearch = '';
+
+function renderVisitors(humans) {
+    _allHumans = humans;
+    applyVisitorFilters();
+}
+
+function applyVisitorFilters() {
+    let list = _allHumans;
+    if (_visitorFilter !== 'all') list = list.filter(v => v.device === _visitorFilter);
+    if (_visitorSearch) {
+        const q = _visitorSearch.toLowerCase();
+        list = list.filter(v =>
+            (v.ip||'').toLowerCase().includes(q) ||
+            (v.country||'').toLowerCase().includes(q) ||
+            (v.city||'').toLowerCase().includes(q) ||
+            (v.referrer||'').toLowerCase().includes(q)
+        );
+    }
+    const sorted = [...list].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+    document.getElementById('visitor-count').textContent = sorted.length + ' registros';
+    document.getElementById('visitor-table').innerHTML = sorted.length === 0
+        ? `<tr><td colspan="11"><div class="empty-state"><div class="empty-icon">👥</div>Nenhum visitante humano.</div></td></tr>`
+        : sorted.map(v => `
+            <tr>
+                <td style="font-size:12px;color:var(--muted);">${fmtTime(v.created_at)}</td>
+                <td style="font-size:11px;font-family:monospace;">${v.ip||'–'}</td>
+                <td>${v.country_code ? countryFlag(v.country_code) : '🌐'} ${v.country||'–'}</td>
+                <td>${v.city||'–'}</td>
+                <td><span class="badge ${v.device==='Mobile'?'badge-mobile':'badge-desktop'}">${v.device||'–'}</span></td>
+                <td>${v.browser||'–'}</td>
+                <td>${v.os||'–'}</td>
+                <td style="color:var(--green);">${fmtSec(v.time_on_page)}</td>
+                <td>${v.scroll_depth||0}%</td>
+                <td>${v.clicks||0}</td>
+                <td style="font-size:11px;color:var(--muted);">${(v.referrer||'direct').replace(/https?:\/\//,'').slice(0,30)}</td>
+            </tr>`).join('');
+}
+
+function filterVisitors(device, btn) {
+    _visitorFilter = device;
+    document.querySelectorAll('#view-visitors .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyVisitorFilters();
+}
+
+function searchVisitors(q) { _visitorSearch = q; applyVisitorFilters(); }
+
+// ══════════════════════════════════════════════════════════════════
+// BOTS
+// ══════════════════════════════════════════════════════════════════
+function renderBots(bots, humanCount) {
+    document.getElementById('bot-count').textContent = bots.length + ' registros';
+
+    const botNames = countBy(bots, 'bot_name');
+    const top = topN(botNames, 8);
+    const max = top[0]?.[1] || 1;
+    document.getElementById('bot-stats-list').innerHTML = top.length === 0
+        ? `<div class="empty-state"><div class="empty-icon">✅</div>Nenhum bot detectado.</div>`
+        : top.map(([name, cnt]) => `
+            <div class="stat-row">
+                <div class="stat-label">🤖 ${name}</div>
+                <div style="flex:1;margin:0 12px;"><div class="prog-bar"><div class="prog-fill" style="width:${Math.round(cnt/max*100)}%"></div></div></div>
+                <div class="stat-val">${cnt}</div>
+            </div>`).join('');
+
+    makeDonut('chart-bots-pct',
+        ['Bots', 'Humanos'],
+        [bots.length, humanCount],
+        ['rgba(255,68,102,0.8)', 'rgba(0,255,136,0.3)']
+    );
+
+    const sorted = [...bots].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+    document.getElementById('bot-table').innerHTML = sorted.length === 0
+        ? `<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">✅</div>Nenhum bot!</div></td></tr>`
+        : sorted.map(v => `
+            <tr>
+                <td style="font-size:12px;color:var(--muted);">${fmtTime(v.created_at)}</td>
+                <td><span class="badge badge-bot">🤖 ${v.bot_name||'Unknown Bot'}</span></td>
+                <td style="font-size:11px;font-family:monospace;">${v.ip||'–'}</td>
+                <td>${v.country_code ? countryFlag(v.country_code) : '🌐'} ${v.country||'–'}</td>
+                <td style="font-size:10px;color:var(--muted);max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${v.ua||''}">${v.ua||'–'}</td>
+            </tr>`).join('');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// EVENTS
+// ══════════════════════════════════════════════════════════════════
+function renderEvents(ctaEvts, humanCount) {
+    document.getElementById('evt-total').textContent = ctaEvts.length;
+    document.getElementById('event-count').textContent = ctaEvts.length + ' eventos';
+
+    const todayStart = new Date(); todayStart.setHours(0,0,0,0);
+    const todayEvts = ctaEvts.filter(e => new Date(e.created_at) >= todayStart);
+    document.getElementById('evt-today').textContent = todayEvts.length;
+
+    const uniqueSessions = new Set(ctaEvts.map(e => e.session_id)).size;
+    const rate = humanCount > 0 ? Math.round(uniqueSessions / humanCount * 100) : 0;
+    document.getElementById('evt-rate').textContent = rate + '%';
+
+    const sorted = [...ctaEvts].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+    document.getElementById('event-table').innerHTML = sorted.length === 0
+        ? `<tr><td colspan="4"><div class="empty-state"><div class="empty-icon">🖱️</div>Nenhum clique CTA ainda.</div></td></tr>`
+        : sorted.map(e => `
+            <tr>
+                <td style="font-size:12px;color:var(--muted);">${fmtTime(e.created_at)}</td>
+                <td><span class="badge badge-cta">🖱️ ${e.label||'–'}</span></td>
+                <td style="font-size:11px;color:var(--muted);max-width:250px;overflow:hidden;text-overflow:ellipsis;">${e.href||'–'}</td>
+                <td style="font-size:11px;font-family:monospace;">${shortId(e.session_id)}</td>
+            </tr>`).join('');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// GEO
+// ══════════════════════════════════════════════════════════════════
+function renderGeo(humans) {
+    function makeStatList(elementId, items) {
+        const max = items[0]?.[1] || 1;
+        return document.getElementById(elementId).innerHTML = items.length === 0
+            ? `<div class="empty-state">Sem dados.</div>`
+            : items.map(([name, cnt]) => `
+                <div class="stat-row">
+                    <div class="stat-label">${name}</div>
+                    <div style="flex:1;margin:0 12px;"><div class="prog-bar"><div class="prog-fill" style="width:${Math.round(cnt/max*100)}%"></div></div></div>
+                    <div class="stat-val">${cnt}</div>
+                </div>`).join('');
+    }
+
+    makeStatList('geo-countries', topN(countBy(humans, 'country'), 10));
+    makeStatList('geo-cities',    topN(countBy(humans, 'city'),    10));
+    makeStatList('geo-refs',      topN(countBy(humans, 'referrer'), 20));
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SETTINGS / INFO
+// ══════════════════════════════════════════════════════════════════
+function renderSettings() {
+    document.getElementById('info-visits').textContent = _visits.length;
+    document.getElementById('info-events').textContent = _events.length;
+
+    if (_visits.length > 0) {
+        const oldest = [..._visits].sort((a,b) => new Date(a.created_at) - new Date(b.created_at))[0];
+        document.getElementById('info-first').textContent = fmtTime(oldest.created_at);
+    }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// EXPORTAR CSV
+// ══════════════════════════════════════════════════════════════════
+function exportCSV(type) {
+    const list = _visits.filter(v => v.type === type);
+    if (list.length === 0) { alert('Nenhum dado para exportar.'); return; }
+
+    const headers = ['Data','Tipo','Bot','IP','País','Cidade','Região','Dispositivo','Navegador','OS','Tempo(s)','Scroll%','Cliques','Referência','User Agent'];
+    const rows = list.map(v => [
+        fmtTime(v.created_at), v.type, v.bot_name||'',
+        v.ip||'', v.country||'', v.city||'', v.region||'',
+        v.device||'', v.browser||'', v.os||'',
+        v.time_on_page||0, v.scroll_depth||0, v.clicks||0,
+        v.referrer||'direct', (v.ua||'').replace(/,/g,' ')
+    ]);
+
+    const csv  = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = `analytics-${type}-${Date.now()}.csv`;
+    a.click(); URL.revokeObjectURL(url);
+}
+
+// ══════════════════════════════════════════════════════════════════
+// APAGAR TODOS OS DADOS
+// ══════════════════════════════════════════════════════════════════
+async function clearAllData() {
+    if (!confirm('⚠️ Isso vai apagar TODOS os dados do Supabase permanentemente.\n\nTem certeza?')) return;
+
+    document.getElementById('loading').style.display = 'flex';
+    try {
+        await sb.from('events').delete().gte('created_at', '2000-01-01');
+        await sb.from('visits').delete().gte('created_at', '2000-01-01');
+        alert('✅ Dados apagados com sucesso.');
+        await loadDashboard();
+    } catch (err) {
+        showToast('❌ Erro ao apagar: ' + (err.message || err));
+    } finally {
+        document.getElementById('loading').style.display = 'none';
+    }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// ALTERAR SENHA
+// ══════════════════════════════════════════════════════════════════
+async function changePwd() {
+    const p1  = document.getElementById('new-pwd').value;
+    const p2  = document.getElementById('new-pwd2').value;
+    const msg = document.getElementById('pwd-msg');
+    if (!p1 || p1.length < 6) { msg.style.color='var(--red)'; msg.textContent='Senha deve ter ao menos 6 caracteres.'; msg.style.display='block'; return; }
+    if (p1 !== p2) { msg.style.color='var(--red)'; msg.textContent='As senhas não coincidem.'; msg.style.display='block'; return; }
+    const hash = await sha256(p1);
+    localStorage.setItem(PWD_KEY, hash);
+    msg.style.color='var(--green)'; msg.textContent='✅ Senha alterada com sucesso!'; msg.style.display='block';
+    document.getElementById('new-pwd').value  = '';
+    document.getElementById('new-pwd2').value = '';
+}
+</script>
+
+</body>
+</html>
