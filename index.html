@@ -82,6 +82,8 @@
         html {
             scroll-behavior: smooth;
             overflow-x: hidden;
+            /* Elimina o "bounce" lateral e melhora fluidez no mobile */
+            overscroll-behavior: none;
         }
 
         body {
@@ -90,6 +92,9 @@
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
+            /* Aceleração por GPU para scroll mais suave */
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeSpeed;
         }
 
         h1,
@@ -1600,13 +1605,15 @@
     <script>
         // Defer AOS init to avoid forced reflow during initial load
         window.addEventListener('load', function () {
-            // Usa requestAnimationFrame para inicializar o AOS depois que o navegador 
-            // pintar o layout principal, reduzindo Reflows Forçados.
             requestAnimationFrame(function () {
                 requestAnimationFrame(function () {
                     AOS.init({
-                        duration: 800,
-                        once: true
+                        duration: 700,          // ligeiramente mais rápido
+                        easing: 'ease-out-cubic', // curva suave e natural
+                        once: true,             // anima apenas uma vez
+                        offset: 80,             // dispara mais cedo (antes de estar completamente visível)
+                        delay: 0,
+                        anchorPlacement: 'top-bottom',
                     });
                 });
             });
