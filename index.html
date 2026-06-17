@@ -8,10 +8,9 @@
     <meta name="description"
         content="Volte a sentir o prazer de comer sobremesas deliciosas sem culpa. Receitas Zero Açúcar para manter sua glicemia controlada.">
 
-    <!-- Favicon -->
+    <!-- Favicon: SVG leve (628B) para browsers modernos -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+    <!-- Apple touch icon (iOS não suporta SVG) -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
 
     <!-- Fonts -->
@@ -19,8 +18,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Optimized Third-Party Connections -->
-    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
-    <link rel="dns-prefetch" href="https://connect.facebook.net">
     <link rel="preconnect" href="https://cdn.utmify.com.br" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
     <link rel="dns-prefetch" href="https://img.youtube.com">
@@ -1144,6 +1141,18 @@
                         <p class="text-muted">Aumento da pressão e colesterol.</p>
                     </div>
                 </div>
+
+                <!-- Vídeo sobre os males do açúcar -->
+                <div class="video-container" data-aos="zoom-in" style="margin-top: 48px;">
+                    <div class="video-facade"
+                        style="background-image: url('https://img.youtube.com/vi/VbH_wXPzK04/hqdefault.jpg');"
+                        onclick="this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'"
+                        onkeypress="if(event.key==='Enter'||event.key===' ')this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'"
+                        role="button" tabindex="0" aria-label="Reproduzir vídeo">
+                        <div class="play-button" role="presentation"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -1269,20 +1278,6 @@
         </section>
 
 
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Veja na Prática</h2>
-                <div class="video-container" data-aos="zoom-in">
-                    <div class="video-facade"
-                        style="background-image: url('https://img.youtube.com/vi/VbH_wXPzK04/hqdefault.jpg');"
-                        onclick="this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'"
-                        onkeypress="if(event.key==='Enter'||event.key===' ')this.parentElement.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/VbH_wXPzK04?autoplay=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'"
-                        role="button" tabindex="0" aria-label="Reproduzir vídeo">
-                        <div class="play-button" role="presentation"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
 
         <section class="section">
@@ -1354,6 +1349,7 @@
             <div class="container hero-grid">
                 <div class="hero-img-wrapper" data-aos="fade-right">
                     <img src="images/isadora.webp" alt="Isadora Leblanc" class="hero-img" width="800" height="625"
+                        loading="lazy" decoding="async"
                         style="transform: none; border-radius: 50%; max-width: 400px; width: 100%; height: auto; object-fit: cover; margin: 0 auto; box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);">
                 </div>
                 <div class="hero-text" data-aos="fade-left">
