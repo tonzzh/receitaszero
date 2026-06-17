@@ -158,6 +158,42 @@
     }
 
     // ============================================================
+    // GEOLOCALIZAÇÃO (com fallback para mobile/Facebook browser)
+    // ============================================================
+    async function getGeoInfo() {
+        const apis = [
+            // API 1: ipapi.co
+            async () => {
+                const r = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(4000) });
+                if (!r.ok) throw new Error();
+                const d = await r.json();
+                if (!d.ip || d.error) throw new Error();
+                return { ip: d.ip || null, country: d.country_name || null, country_code: d.country_code || null, city: d.city || null, region: d.region || null, org: d.org || null };
+            },
+            // API 2: ipwho.is (fallback)
+            async () => {
+                const r = await fetch('https://ipwho.is/', { signal: AbortSignal.timeout(4000) });
+                if (!r.ok) throw new Error();
+                const d = await r.json();
+                if (!d.success) throw new Error();
+                return { ip: d.ip || null, country: d.country || null, country_code: d.country_code || null, city: d.city || null, region: d.region || null, org: d.connection?.org || null };
+            },
+            // API 3: ip-api.com (segundo fallback)
+            async () => {
+                const r = await fetch('http://ip-api.com/json/?fields=status,query,country,countryCode,city,regionName,org', { signal: AbortSignal.timeout(4000) });
+                if (!r.ok) throw new Error();
+                const d = await r.json();
+                if (d.status !== 'success') throw new Error();
+                return { ip: d.query || null, country: d.country || null, country_code: d.countryCode || null, city: d.city || null, region: d.regionName || null, org: d.org || null };
+            },
+        ];
+        for (const api of apis) {
+            try { return await api(); } catch (_) {}
+        }
+        return { ip: null, country: null, country_code: null, city: null, region: null, org: null };
+    }
+
+    // ============================================================
     // REGISTRAR VISITA
     // ============================================================
     async function trackVisit() {
@@ -166,23 +202,8 @@
         const { device, browser, os } = getDeviceInfo();
         const sessionId    = getSessionId();
 
-        // Geolocalização via IP (API gratuita)
-        let ip           = null, country = null, country_code = null,
-            city         = null, region  = null, org          = null;
-        try {
-            const res = await fetch('https://ipapi.co/json/', {
-                signal: AbortSignal.timeout(3000),
-            });
-            if (res.ok) {
-                const d = await res.json();
-                ip           = d.ip           || null;
-                country      = d.country_name  || null;
-                country_code = d.country_code  || null;
-                city         = d.city          || null;
-                region       = d.region        || null;
-                org          = d.org           || null;
-            }
-        } catch (_) { /* API indisponível — continua sem geo */ }
+        // Geolocalização com fallback automático
+        const { ip, country, country_code, city, region, org } = await getGeoInfo();
 
         const record = {
             id:           sessionId,
@@ -270,8 +291,17 @@
             }
         });
 
-        // Atualizar a cada 30s e no fechamento da aba
+        // Atualizar a cada 30s
         const interval = setInterval(() => pushUpdate(false), 30000);
+
+        // visibilitychange: funciona no iOS Safari, Facebook in-app browser e Android
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') {
+                pushUpdate(true);
+            }
+        });
+
+        // beforeunload + pagehide como backup (desktop e alguns Androids)
         window.addEventListener('beforeunload', () => { clearInterval(interval); pushUpdate(true); });
         window.addEventListener('pagehide',     () => { clearInterval(interval); pushUpdate(true); });
     }
