@@ -163,38 +163,50 @@
     // ============================================================
     async function getGeoInfo() {
         const apis = [
-            // API 1: ipapi.co (HTTPS)
+            // API 1: freeipapi.com (CORS enabled, highly stable)
             async () => {
-                const r = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(4000) });
+                const r = await fetch('https://free.freeipapi.com/api/json', { signal: AbortSignal.timeout(4000) });
                 if (!r.ok) throw new Error();
                 const d = await r.json();
-                if (!d.ip || d.error) throw new Error();
-                return { ip: d.ip || null, country: d.country_name || null, country_code: d.country_code || null, city: d.city || null, region: d.region || null, org: d.org || null };
+                if (!d.ipAddress) throw new Error();
+                return {
+                    ip: d.ipAddress || null,
+                    country: d.countryName || null,
+                    country_code: d.countryCode || null,
+                    city: d.cityName || null,
+                    region: d.regionName || null,
+                    org: d.asnOrganization || null
+                };
             },
-            // API 2: ipwho.is (HTTPS, fallback)
+            // API 2: geojs.io (CORS enabled, highly stable fallback)
             async () => {
-                const r = await fetch('https://ipwho.is/', { signal: AbortSignal.timeout(4000) });
+                const r = await fetch('https://get.geojs.io/v1/ip/geo.json', { signal: AbortSignal.timeout(4000) });
                 if (!r.ok) throw new Error();
                 const d = await r.json();
-                if (!d.success) throw new Error();
-                return { ip: d.ip || null, country: d.country || null, country_code: d.country_code || null, city: d.city || null, region: d.region || null, org: d.connection?.org || null };
+                if (!d.ip) throw new Error();
+                return {
+                    ip: d.ip || null,
+                    country: d.country || null,
+                    country_code: d.country_code || null,
+                    city: d.city || null,
+                    region: d.region || null,
+                    org: d.organization_name || null
+                };
             },
-            // API 3: ipinfo.io (HTTPS, fallback — funciona em in-app browsers)
+            // API 3: ipinfo.io (CORS enabled, stable fallback)
             async () => {
                 const r = await fetch('https://ipinfo.io/json', { signal: AbortSignal.timeout(4000) });
                 if (!r.ok) throw new Error();
                 const d = await r.json();
                 if (!d.ip) throw new Error();
-                // ipinfo retorna: country="BR", region="São Paulo", city="São Paulo"
-                return { ip: d.ip || null, country: null, country_code: d.country || null, city: d.city || null, region: d.region || null, org: d.org || null };
-            },
-            // API 4: freeipapi.com (HTTPS, segundo fallback)
-            async () => {
-                const r = await fetch('https://freeipapi.com/api/json', { signal: AbortSignal.timeout(4000) });
-                if (!r.ok) throw new Error();
-                const d = await r.json();
-                if (!d.ipAddress) throw new Error();
-                return { ip: d.ipAddress || null, country: d.countryName || null, country_code: d.countryCode || null, city: d.cityName || null, region: d.regionName || null, org: null };
+                return {
+                    ip: d.ip || null,
+                    country: null,
+                    country_code: d.country || null,
+                    city: d.city || null,
+                    region: d.region || null,
+                    org: d.org || null
+                };
             },
         ];
         for (const api of apis) {
