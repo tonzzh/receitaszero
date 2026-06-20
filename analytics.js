@@ -224,9 +224,6 @@
         const { device, browser, os } = getDeviceInfo();
         const sessionId    = getSessionId();
 
-        // Geolocalização com fallback automático
-        const { ip, country, country_code, city, region, org } = await getGeoInfo();
-
         const record = {
             id:           sessionId,
             type:         botDetected ? 'bot' : 'human',
@@ -240,20 +237,41 @@
             screen_w:     screen.width,
             screen_h:     screen.height,
             lang:         navigator.language,
-            ip,
-            country,
-            country_code,
-            city,
-            region,
-            org,
+            ip:           null,
+            country:      null,
+            country_code: null,
+            city:         null,
+            region:       null,
+            org:          null,
             time_on_page: 0,
             clicks:       0,
             scroll_depth: 0,
         };
 
+        // Salva a visita imediatamente no Supabase
         try {
             await sbUpsert('visits', record);
         } catch (_) { /* falha silenciosa */ }
+
+        // Busca geolocalização em segundo plano e atualiza o registro
+        getGeoInfo().then(async (geo) => {
+            if (geo.ip) {
+                try {
+                    await sbPatch(
+                        'visits',
+                        `id=eq.${encodeURIComponent(sessionId)}`,
+                        {
+                            ip: geo.ip,
+                            country: geo.country,
+                            country_code: geo.country_code,
+                            city: geo.city,
+                            region: geo.region,
+                            org: geo.org
+                        }
+                    );
+                } catch (_) { /* falha silenciosa */ }
+            }
+        });
 
         return sessionId;
     }
@@ -266,8 +284,23 @@
         let maxScroll   = 0;
         let clicks      = 0;
 
+        // Variáveis de controle para evitar atualizações duplicadas com os mesmos dados
+        let lastSavedTime   = -1;
+        let lastSavedScroll = -1;
+        let lastSavedClicks = -1;
+
         async function pushUpdate(keepalive = false) {
             const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+
+            // Só envia a requisição se algum dado mudou desde o último envio
+            if (timeOnPage === lastSavedTime && maxScroll === lastSavedScroll && clicks === lastSavedClicks) {
+                return;
+            }
+
+            lastSavedTime   = timeOnPage;
+            lastSavedScroll = maxScroll;
+            lastSavedClicks = clicks;
+
             try {
                 await sbPatch(
                     'visits',
@@ -278,12 +311,17 @@
             } catch (_) {}
         }
 
-        // Profundidade de scroll
+        // Profundidade de scroll suavizada (Throttling de 200ms)
+        let scrollTimeout = null;
         window.addEventListener('scroll', () => {
-            const pct = Math.round(
-                ((window.scrollY + window.innerHeight) / document.body.scrollHeight) * 100
-            );
-            if (pct > maxScroll) maxScroll = Math.min(pct, 100);
+            if (scrollTimeout) return;
+            scrollTimeout = setTimeout(() => {
+                scrollTimeout = null;
+                const pct = Math.round(
+                    ((window.scrollY + window.innerHeight) / document.body.scrollHeight) * 100
+                );
+                if (pct > maxScroll) maxScroll = Math.min(pct, 100);
+            }, 200);
         }, { passive: true });
 
         // Cliques — detecta CTAs
