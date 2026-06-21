@@ -1,0 +1,61 @@
+# ============================================================
+# robots.txt — ReceitasZero
+# ============================================================
+
+# Permitir tudo para buscadores principais
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# ============================================================
+# META / FACEBOOK — Necessário para Facebook Ads funcionar
+# ============================================================
+
+# LIBERAR: faz preview dos anúncios e posts compartilhados
+# Bloquear isso quebra os anúncios do Facebook
+User-agent: facebookexternalhit
+Allow: /
+
+# LIBERAR: usado para melhorar campanhas de anúncios
+User-agent: meta-externalads
+Allow: /
+
+# BLOQUEAR: indexação para Meta AI (não serve para anúncios)
+User-agent: meta-externalagent
+Disallow: /
+
+# BLOQUEAR: indexador web para Meta AI
+User-agent: meta-webindexer
+Disallow: /
+
+# NOTA: meta-externalfetcher ignora robots.txt por design
+# (é ativado pelo usuário diretamente)
+
+# ============================================================
+# Outros bots de IA — bloquear (não trazem tráfego)
+# ============================================================
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# ============================================================
+# Regra geral — permitir tudo para outros bots
+# ============================================================
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://receitaszero.vercel.app/sitemap.xml
