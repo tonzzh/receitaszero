@@ -18,6 +18,7 @@
             this.status = 'accepted';
             this.hasInteracted = true;
             hideBanner();
+            document.dispatchEvent(new CustomEvent('cookieConsent', { detail: 'accepted' }));
         },
         
         reject: function () {
@@ -25,6 +26,7 @@
             this.status = 'rejected';
             this.hasInteracted = true;
             hideBanner();
+            document.dispatchEvent(new CustomEvent('cookieConsent', { detail: 'rejected' }));
         }
     };
 

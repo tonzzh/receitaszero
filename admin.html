@@ -178,6 +178,7 @@
         .badge-cta     { background: rgba(255,215,0,0.1);   color: var(--primary);border: 1px solid rgba(255,215,0,0.2); }
         .badge-mobile  { background: rgba(0,229,255,0.1);   color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
         .badge-desktop { background: rgba(191,95,255,0.1);  color: var(--purple); border: 1px solid rgba(191,95,255,0.2); }
+        .badge-cookie  { background: rgba(0,229,255,0.1);   color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
 
         /* Filters */
         .filters { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
@@ -316,6 +317,7 @@
                 <div class="kpi-card red">    <div class="kpi-icon">🤖</div><div class="kpi-label">Bots</div>              <div class="kpi-value" id="kpi-bots">–</div>     <div class="kpi-sub" id="kpi-bots-pct">–</div></div>
                 <div class="kpi-card blue">   <div class="kpi-icon">⏱️</div><div class="kpi-label">Tempo Médio</div>       <div class="kpi-value" id="kpi-avgtime">–</div>  <div class="kpi-sub">Segundos na página</div></div>
                 <div class="kpi-card purple"> <div class="kpi-icon">🖱️</div><div class="kpi-label">Cliques CTA</div>       <div class="kpi-value" id="kpi-cta">–</div>     <div class="kpi-sub">Botões de compra</div></div>
+                <div class="kpi-card blue">   <div class="kpi-icon">🍪</div><div class="kpi-label">Cookies Aceitos</div>   <div class="kpi-value" id="kpi-cookie">–</div>    <div class="kpi-sub" id="kpi-cookie-pct">Aceito: – | Rejeitado: –</div></div>
             </div>
 
             <div class="chart-grid">
@@ -662,7 +664,7 @@ function renderAll() {
     renderOverview(humans, bots, ctaEvts);
     renderVisitors(humans);
     renderBots(bots, humans.length);
-    renderEvents(ctaEvts, humans.length);
+    renderEvents(_events, humans.length);
     renderGeo(humans);
     renderSettings();
 }
@@ -723,6 +725,18 @@ function renderOverview(humans, bots, ctaEvts) {
     document.getElementById('kpi-humans').textContent  = humans.length;
     document.getElementById('kpi-bots').textContent    = bots.length;
     document.getElementById('kpi-cta').textContent     = ctaEvts.length;
+
+    // Relação de consentimento de cookies
+    const cookieEvts = _events.filter(e => e.type === 'cookie_consent');
+    const accepted = cookieEvts.filter(e => e.label === 'accepted').length;
+    const rejected = cookieEvts.filter(e => e.label === 'rejected').length;
+    const totalCookies = accepted + rejected;
+    const cookieRate = totalCookies > 0 ? Math.round(accepted / totalCookies * 100) : 0;
+
+    document.getElementById('kpi-cookie').textContent = accepted;
+    document.getElementById('kpi-cookie-pct').textContent = totalCookies > 0 
+        ? `${cookieRate}% de aceitação (${rejected} recusas)` 
+        : 'Sem interações';
 
     const pctH = total ? Math.round(humans.length / total * 100) : 0;
     const pctB = total ? Math.round(bots.length  / total * 100) : 0;
@@ -867,9 +881,12 @@ function renderBots(bots, humanCount) {
 // ══════════════════════════════════════════════════════════════════
 // EVENTS
 // ══════════════════════════════════════════════════════════════════
-function renderEvents(ctaEvts, humanCount) {
+function renderEvents(evts, humanCount) {
+    const ctaEvts = evts.filter(e => e.type === 'cta_click');
+    const cookieEvts = evts.filter(e => e.type === 'cookie_consent');
+
     document.getElementById('evt-total').textContent = ctaEvts.length;
-    document.getElementById('event-count').textContent = ctaEvts.length + ' eventos';
+    document.getElementById('event-count').textContent = evts.length + ' eventos';
 
     const todayStart = new Date(); todayStart.setHours(0,0,0,0);
     const todayEvts = ctaEvts.filter(e => new Date(e.created_at) >= todayStart);
@@ -879,13 +896,17 @@ function renderEvents(ctaEvts, humanCount) {
     const rate = humanCount > 0 ? Math.round(uniqueSessions / humanCount * 100) : 0;
     document.getElementById('evt-rate').textContent = rate + '%';
 
-    const sorted = [...ctaEvts].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+    const sorted = [...evts].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
     document.getElementById('event-table').innerHTML = sorted.length === 0
-        ? `<tr><td colspan="4"><div class="empty-state"><div class="empty-icon">🖱️</div>Nenhum clique CTA ainda.</div></td></tr>`
+        ? `<tr><td colspan="4"><div class="empty-state"><div class="empty-icon">🖱️</div>Nenhum evento registrado ainda.</div></td></tr>`
         : sorted.map(e => `
             <tr>
                 <td style="font-size:12px;color:var(--muted);">${fmtTime(e.created_at)}</td>
-                <td><span class="badge badge-cta">🖱️ ${e.label||'–'}</span></td>
+                <td>
+                    ${e.type === 'cookie_consent' 
+                        ? `<span class="badge badge-cookie">🍪 Cookie: ${e.label === 'accepted' ? 'Aceito' : 'Rejeitado'}</span>`
+                        : `<span class="badge badge-cta">🖱️ CTA: ${e.label||'–'}</span>`}
+                </td>
                 <td style="font-size:11px;color:var(--muted);max-width:250px;overflow:hidden;text-overflow:ellipsis;">${e.href||'–'}</td>
                 <td style="font-size:11px;font-family:monospace;">${shortId(e.session_id)}</td>
             </tr>`).join('');
