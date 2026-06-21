@@ -4,9 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>200 Doces Zero Açúcar — Sobremesas Deliciosas de Baixo Índice Glicêmico</title>
+    <title>200 Receitas de Doces Zero Açúcar — Sobremesas Saudáveis</title>
     <meta name="description"
-        content="Volte a sentir o prazer de comer sobremesas deliciosas sem culpa. Descubra mais de 200 receitas fáceis elaboradas com ingredientes de baixo índice glicêmico.">
+        content="Quer comer doces sem culpa? Descubra +200 receitas fáceis de doces zero açúcar e baixo índice glicêmico. Sobremesas deliciosas e rápidas. Garanta o seu!">
+
+    <!-- SEO Técnico & Indexação -->
+    <link rel="canonical" href="https://receitaszero.vercel.app/">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://receitaszero.vercel.app/">
+    <meta property="og:title" content="200 Receitas de Doces Zero Açúcar — Sobremesas Saudáveis">
+    <meta property="og:description" content="Quer comer doces sem culpa? Descubra +200 receitas fáceis de doces zero açúcar e baixo índice glicêmico. Sobremesas deliciosas e rápidas. Garanta o seu!">
+    <meta property="og:image" content="https://receitaszero.vercel.app/images/hero.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://receitaszero.vercel.app/">
+    <meta property="twitter:title" content="200 Receitas de Doces Zero Açúcar — Sobremesas Saudáveis">
+    <meta property="twitter:description" content="Quer comer doces sem culpa? Descubra +200 receitas fáceis de doces zero açúcar e baixo índice glicêmico. Sobremesas deliciosas e rápidas. Garanta o seu!">
+    <meta property="twitter:image" content="https://receitaszero.vercel.app/images/hero.webp">
 
     <!-- Favicon: SVG leve (628B) para browsers modernos -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -54,11 +72,111 @@
         a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
         document.head.appendChild(a);
     </script>
+
+    <!-- Schema Markup / Structured Data JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://receitaszero.vercel.app/#website",
+          "url": "https://receitaszero.vercel.app/",
+          "name": "200 Doces Zero Açúcar",
+          "description": "Receitas saudáveis de doces zero açúcar e baixo índice glicêmico"
+        },
+        {
+          "@type": "Book",
+          "@id": "https://receitaszero.vercel.app/#book",
+          "name": "200 Doces Zero Açúcar",
+          "author": {
+            "@type": "Person",
+            "name": "Isadora Leblanc"
+          },
+          "description": "Descubra mais de 200 receitas fáceis elaboradas com ingredientes de baixo índice glicêmico para comer doces sem culpa.",
+          "inLanguage": "pt-BR",
+          "genre": "Gastronomia, Confeitaria Saudável",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": "10.00",
+              "priceCurrency": "BRL",
+              "url": "https://receitaszero.vercel.app/#oferta",
+              "name": "Plano Essencial",
+              "priceValidUntil": "2026-12-31",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "Offer",
+              "price": "27.00",
+              "priceCurrency": "BRL",
+              "url": "https://receitaszero.vercel.app/#oferta",
+              "name": "Transformação Completa",
+              "priceValidUntil": "2026-12-31",
+              "availability": "https://schema.org/InStock"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@context": "https://schema.org",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Como recebo o meu e-book?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O envio é imediato. Assim que o pagamento for confirmado, você receberá um link de acesso diretamente no seu e-mail e uma notificação com o arquivo no seu WhatsApp."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "As receitas podem ser consumidas por quem tem diabetes?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. Todas as receitas foram elaboradas utilizando ingredientes de baixíssimo índice glicêmico e adoçantes naturais de alta qualidade, auxiliando quem busca manter uma alimentação equilibrada e saborosa."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Não sei cozinhar nada. Vou conseguir fazer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Com certeza! O e-book foi escrito em linguagem simples e didática. O passo a passo é extremamente detalhado e explicamos de forma simples o ponto ideal e o preparo. É impossível errar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Os ingredientes são caros ou difíceis de achar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Não. Diferente de outros e-books, nós evitamos ingredientes importados ou extremamente caros. 95% do que usamos você encontra no supermercado ou feira mais próxima do seu bairro."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quais adoçantes são utilizados nas receitas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Focamos em adoçantes naturais estáveis ao calor, como o eritritol, o xilitol e a estévia pura de boa qualidade. Damos dicas no livro de como combiná-los para eliminar qualquer retrogosto ou gosto amargo na boca."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Como funciona a garantia de 7 dias?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O risco é todo nosso. Se você não gostar do livro, achar as receitas difíceis ou simplesmente mudar de ideia, basta nos enviar um e-mail. Nós devolveremos 100% do seu dinheiro de forma imediata."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
-
-    <h1>Minha Página</h1>
 
     <style>
         :root {
@@ -1108,7 +1226,7 @@
             <section class="hero">
                 <div class="container hero-grid">
                     <div class="hero-text">
-                        <h1>Volte a Comer Doces <span class="highlight">Sem Culpa e Sem Medo</span></h1>
+                        <h1>Volte a Comer <span class="highlight">Doces Zero Açúcar</span> Sem Culpa e Sem Medo</h1>
                         <p>Diga adeus às receitas diets sem graça e com gosto amargo de adoçante químico. Saboreie
                             pudins, bolos e brigadeiros maravilhosos feitos com ingredientes selecionados de baixo
                             índice glicêmico e
@@ -1119,7 +1237,7 @@
                             COMER DOCE SEM MEDO</a>
                     </div>
                     <div class="hero-img-wrapper">
-                        <img src="images/hero.webp" alt="Doces Zero Açúcar" class="hero-img" fetchpriority="high"
+                        <img src="images/hero.webp" alt="Sobremesas de baixo índice glicêmico e doces zero açúcar deliciosos da Chef Isadora Leblanc" class="hero-img" fetchpriority="high"
                             width="1024" height="1024">
                         <div class="floating-badge" style="text-align: center; font-size: 14px;">
                             OFERTA EXCLUSIVA<br>DE <span style="text-decoration: line-through;">R$67</span> POR
@@ -1197,103 +1315,102 @@
                     <div class="carousel-container">
                         <div class="carousel-track">
                             <!-- Original Set -->
-                            <!-- Original Set -->
                             <div class="carousel-item">
-                                <img src="images/img1.webp" alt="Sobremesa Zero Açúcar 1" loading="lazy" width="600"
+                                <img src="images/img1.webp" alt="Pudim de leite cremoso zero açúcar de baixo índice glicêmico" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img2.webp" alt="Sobremesa Zero Açúcar 2" loading="lazy" width="600"
+                                <img src="images/img2.webp" alt="Brigadeiro gourmet zero açúcar no ponto de enrolar" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img3.webp" alt="Sobremesa Zero Açúcar 3" loading="lazy" width="600"
+                                <img src="images/img3.webp" alt="Bolo fofinho de chocolate zero açúcar e low carb" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img4.webp" alt="Sobremesa Zero Açúcar 4" loading="lazy" width="600"
+                                <img src="images/img4.webp" alt="Mousse de maracujá aerada zero açúcar e saudável" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img5.webp" alt="Sobremesa Zero Açúcar 5" loading="lazy" width="600"
+                                <img src="images/img5.webp" alt="Biscoitos crocantes de amêndoas zero açúcar" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img6.webp" alt="Sobremesa Zero Açúcar 6" loading="lazy" width="600"
+                                <img src="images/img6.webp" alt="Sobremesa saudável zero açúcar com morangos frescos" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img7.webp" alt="Sobremesa Zero Açúcar 7" loading="lazy" width="600"
+                                <img src="images/img7.webp" alt="Torta gelada de limão zero açúcar e baixo índice glicêmico" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img8.webp" alt="Sobremesa Zero Açúcar 8" loading="lazy" width="600"
+                                <img src="images/img8.webp" alt="Trufas artesanais de cacau zero açúcar e fit" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img9.webp" alt="Sobremesa Zero Açúcar 9" loading="lazy" width="600"
+                                <img src="images/img9.webp" alt="Cupcake funcional zero açúcar com cobertura cremosa" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img10.webp" alt="Sobremesa Zero Açúcar 10" loading="lazy" width="600"
+                                <img src="images/img10.webp" alt="Doce de leite cremoso fit zero açúcar" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img11.webp" alt="Sobremesa Zero Açúcar 11" loading="lazy" width="600"
+                                <img src="images/img11.webp" alt="Quindim saudável zero açúcar e sem lactose" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img12.webp" alt="Sobremesa Zero Açúcar 12" loading="lazy" width="600"
+                                <img src="images/img12.webp" alt="Pavê de baunilha zero açúcar e baixo carboidrato" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
 
                             <!-- Duplicate Set for Infinite Loop -->
                             <div class="carousel-item">
-                                <img src="images/img1.webp" alt="Sobremesa Zero Açúcar 1" loading="lazy" width="600"
+                                <img src="images/img1.webp" alt="Pudim de leite cremoso zero açúcar de baixo índice glicêmico" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img2.webp" alt="Sobremesa Zero Açúcar 2" loading="lazy" width="600"
+                                <img src="images/img2.webp" alt="Brigadeiro gourmet zero açúcar no ponto de enrolar" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img3.webp" alt="Sobremesa Zero Açúcar 3" loading="lazy" width="600"
+                                <img src="images/img3.webp" alt="Bolo fofinho de chocolate zero açúcar e low carb" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img4.webp" alt="Sobremesa Zero Açúcar 4" loading="lazy" width="600"
+                                <img src="images/img4.webp" alt="Mousse de maracujá aerada zero açúcar e saudável" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img5.webp" alt="Sobremesa Zero Açúcar 5" loading="lazy" width="600"
+                                <img src="images/img5.webp" alt="Biscoitos crocantes de amêndoas zero açúcar" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img6.webp" alt="Sobremesa Zero Açúcar 6" loading="lazy" width="600"
+                                <img src="images/img6.webp" alt="Sobremesa saudável zero açúcar com morangos frescos" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img7.webp" alt="Sobremesa Zero Açúcar 7" loading="lazy" width="600"
+                                <img src="images/img7.webp" alt="Torta gelada de limão zero açúcar e baixo índice glicêmico" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img8.webp" alt="Sobremesa Zero Açúcar 8" loading="lazy" width="600"
+                                <img src="images/img8.webp" alt="Trufas artesanais de cacau zero açúcar e fit" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img9.webp" alt="Sobremesa Zero Açúcar 9" loading="lazy" width="600"
+                                <img src="images/img9.webp" alt="Cupcake funcional zero açúcar com cobertura cremosa" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img10.webp" alt="Sobremesa Zero Açúcar 10" loading="lazy" width="600"
+                                <img src="images/img10.webp" alt="Doce de leite cremoso fit zero açúcar" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img11.webp" alt="Sobremesa Zero Açúcar 11" loading="lazy" width="600"
+                                <img src="images/img11.webp" alt="Quindim saudável zero açúcar e sem lactose" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/img12.webp" alt="Sobremesa Zero Açúcar 12" loading="lazy" width="600"
+                                <img src="images/img12.webp" alt="Pavê de baunilha zero açúcar e baixo carboidrato" loading="lazy" decoding="async" width="600"
                                     height="600">
                             </div>
                         </div>
@@ -1378,7 +1495,7 @@
             <section class="section">
                 <div class="container hero-grid">
                     <div class="hero-img-wrapper" data-aos="fade-right">
-                        <img src="images/isadora.webp" alt="Isadora Leblanc" class="hero-img" width="800" height="625"
+                        <img src="images/isadora.webp" alt="Chef Isadora Leblanc, especialista em gastronomia saudável e criadora do guia 200 Doces Zero Açúcar" class="hero-img" width="800" height="625"
                             loading="lazy" decoding="async"
                             style="transform: none; border-radius: 50%; max-width: 400px; width: 100%; height: auto; object-fit: cover; margin: 0 auto; box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);">
                     </div>
@@ -1411,52 +1528,52 @@
                         <div class="img-depo-track">
                             <!-- Original Set -->
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo1.webp" alt="Depoimento 1" loading="lazy" width="540"
+                                <img src="depoimentos/depo1.webp" alt="Depoimento de cliente satisfeito com as receitas de doces zero açúcar" loading="lazy" decoding="async" width="540"
                                     height="741">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo2.webp" alt="Depoimento 2" loading="lazy" width="540"
+                                <img src="depoimentos/depo2.webp" alt="Avaliação positiva do e-book 200 Doces Zero Açúcar e receitas fáceis" loading="lazy" decoding="async" width="540"
                                     height="894">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo3.webp" alt="Depoimento 3" loading="lazy" width="540"
+                                <img src="depoimentos/depo3.webp" alt="Resultado de controle de glicose com receitas de doces saudáveis" loading="lazy" decoding="async" width="540"
                                     height="846">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo4.webp" alt="Depoimento 4" loading="lazy" width="600"
+                                <img src="depoimentos/depo4.webp" alt="Opinião de cliente que voltou a comer doces sem culpa" loading="lazy" decoding="async" width="600"
                                     height="900">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo5.webp" alt="Depoimento 5" loading="lazy" width="600"
+                                <img src="depoimentos/depo5.webp" alt="Feedback sobre o sabor e textura dos brigadeiros zero açúcar" loading="lazy" decoding="async" width="600"
                                     height="750">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo6.webp" alt="Depoimento 6" loading="lazy" width="600"
+                                <img src="depoimentos/depo6.webp" alt="Depoimento real sobre os bolos saudáveis de baixo índice glicêmico" loading="lazy" decoding="async" width="600"
                                     height="750">
                             </div>
                             <!-- Duplicate Set for Infinite Loop -->
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo1.webp" alt="Depoimento 1" loading="lazy" width="540"
+                                <img src="depoimentos/depo1.webp" alt="Depoimento de cliente satisfeito com as receitas de doces zero açúcar" loading="lazy" decoding="async" width="540"
                                     height="741">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo2.webp" alt="Depoimento 2" loading="lazy" width="540"
+                                <img src="depoimentos/depo2.webp" alt="Avaliação positiva do e-book 200 Doces Zero Açúcar e receitas fáceis" loading="lazy" decoding="async" width="540"
                                     height="894">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo3.webp" alt="Depoimento 3" loading="lazy" width="540"
+                                <img src="depoimentos/depo3.webp" alt="Resultado de controle de glicose com receitas de doces saudáveis" loading="lazy" decoding="async" width="540"
                                     height="846">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo4.webp" alt="Depoimento 4" loading="lazy" width="600"
+                                <img src="depoimentos/depo4.webp" alt="Opinião de cliente que voltou a comer doces sem culpa" loading="lazy" decoding="async" width="600"
                                     height="900">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo5.webp" alt="Depoimento 5" loading="lazy" width="600"
+                                <img src="depoimentos/depo5.webp" alt="Feedback sobre o sabor e textura dos brigadeiros zero açúcar" loading="lazy" decoding="async" width="600"
                                     height="750">
                             </div>
                             <div class="img-depo-item">
-                                <img src="depoimentos/depo6.webp" alt="Depoimento 6" loading="lazy" width="600"
+                                <img src="depoimentos/depo6.webp" alt="Depoimento real sobre os bolos saudáveis de baixo índice glicêmico" loading="lazy" decoding="async" width="600"
                                     height="750">
                             </div>
                         </div>
@@ -1466,7 +1583,7 @@
 
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title" data-aos="fade-up">Garante Hoje e Leve + R$ 190 em Bônus Gratuitos!</h2>
+                    <h2 class="section-title" data-aos="fade-up">Garanta Hoje seu E-book e Leve + R$ 190 em Bônus Gratuitos!</h2>
                     <p style="text-align: center; color: var(--text-muted); margin-bottom: 10px;">Ao garantir o seu
                         livro digital "200 Doces Zero Açúcar",</p>
                     <p style="text-align: center; color: var(--secondary); font-weight: 800; margin-bottom: 40px;">Você
@@ -1474,7 +1591,7 @@
 
                     <div class="problem-grid">
                         <div class="glass-card" data-aos="fade-up">
-                            <img src="bonus/bonus1.webp" alt="Ebook Bolos Diet" class="bonus-img" width="600"
+                            <img src="bonus/bonus1.webp" alt="Capa do Ebook Bolos Diet Perfeitos - Receitas Saudáveis de Baixo Índice Glicêmico" class="bonus-img" loading="lazy" decoding="async" width="600"
                                 height="407">
                             <h3 style="color: var(--primary);">BÔNUS 1</h3>
                             <h4>Bolos Diet Perfeitos</h4>
@@ -1485,7 +1602,7 @@
                             <p style="color: var(--accent); font-weight: 800; font-size: 18px;">HOJE: GRÁTIS</p>
                         </div>
                         <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-                            <img src="bonus/bonus2.webp" alt="Ebook Páscoa Zero Açúcar" class="bonus-img" width="600"
+                            <img src="bonus/bonus2.webp" alt="Capa do Ebook Páscoa Zero Açúcar - Ovos de Páscoa e Bombons Saudáveis" class="bonus-img" loading="lazy" decoding="async" width="600"
                                 height="407">
                             <h3 style="color: var(--primary);">BÔNUS 2</h3>
                             <h4>Páscoa Zero Açúcar</h4>
@@ -1496,7 +1613,7 @@
                             <p style="color: var(--accent); font-weight: 800; font-size: 18px;">HOJE: GRÁTIS</p>
                         </div>
                         <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
-                            <img src="bonus/bonus3.webp" alt="Ebook Pizzas Low Carb" class="bonus-img" width="600"
+                            <img src="bonus/bonus3.webp" alt="Capa do Ebook Pizzas Low Carb Rápidas - Receitas Práticas e Saudáveis" class="bonus-img" loading="lazy" decoding="async" width="600"
                                 height="600">
                             <h3 style="color: var(--primary);">BÔNUS 3</h3>
                             <h4>Pizzas Low Carb Rápidas</h4>
@@ -1507,8 +1624,8 @@
                             <p style="color: var(--accent); font-weight: 800; font-size: 18px;">HOJE: GRÁTIS</p>
                         </div>
                         <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
-                            <img src="bonus/bonus4.webp" alt="Ebook Melhora do Humor & Menopausa" class="bonus-img"
-                                width="600" height="488">
+                            <img src="bonus/bonus4.webp" alt="Capa do Ebook Humor e Menopausa - Guia de Alimentação Saudável" class="bonus-img" loading="lazy" decoding="async" width="600"
+                                height="488">
                             <h3 style="color: var(--primary);">BÔNUS 4</h3>
                             <h4>Humor & Menopausa</h4>
                             <p class="text-muted">Alimentos e preparos funcionais específicos para equilibrar
@@ -1518,8 +1635,8 @@
                             <p style="color: var(--accent); font-weight: 800; font-size: 18px;">HOJE: GRÁTIS</p>
                         </div>
                         <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
-                            <img src="bonus/bonus5.webp" alt="Ebook Chocotones Irresistíveis" class="bonus-img"
-                                width="600" height="600">
+                            <img src="bonus/bonus5.webp" alt="Capa do Ebook Chocotones e Panetones Fit - Receitas de Final de Ano Sem Açúcar" class="bonus-img" loading="lazy" decoding="async" width="600"
+                                height="600">
                             <h3 style="color: var(--primary);">BÔNUS 5</h3>
                             <h4>Chocotones e Panetones Fit</h4>
                             <p class="text-muted">Tradição de final de ano sem açúcar, sem glúten ou lactose, perfeitos
@@ -1529,8 +1646,8 @@
                             <p style="color: var(--accent); font-weight: 800; font-size: 18px;">HOJE: GRÁTIS</p>
                         </div>
                         <div class="glass-card" data-aos="fade-up" data-aos-delay="500">
-                            <img src="bonus/bonus6.webp" alt="Ebook Refeições de Microondas" class="bonus-img"
-                                width="600" height="600">
+                            <img src="bonus/bonus6.webp" alt="Capa do Ebook Preparos de Microondas Low Carb - Receitas de Doces Rápidos" class="bonus-img" loading="lazy" decoding="async" width="600"
+                                height="600">
                             <h3 style="color: var(--primary);">BÔNUS 6</h3>
                             <h4>Preparos de Microondas</h4>
                             <p class="text-muted">Ideias low carb salgadas e doces de preparo ultrarrápido (menos de 5
