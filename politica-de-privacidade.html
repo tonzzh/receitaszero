@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade — 200 Doces Zero Açúcar</title>
+    <meta name="description" content="Política de Privacidade do site 200 Doces Zero Açúcar. Leia sobre como coletamos, utilizamos e protegemos as suas informações pessoais de acordo com a LGPD.">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="cookie-consent.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --primary: #FFD700; /* Gold */
+            --secondary: #FF4500; /* Neon Orange */
+            --accent: #00E5FF; /* Cyan */
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            overscroll-behavior: none;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeSpeed;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Ambient Background Orbs */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+            will-change: transform;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 69, 0, 0.12);
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 215, 0, 0.08);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Action Buttons */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            margin-bottom: 32px;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            box-shadow: 0 0 25px var(--primary);
+        }
+
+        /* Glassmorphism Card Container */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.1;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #fff, #d0d0d0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .date-updated {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-updated::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-top: 36px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 8px;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 24px;
+            padding-left: 8px;
+        }
+
+        li {
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        li::before {
+            content: "✓";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        strong {
+            color: #ffffff;
+        }
+
+        footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 32px 20px;
+            }
+            .container {
+                padding: 40px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient background animations -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div class="container">
+        
+        <a href="index.html" class="btn-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Voltar
+        </a>
+
+        <div class="glass-card">
+            <a href="index.html" class="logo">RECEITAS ZERO</a>
+            
+            <h1>Política de Privacidade</h1>
+            <div class="date-updated">Última atualização: 20/06/2026</div>
+
+            <p>
+                A sua privacidade é importante para nós. Esta Política de Privacidade descreve como coletamos,
+                utilizamos e protegemos as informações fornecidas pelos usuários deste site.
+            </p>
+
+            <h2>1. Coleta de Informações</h2>
+            <p>
+                Podemos coletar informações fornecidas voluntariamente pelo usuário, como nome,
+                e-mail, telefone e demais dados informados durante a navegação ou compra de produtos.
+            </p>
+
+            <h2>2. Uso das Informações</h2>
+            <p>As informações coletadas poderão ser utilizadas para:</p>
+            <ul>
+                <li>Processar compras e pagamentos;</li>
+                <li>Enviar informações sobre produtos adquiridos;</li>
+                <li>Prestar suporte ao cliente;</li>
+                <li>Melhorar nossos serviços e conteúdos;</li>
+                <li>Realizar campanhas de marketing e remarketing.</li>
+            </ul>
+
+            <h2>3. Cookies e Tecnologias de Rastreamento</h2>
+            <p>
+                Utilizamos cookies, Pixel da Meta (Facebook), Google Analytics e outras tecnologias
+                semelhantes para compreender o comportamento dos visitantes e melhorar a experiência do usuário.
+            </p>
+
+            <h2>4. Compartilhamento de Dados</h2>
+            <p>
+                Não vendemos informações pessoais. Os dados poderão ser compartilhados apenas com parceiros
+                responsáveis pelo processamento de pagamentos, hospedagem, entrega de produtos digitais
+                e plataformas de marketing.
+            </p>
+
+            <h2>5. Segurança</h2>
+            <p>
+                Adotamos medidas técnicas e organizacionais para proteger os dados pessoais contra acesso,
+                alteração ou divulgação não autorizada.
+            </p>
+
+            <h2>6. Direitos do Usuário</h2>
+            <p>
+                Nos termos da Lei Geral de Proteção de Dados (LGPD), o usuário poderá solicitar acesso,
+                correção ou exclusão de seus dados pessoais.
+            </p>
+
+            <h2>7. Contato</h2>
+            <p>
+                Para dúvidas relacionadas a esta Política de Privacidade, entre em contato através do e-mail:
+                <strong>contato@receitaszero.com</strong>
+            </p>
+
+            <footer>
+                <p>&copy; 2026 200 Doces Zero Açúcar. Todos os direitos reservados.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Cookie Consent LGPD -->
+    <script src="cookie-consent.js" defer></script>
+    <!-- Analytics Tracker -->
+    <script src="analytics.js" defer></script>
+</body>
+
+</html>

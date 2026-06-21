@@ -366,9 +366,6 @@
         window.addEventListener('pagehide',     () => { clearInterval(interval); pushUpdate(true); });
     }
 
-    // ============================================================
-    // INICIALIZAÇÃO
-    // ============================================================
     async function init() {
         try {
             const sessionId = await trackVisit();
