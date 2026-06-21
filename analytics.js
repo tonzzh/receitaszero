@@ -351,19 +351,6 @@
             }
         });
 
-        // Rastrear Consentimento de Cookies (LGPD)
-        document.addEventListener('cookieConsent', async (e) => {
-            const status = e.detail;
-            try {
-                await sbInsert('events', {
-                    session_id: sessionId,
-                    type:       'cookie_consent',
-                    label:      status,
-                    href:       location.pathname,
-                });
-            } catch (_) {}
-        });
-
         // Atualizar a cada 30s
         const interval = setInterval(() => pushUpdate(false), 30000);
 
