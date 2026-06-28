@@ -77,7 +77,7 @@
 
             let vcSent = false;
 
-            function sendViewContent() {
+            function sendVC() {
                 if (vcSent) return;
                 vcSent = true;
 
@@ -86,14 +86,16 @@
                 });
             }
 
-            // ⏱ só dispara após 5 segundos reais
+            // ⏱ intenção mínima: 6 segundos
             setTimeout(() => {
-                sendViewContent();
-            }, 5000);
+                sendVC();
+            }, 6000);
 
-            // 👆 ou se houver scroll real (mais forte ainda)
+            // 📜 reforço de intenção: scroll
             window.addEventListener('scroll', () => {
-                sendViewContent();
+                if (window.scrollY > window.innerHeight * 0.5) {
+                    sendVC();
+                }
             });
 
         }
