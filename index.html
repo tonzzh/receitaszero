@@ -48,7 +48,7 @@
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
             n.queue = []; t = b.createElement(e); t.async = !0;
@@ -61,21 +61,42 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=1644080239859029&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
     <script>
-        window.addEventListener('load', function () {
+        function isBot() {
+            const ua = navigator.userAgent.toLowerCase();
+            return (
+                ua.includes('bot') ||
+                ua.includes('crawler') ||
+                ua.includes('facebookexternal') ||
+                ua.includes('meta-external')
+            );
+        }
 
-            if (window.__vc_sent) return;
-            window.__vc_sent = true;
+        if (!isBot()) {
 
-            const eventId = 'vc_' + Date.now();
+            let vcSent = false;
 
-            if (typeof fbq === 'function') {
-                fbq('track', 'ViewContent', {}, {
-                    eventID: eventId
+            function sendViewContent() {
+                if (vcSent) return;
+                vcSent = true;
+
+                fbq('track', 'ViewContent', {
+                    content_name: document.title
                 });
             }
 
-        });
+            // ⏱ só dispara após 5 segundos reais
+            setTimeout(() => {
+                sendViewContent();
+            }, 5000);
+
+            // 👆 ou se houver scroll real (mais forte ainda)
+            window.addEventListener('scroll', () => {
+                sendViewContent();
+            });
+
+        }
     </script>
     <!-- End Meta Pixel Code -->
     <style>
