@@ -61,6 +61,8 @@
             /* Pure white cards */
             --primary: #D46A43;
             /* Terracota */
+            --primary-dark: #B8522B;
+            /* Terracota escuro — contraste 4.7:1 com branco (WCAG AA) */
             --secondary: #5F7A61;
             /* Sage Green */
             --accent: #8FA89B;
@@ -261,13 +263,13 @@
             position: absolute;
             top: 20px;
             right: -20px;
-            background: var(--primary);
+            background: var(--primary-dark);
             color: #ffffff;
             padding: 16px 32px;
             border-radius: 12px;
             font-weight: 800;
             transform: rotate(5deg);
-            box-shadow: 0 10px 30px rgba(212, 106, 67, 0.3);
+            box-shadow: 0 10px 30px rgba(184, 82, 43, 0.35);
             animation: bounce 3s infinite ease-in-out;
         }
 
@@ -601,7 +603,7 @@
             justify-content: center;
             width: 100%;
             padding: 20px 24px;
-            background: var(--primary);
+            background: var(--primary-dark);
             color: #ffffff;
             font-weight: 800;
             font-size: 20px;
@@ -610,14 +612,15 @@
             margin-top: 24px;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            box-shadow: 0 8px 25px rgba(212, 106, 67, 0.25);
+            box-shadow: 0 8px 25px rgba(184, 82, 43, 0.3);
             border: none;
             cursor: pointer;
         }
 
         .cta-button-large:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(212, 106, 67, 0.35);
+            background: #9e4522;
+            box-shadow: 0 12px 30px rgba(184, 82, 43, 0.45);
         }
 
         /* Bonus Section Styling */
@@ -1431,7 +1434,7 @@
                     <!-- Complete Plan -->
                     <div class="pricing-box premium glass-card" data-aos="zoom-in">
                         <div class="floating-badge"
-                            style="position: absolute; top: 15px; right: 15px; transform: rotate(5deg); box-shadow: 0 5px 15px rgba(212,106,67,0.25); animation: bounce 3s infinite ease-in-out; font-size: 12px; padding: 8px 16px; background: var(--primary); color: #ffffff;">
+                            style="position: absolute; top: 15px; right: 15px; transform: rotate(5deg); box-shadow: 0 5px 15px rgba(184,82,43,0.3); animation: bounce 3s infinite ease-in-out; font-size: 12px; padding: 8px 16px; background: var(--primary-dark); color: #ffffff;">
                             MAIS VENDIDO
                         </div>
                         <h3>PLANO COMPLETO</h3>
