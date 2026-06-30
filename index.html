@@ -36,15 +36,15 @@
     </script>
 
     <!-- Preload LCP Image -->
-    <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="images/hero.png" fetchpriority="high">
 
     <!-- Fonts (Non-blocking to fix Render Blocking) -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@300;400;600;800&display=swap"
         rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
         <link
-            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@300;400;600;800&display=swap"
             rel="stylesheet">
     </noscript>
 
@@ -53,21 +53,26 @@
     <noscript>
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     </noscript>
-
     <style>
         :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --primary: #FFD700;
-            /* Gold */
-            --secondary: #FF4500;
-            /* Neon Orange */
-            --accent: #00E5FF;
-            /* Cyan for futuristic touches */
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 20px rgba(255, 215, 0, 0.3);
+            --bg-dark: #FDFBF7;
+            /* Off-white cream */
+            --bg-card: #ffffff;
+            /* Pure white cards */
+            --primary: #D46A43;
+            /* Terracota */
+            --secondary: #5F7A61;
+            /* Sage Green */
+            --accent: #8FA89B;
+            /* Light Sage Green */
+            --text-main: #2C2520;
+            /* Dark coffee brown */
+            --text-muted: #70655E;
+            /* Warm gray/brown */
+            --glass-border: rgba(212, 106, 67, 0.12);
+            /* Terracota border */
+            --glow: 0 10px 30px rgba(212, 106, 67, 0.08);
+            /* Soft shadow shadow */
         }
 
         * {
@@ -98,26 +103,25 @@
         h1,
         h2,
         h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: -1px;
+            font-family: 'Lora', serif;
+            letter-spacing: -0.5px;
         }
 
         /* Background Animation */
         .bg-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(120px);
             z-index: -1;
-            animation: float 10s infinite ease-in-out;
+            animation: float 12s infinite ease-in-out;
             will-change: transform;
         }
-
 
         .orb-1 {
             width: 400px;
             height: 400px;
-            background: rgba(255, 69, 0, 0.15);
+            background: rgba(212, 106, 67, 0.08);
+            /* Terracota blob */
             top: -100px;
             left: -100px;
         }
@@ -125,10 +129,11 @@
         .orb-2 {
             width: 500px;
             height: 500px;
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(95, 122, 97, 0.08);
+            /* Sage green blob */
             bottom: -100px;
             right: -100px;
-            animation-delay: -5s;
+            animation-delay: -6s;
         }
 
         @keyframes float {
@@ -139,7 +144,7 @@
             }
 
             50% {
-                transform: translate(30px, 50px);
+                transform: translate(35px, 45px);
             }
         }
 
@@ -155,8 +160,8 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--glass-border);
             padding: 16px 0;
         }
@@ -169,18 +174,20 @@
 
         .logo {
             font-weight: 800;
-            font-size: 24px;
+            font-size: 22px;
+            font-family: 'Lora', serif;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .btn-glow {
             background: transparent;
             color: var(--primary);
-            border: 1px solid var(--primary);
+            border: 2px solid var(--primary);
             padding: 10px 24px;
             border-radius: 50px;
             text-decoration: none;
@@ -188,12 +195,15 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-glow:hover {
             background: var(--primary);
-            color: var(--bg-dark);
-            box-shadow: 0 0 30px var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(212, 106, 67, 0.2);
         }
 
         /* Hero Section */
@@ -220,7 +230,7 @@
 
         .hero-text .highlight {
             color: var(--primary);
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            font-style: italic;
         }
 
         .hero-text p {
@@ -237,27 +247,27 @@
         .hero-img {
             width: 100%;
             border-radius: 24px;
-            transform: perspective(1000px) rotateY(-10deg);
-            box-shadow: -20px 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(44, 37, 32, 0.12);
             border: 1px solid var(--glass-border);
-            transition: transform 0.5s;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .hero-img:hover {
-            transform: perspective(1000px) rotateY(0deg);
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(44, 37, 32, 0.18);
         }
 
         .floating-badge {
             position: absolute;
             top: 20px;
             right: -20px;
-            background: var(--secondary);
-            color: #000;
+            background: var(--primary);
+            color: #ffffff;
             padding: 16px 32px;
             border-radius: 12px;
             font-weight: 800;
             transform: rotate(5deg);
-            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(212, 106, 67, 0.3);
             animation: bounce 3s infinite ease-in-out;
         }
 
@@ -276,17 +286,17 @@
         /* Cards */
         .glass-card {
             background: var(--bg-card);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 32px;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 30px rgba(44, 37, 32, 0.04);
         }
 
         .glass-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-6px);
             border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(212, 106, 67, 0.1);
         }
 
         /* Problem Section */
@@ -296,12 +306,10 @@
 
         .section-title {
             text-align: center;
-            font-size: 48px;
+            font-size: clamp(32px, 4vw, 48px);
             margin-bottom: 60px;
-            background: linear-gradient(to bottom, #fff, #888);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main);
+            font-weight: 700;
         }
 
         .problem-grid {
@@ -318,12 +326,12 @@
             font-size: 48px;
             margin-bottom: 16px;
             display: inline-block;
-            filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.5));
+            filter: drop-shadow(0 4px 10px rgba(212, 106, 67, 0.15));
         }
 
         /* Secret Section */
         .secret {
-            background: linear-gradient(180deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+            background: linear-gradient(180deg, transparent, rgba(212, 106, 67, 0.04), transparent);
         }
 
         .secret-content {
@@ -337,7 +345,7 @@
             max-width: 600px;
             border-radius: 24px;
             margin-top: 40px;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
+            box-shadow: 0 15px 40px rgba(44, 37, 32, 0.1);
         }
 
         /* Carousel Animation */
@@ -368,7 +376,7 @@
             border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(44, 37, 32, 0.08);
         }
 
         .carousel-item img {
@@ -566,62 +574,50 @@
 
         /* Pricing */
         .pricing-box {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
-            border: 1px solid var(--primary);
+            background: #ffffff;
+            border: 1px solid var(--glass-border);
             border-radius: 32px;
-            padding: 60px;
+            padding: 48px 32px;
             text-align: center;
             max-width: 600px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-        }
-
-        .pricing-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, var(--primary), transparent 30%);
-            animation: rotate 4s linear infinite;
-            opacity: 0.1;
-            pointer-events: none;
-        }
-
-        @keyframes rotate {
-            100% {
-                transform: rotate(360deg);
-            }
+            box-shadow: 0 10px 40px rgba(44, 37, 32, 0.04);
+            transition: all 0.3s ease;
         }
 
         .price-tag {
-            font-size: 80px;
+            font-size: 64px;
             font-weight: 800;
             color: var(--primary);
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            margin: 24px 0;
+            margin: 16px 0;
+            font-family: 'Lora', serif;
         }
 
         .cta-button-large {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            padding: 24px;
+            padding: 20px 24px;
             background: var(--primary);
-            color: #000;
+            color: #ffffff;
             font-weight: 800;
-            font-size: 24px;
+            font-size: 20px;
             text-decoration: none;
             border-radius: 16px;
-            margin-top: 32px;
-            transition: transform 0.2s;
+            margin-top: 24px;
+            transition: all 0.3s ease;
             text-transform: uppercase;
+            box-shadow: 0 8px 25px rgba(212, 106, 67, 0.25);
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button-large:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 50px var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(212, 106, 67, 0.35);
         }
 
         /* Bonus Section Styling */
@@ -684,7 +680,18 @@
             border: 2px solid var(--primary);
             position: relative;
             z-index: 2;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 0, 0, 0.8));
+            background: linear-gradient(135deg, #ffffff, rgba(212, 106, 67, 0.04));
+            box-shadow: 0 15px 45px rgba(212, 106, 67, 0.12);
+        }
+
+        @media (min-width: 769px) {
+            .pricing-box.premium {
+                transform: scale(1.04);
+            }
+
+            .pricing-box.premium:hover {
+                transform: scale(1.06);
+            }
         }
 
         .pricing-box.basic {
@@ -697,7 +704,6 @@
         .pricing-box.basic .price-tag {
             font-size: 48px;
             color: var(--text-main);
-            text-shadow: none;
         }
 
         /* Mobile Responsiveness */
@@ -1029,7 +1035,7 @@
                         OFERTA</a>
                 </div>
                 <div class="hero-img-wrapper">
-                    <img src="images/hero.webp" alt="Doces Zero Açúcar" class="hero-img" fetchpriority="high"
+                    <img src="images/hero.png" alt="Doces Zero Açúcar" class="hero-img" fetchpriority="high"
                         width="1024" height="1024">
                     <div class="floating-badge" style="text-align: center; font-size: 14px;">
                         OFERTA LIMITADA<br>DE <span style="text-decoration: line-through;">R$67</span> POR<br><span
@@ -1258,15 +1264,15 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" style="background: rgba(95, 122, 97, 0.03);">
             <div class="container hero-grid">
                 <div class="hero-img-wrapper" data-aos="fade-right">
                     <img src="images/isadora.webp" alt="Isadora Leblanc" class="hero-img" width="800" height="625"
-                        style="transform: none; border-radius: 50%; max-width: 400px; width: 100%; height: auto; object-fit: cover; margin: 0 auto; box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);">
+                        style="transform: none; border-radius: 50%; max-width: 360px; width: 100%; height: auto; object-fit: cover; margin: 0 auto; box-shadow: 0 15px 35px rgba(44, 37, 32, 0.1); border: 6px solid #ffffff;">
                 </div>
                 <div class="hero-text" data-aos="fade-left">
-                    <h2 class="section-title" style="text-align: left; margin-bottom: 24px;">Olá! Eu sou a Isadora
-                        Leblanc</h2>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 24px; font-size: 36px;">Olá! Eu
+                        sou a Isadora Leblanc</h2>
                     <p class="text-muted" style="margin-bottom: 16px;">Sou Isadora Leblanc, chef especializada em
                         culinária saudável. Minha paixão é transformar ingredientes naturais em pratos saborosos,
                         criativos e nutritivos. Acredito que comer bem é um dos maiores cuidados que podemos ter com nós
@@ -1355,7 +1361,7 @@
                         <h3 style="color: var(--primary);">BÔNUS 1</h3>
                         <h4>Bolos Diet</h4>
                         <p class="text-muted">20 receitas de bolos irresistíveis e zero açúcar.</p>
-                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
+                        <p style="color: var(--secondary); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
                         <img src="bonus/bonus2.webp" alt="Ebook Páscoa Zero Açúcar" class="bonus-img" width="600"
@@ -1363,7 +1369,7 @@
                         <h3 style="color: var(--primary);">BÔNUS 2</h3>
                         <h4>Páscoa Zero Açúcar</h4>
                         <p class="text-muted">20 receitas de ovos de páscoa e delícias.</p>
-                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
+                        <p style="color: var(--secondary); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
                         <img src="bonus/bonus3.webp" alt="Ebook Pizzas Low Carb" class="bonus-img" width="600"
@@ -1371,7 +1377,7 @@
                         <h3 style="color: var(--primary);">BÔNUS 3</h3>
                         <h4>Pizzas Low Carb</h4>
                         <p class="text-muted">Deliciosas, saudáveis e feitas na Airfryer.</p>
-                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
+                        <p style="color: var(--secondary); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
                         <img src="bonus/bonus4.webp" alt="Ebook Melhora do Humor & Menopausa" class="bonus-img"
@@ -1379,7 +1385,7 @@
                         <h3 style="color: var(--primary);">BÔNUS 4</h3>
                         <h4>Melhora do Humor & Menopausa</h4>
                         <p class="text-muted">Receitas que ajudam a reduzir depressão e fadiga.</p>
-                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
+                        <p style="color: var(--secondary); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
                         <img src="bonus/bonus5.webp" alt="Ebook Chocotones Irresistíveis" class="bonus-img" width="600"
@@ -1387,7 +1393,7 @@
                         <h3 style="color: var(--primary);">BÔNUS 5</h3>
                         <h4>Chocotones Irresistíveis</h4>
                         <p class="text-muted">Sem açúcar, glúten ou lactose.</p>
-                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
+                        <p style="color: var(--secondary); font-weight: 800;">GRÁTIS</p>
                     </div>
                     <div class="glass-card" data-aos="fade-up" data-aos-delay="500">
                         <img src="bonus/bonus6.webp" alt="Ebook Refeições de Microondas" class="bonus-img" width="600"
@@ -1395,7 +1401,7 @@
                         <h3 style="color: var(--primary);">BÔNUS 6</h3>
                         <h4>Refeições de Microondas</h4>
                         <p class="text-muted">Práticas e Low Carb para emagrecer.</p>
-                        <p style="color: var(--accent); font-weight: 800;">GRÁTIS</p>
+                        <p style="color: var(--secondary); font-weight: 800;">GRÁTIS</p>
                     </div>
                 </div>
             </div>
@@ -1425,7 +1431,7 @@
                     <!-- Complete Plan -->
                     <div class="pricing-box premium glass-card" data-aos="zoom-in">
                         <div class="floating-badge"
-                            style="position: absolute; top: 15px; right: 15px; transform: rotate(5deg); box-shadow: 0 5px 15px rgba(255,69,0,0.3); animation: bounce 3s infinite ease-in-out; font-size: 12px; padding: 8px 16px;">
+                            style="position: absolute; top: 15px; right: 15px; transform: rotate(5deg); box-shadow: 0 5px 15px rgba(212,106,67,0.25); animation: bounce 3s infinite ease-in-out; font-size: 12px; padding: 8px 16px; background: var(--primary); color: #ffffff;">
                             MAIS VENDIDO
                         </div>
                         <h3>PLANO COMPLETO</h3>
@@ -1448,8 +1454,26 @@
                 </div>
 
                 <div
-                    style="margin-top: 60px; border-top: 1px solid var(--glass-border); padding-top: 30px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    <h3 style="color: var(--primary); margin-bottom: 16px;">GARANTIA INCONTESTÁVEL DE 7 DIAS</h3>
+                    style="margin-top: 60px; border-top: 1px solid var(--glass-border); padding-top: 40px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+
+                    <!-- SVG Guarantee Badge -->
+                    <svg width="90" height="90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        style="margin: 0 auto 20px auto; display: block; filter: drop-shadow(0 4px 10px rgba(212, 106, 67, 0.1));">
+                        <circle cx="50" cy="50" r="44" stroke="var(--primary)" stroke-width="2" stroke-dasharray="4 4"
+                            fill="none" />
+                        <circle cx="50" cy="50" r="40" fill="var(--primary)" fill-opacity="0.05" stroke="var(--primary)"
+                            stroke-width="3" />
+                        <text x="50" y="46" font-family="'Lora', serif" font-size="24" font-weight="bold"
+                            fill="var(--primary)" text-anchor="middle">7</text>
+                        <text x="50" y="58" font-family="'Outfit', sans-serif" font-size="10" font-weight="800"
+                            fill="var(--primary)" text-anchor="middle" letter-spacing="1">DIAS</text>
+                        <text x="50" y="68" font-family="'Outfit', sans-serif" font-size="7" font-weight="600"
+                            fill="var(--text-muted)" text-anchor="middle">DE GARANTIA</text>
+                    </svg>
+
+                    <h3
+                        style="color: var(--primary); margin-bottom: 16px; font-family: 'Lora', serif; font-size: 24px; font-weight: 700;">
+                        GARANTIA INCONTESTÁVEL DE 7 DIAS</h3>
                     <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 16px;">Caso não goste do que
                         encontrar, pode ficar tranquilo e sereno. Eu devolvo seu dinheiro de volta - e sem perguntas -
                         em até 7 dias após a compra, ok?</p>
