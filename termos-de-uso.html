@@ -18,19 +18,21 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --primary: #FFD700; /* Gold */
-            --secondary: #FF4500; /* Neon Orange */
-            --accent: #00E5FF; /* Cyan */
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 20px rgba(255, 215, 0, 0.3);
+            --bg-dark: #FDFBF7;
+            --bg-card: #ffffff;
+            --primary: #D46A43;
+            --primary-dark: #B8522B;
+            --secondary: #5F7A61;
+            --secondary-dark: #3E5640;
+            --accent: #8FA89B;
+            --text-main: #2C2520;
+            --text-muted: #70655E;
+            --glass-border: rgba(212, 106, 67, 0.12);
+            --glow: 0 10px 30px rgba(212, 106, 67, 0.08);
         }
 
         * {
@@ -56,25 +58,24 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: -1px;
+            font-family: 'Lora', serif;
+            letter-spacing: -0.5px;
         }
 
         /* Ambient Background Orbs */
         .bg-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(120px);
             z-index: -1;
-            animation: float 10s infinite ease-in-out;
+            animation: float 12s infinite ease-in-out;
             will-change: transform;
         }
 
         .orb-1 {
             width: 400px;
             height: 400px;
-            background: rgba(255, 69, 0, 0.12);
+            background: rgba(212, 106, 67, 0.08);
             top: -100px;
             left: -100px;
         }
@@ -82,15 +83,15 @@
         .orb-2 {
             width: 500px;
             height: 500px;
-            background: rgba(255, 215, 0, 0.08);
+            background: rgba(95, 122, 97, 0.08);
             bottom: -100px;
             right: -100px;
-            animation-delay: -5s;
+            animation-delay: -6s;
         }
 
         @keyframes float {
             0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, 50px); }
+            50% { transform: translate(35px, 45px); }
         }
 
         .container {
@@ -105,8 +106,8 @@
             align-items: center;
             gap: 8px;
             background: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-dark);
             padding: 10px 24px;
             border-radius: 50px;
             text-decoration: none;
@@ -118,25 +119,25 @@
         }
 
         .btn-back:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-            box-shadow: 0 0 25px var(--primary);
+            background: var(--primary-dark);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(184, 82, 43, 0.2);
         }
 
-        /* Glassmorphism Card Container */
+        /* Card Container */
         .glass-card {
             background: var(--bg-card);
-            backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 48px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 30px rgba(44, 37, 32, 0.04);
         }
 
         .logo {
             font-weight: 800;
             font-size: 24px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            font-family: 'Lora', serif;
+            background: linear-gradient(to right, var(--primary-dark), var(--secondary-dark));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -149,10 +150,7 @@
             font-size: clamp(32px, 4vw, 48px);
             line-height: 1.1;
             margin-bottom: 8px;
-            background: linear-gradient(to right, #fff, #d0d0d0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main);
         }
 
         .date-updated {
@@ -169,14 +167,14 @@
             display: inline-block;
             width: 8px;
             height: 8px;
-            background-color: var(--accent);
+            background-color: var(--primary);
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
+            box-shadow: 0 0 10px rgba(212, 106, 67, 0.4);
         }
 
         h2 {
             font-size: 20px;
-            color: var(--primary);
+            color: var(--primary-dark);
             margin-top: 36px;
             margin-bottom: 16px;
             letter-spacing: 0.5px;
@@ -208,14 +206,14 @@
 
         li::before {
             content: "✓";
-            color: var(--accent);
+            color: var(--primary);
             position: absolute;
             left: 0;
             font-weight: bold;
         }
 
         strong {
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         footer {
