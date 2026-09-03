@@ -149,12 +149,13 @@
         });
     }
 
-    /** INSERT simples */
-    async function sbInsert(table, record) {
+    /** INSERT simples (keepalive para garantir envio mesmo com redirecionamento de link externo) */
+    async function sbInsert(table, record, keepalive = true) {
         return fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
             method: 'POST',
             headers: { ...BASE_HEADERS, 'Prefer': 'return=minimal' },
             body: JSON.stringify(record),
+            keepalive,
         });
     }
 
